@@ -3,7 +3,7 @@
 const HOST = '127.0.0.1';
 const PORT = 8000;
 const OLLAMA_URL = 'http://127.0.0.1:11434/api/chat';
-const MODEL = 'qwen2.5vl:7b';
+const MODEL = 'qwen2.5vl:3b';
 
 function sendJson(response, status, body) {
   response.writeHead(status, {
@@ -93,3 +93,4 @@ const server = http.createServer(async (request, response) => {
 server.listen(PORT, HOST, () => {
   console.log(`Local multimodal bridge ready on http://${HOST}:${PORT}/verify`);
 });
+
