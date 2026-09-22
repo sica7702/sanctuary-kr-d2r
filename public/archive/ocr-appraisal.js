@@ -1,4 +1,4 @@
-import {mountTradeBridge} from './trade-bridge.js?v=129';
+﻿import {mountTradeBridge} from './trade-bridge.js?v=129';
 import {identifiedAssessment as uniqueAssessment} from './quality-unique.js?v=129';
 import {esc,norm,reconcileOptions,closure,matchAffixes,affixCandidates,solveMagic} from './unified-core.js?v=129';
 import {ocrRuleContext,evaluateOcrRules,adjustedOcrScore} from './ocr-runtime-valuation.js?v=135';
@@ -8,7 +8,36 @@ function engineName(o){const E=window.SKR_RARE_ENGINE,clean=s=>norm(s.replace(/\
 function inferSlot(){const api=window.SKR_OCR_EVIDENCE;if(['unique','set'].includes($('sourceQuality').value)){const r=api.getData().records.find(r=>r.id===$('uniqueIdentity')?.value);if(r){$('evidenceBase').value=r.code;if(r.mods?.some(m=>m.code.startsWith('pierce-immunity-'))&&!api.getData().bases.some(b=>b.code===r.code)){$('slot').value='부적';return;}}}const base=window.SKR_OCR_EVIDENCE.getData().bases.find(b=>b.code===$('evidenceBase').value);if(!base)return;if(['jew','cjw'].includes(base.code)){$('slot').value='주얼';return;}const data=window.SKR_OCR_EVIDENCE.getData(),types=closure(base.type,data.types);const slots=[['jewl','주얼'],['scha','작은 부적'],['mcha','큰 부적'],['lcha','거대 부적'],['csch','부적'],['amul','목걸이'],['ring','반지'],['circ','써클릿'],['glov','장갑'],['boot','부츠'],['belt','벨트'],['helm','투구'],['tors','갑옷'],['shld','방패'],['bow','활'],['xbow','활'],['jave','자벨린'],['h2h','클러'],['orb','오브'],['wand','완드'],['scep','셉터'],['weap','무기']];const hit=slots.find(([t])=>types.has(t));$('slot').value=hit?hit[1]:'';}
 function refresh(){if(!initialized)return;const ledger=window.SKR_OCR_EVIDENCE.getLedger(),options=reconcileOptions(ledger);$('recognizedOptions').innerHTML=options.length?'<div class="recognized-list">'+options.map((o,i)=>'<label class="recognized-option"><span>'+esc(o.name||o.code||'옵션 확인 필요')+(o.identityConflict?'<small class="bad">옵션 종류가 충돌합니다 · 아래 원문에서 해석을 정정하세요</small>':o.conflict?'<small class="bad">판독값 '+esc(o.alternatives.join(' / '))+' · 사진을 보고 하나로 정정하세요</small>':'')+'</span><input type="number" data-assessment-option="'+i+'" '+(o.identityConflict?'disabled':'')+' value="'+esc(o.value)+'" aria-label="'+esc(o.name)+' 수치"></label>').join('')+'</div>':'<p class="muted">사진을 읽으면 감정에 사용할 옵션이 여기에 정리됩니다. 옵션을 직접 추가해도 감정할 수 있습니다.</p>';
 const unparsed=ledger.filter(l=>l.status==='unresolved').length;$('assessmentStatus').textContent=options.length+'개 옵션 연결'+(unparsed?' · 해석 확인 원문 '+unparsed+'줄':'');$('runAppraisal').disabled=!options.length&&!$('evidenceBase').value;$('assessmentResult').innerHTML=options.length?'<p class="muted">옵션이 준비됐습니다. 감정하기를 누르면 판정 이유와 보완할 옵션을 확인할 수 있습니다.</p>':'';lastResult=null;tradeBridge?.refresh(null);window.SKR_AI_APPRAISAL?.cancel();}
-function appraise(){if($('sourceQuality').value==='unknown'){$('assessmentResult').innerHTML='<h3>아이템 종류를 먼저 확인하세요.</h3>';lastResult=null;return;}if(['unique','set','runeword'].includes($('sourceQuality').value)){inferSlot();const a=uniqueAssessment(window.SKR_OCR_EVIDENCE);$('assessmentResult').innerHTML=a.html;lastResult=a.result;tradeBridge?.refresh(lastResult);return;}const api=window.SKR_OCR_EVIDENCE,data=api.getData(),ledger=api.getLedger(),options=reconcileOptions(ledger);if(['normal','superior'].includes($('sourceQuality').value)){inferSlot();const base=data.records.find(r=>r.id==='base:'+$('evidenceBase').value);if(!base){$('assessmentResult').textContent='정확한 베이스를 선택하세요.';return;}lastResult={quality:$('sourceQuality').value,input:options};$('assessmentResult').innerHTML='<h2>'+esc(base.name)+' · 베이스 확인</h2><p>인식된 옵션과 소켓·무형 정보를 거래 준비에 보존합니다.</p>';tradeBridge?.refresh(lastResult);return;}const E=window.SKR_RARE_ENGINE,rarity={magic:'매직',rare:'레어',crafted:'크래프트'}[$('sourceQuality').value],slot=$('slot').value;const linked=options.map(o=>({...o,engineName:engineName(o)})),items=linked.filter(o=>o.engineName&&o.value!==''&&Number.isFinite(Number(o.value))).map(o=>({name:o.engineName,value:Number(o.value)}));
+function appraise(){if($('sourceQuality').value==='unknown'){$('assessmentResult').innerHTML='<h3>아이템 종류를 먼저 확인하세요.</h3>';lastResult=null;return;}if(['unique','set','runeword'].includes($('sourceQuality').value)){inferSlot();const a=uniqueAssessment(window.SKR_OCR_EVIDENCE);$('assessmentResult').innerHTML=a.html;lastResult=a.result;
+void (async()=>{
+  try {
+    const values = (lastResult.items || [])
+      .map(x => Number(x.value))
+      .filter(Number.isFinite);
+
+    const response = await fetch("http://127.0.0.1:8788/api/verify", {
+      method: "POST",
+      headers: {"content-type":"application/json"},
+      body: JSON.stringify({
+        itemId: `ocr-${Date.now()}`,
+        features: values,
+        marketContext: {
+          transactions: [],
+          userId: "local-user",
+          ratings: {}
+        }
+      })
+    });
+
+    const enginePayload = await response.json();
+    window.SKR_REAL_ENGINE_RESULT = enginePayload;
+    window.dispatchEvent(new CustomEvent("real-engine-result", {
+      detail: enginePayload
+    }));
+  } catch (error) {
+    console.error("real engine request failed", error);
+  }
+})();tradeBridge?.refresh(lastResult);return;}const api=window.SKR_OCR_EVIDENCE,data=api.getData(),ledger=api.getLedger(),options=reconcileOptions(ledger);if(['normal','superior'].includes($('sourceQuality').value)){inferSlot();const base=data.records.find(r=>r.id==='base:'+$('evidenceBase').value);if(!base){$('assessmentResult').textContent='정확한 베이스를 선택하세요.';return;}lastResult={quality:$('sourceQuality').value,input:options};$('assessmentResult').innerHTML='<h2>'+esc(base.name)+' · 베이스 확인</h2><p>인식된 옵션과 소켓·무형 정보를 거래 준비에 보존합니다.</p>';tradeBridge?.refresh(lastResult);return;}const E=window.SKR_RARE_ENGINE,rarity={magic:'매직',rare:'레어',crafted:'크래프트'}[$('sourceQuality').value],slot=$('slot').value;const linked=options.map(o=>({...o,engineName:engineName(o)})),items=linked.filter(o=>o.engineName&&o.value!==''&&Number.isFinite(Number(o.value))).map(o=>({name:o.engineName,value:Number(o.value)}));
 if(!items.length){$('assessmentResult').innerHTML='<h3>감정에 연결할 옵션을 확인해주세요.</h3><p>인식 원문은 보존되어 있습니다. 옵션 이름과 수치를 선택하면 기존 감정 기준과 비교할 수 있습니다.</p>';return;}
 const conflicts=options.filter(o=>o.conflict),unlinked=linked.filter(o=>!o.engineName),pending=ledger.filter(l=>l.status==='unresolved'),badValues=items.filter(o=>{let cap=E.cap(o.name,slot);if(rarity==='매직'&&/기술 레벨/.test(o.name)&&!/모든 기술/.test(o.name))cap=Math.max(cap||0,3);if(rarity==='크래프트'&&slot==='목걸이'&&o.name==='시전 속도 증가')cap=20;if(/^(화염|냉기|번개|독) 저항$/.test(o.name))cap=(cap||0)+(E.cap('모든 저항',slot)||0);return o.value<0||cap>0&&o.value>cap;});
 const result=E.evaluate({slot,items,realm:$('realm').value,rarity,socketState:$('socket').value==='auto'?items.find(x=>x.name==='소켓')?.value??null:+$('socket').value});
@@ -55,3 +84,5 @@ window.addEventListener('skr-runtime-rules-ready',()=>{if(lastResult&&['rare','m
 window.addEventListener('skr-review-value-model-ready',()=>{if(lastResult&&['rare','magic','crafted'].includes($('sourceQuality').value))appraise();});
 window.SKR_APPRAISAL_UI={refresh,appraise,inferSlot,getResult:()=>lastResult};tradeBridge=mountTradeBridge(window.SKR_OCR_EVIDENCE);refresh();}
 document.addEventListener('skr:ocr-ready',initialize);initialize();
+
+
