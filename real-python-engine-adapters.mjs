@@ -2,33 +2,64 @@
 
 function runPython(script, payload) {
   return new Promise((resolve, reject) => {
-    const child = spawn("python", [script]);
+    const child = spawn("python", [script], {
+      stdio: ["pipe", "pipe", "pipe"],
+      windowsHide: true,
+    });
+
+    const timeout = setTimeout(() => {
+      child.kill();
+      reject(new Error(`${script} timed out`));
+    }, 30000);
+
     let stdout = "";
     let stderr = "";
+    let settled = false;
+
+    const finish = (fn, value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeout);
+      stdout = "";
+      stderr = "";
+      fn(value);
+    };
 
     child.stdout.on("data", (chunk) => {
       stdout += chunk.toString();
+      if (stdout.length > 1024 * 1024) {
+        child.kill();
+        finish(reject, new Error(`${script} stdout exceeded 1MB`));
+      }
     });
 
     child.stderr.on("data", (chunk) => {
       stderr += chunk.toString();
+      if (stderr.length > 1024 * 1024) {
+        child.kill();
+        finish(reject, new Error(`${script} stderr exceeded 1MB`));
+      }
     });
 
-    child.on("error", reject);
+    child.on("error", (error) => finish(reject, error));
 
     child.on("close", (code) => {
       if (code !== 0) {
-        reject(new Error(stderr || `${script} exited with code ${code}`));
+        finish(reject, new Error(stderr || `${script} exited with code ${code}`));
         return;
       }
 
-      resolve(JSON.parse(stdout.replace(/^\uFEFF/, "")));
+      try {
+        const parsed = JSON.parse(stdout.replace(/^\uFEFF/, ""));
+        finish(resolve, parsed);
+      } catch (error) {
+        finish(reject, error);
+      }
     });
 
     child.stdin.end(JSON.stringify(payload));
   });
 }
-
 export function createRealPythonEngineAdapters() {
   return {
     xgboost: (input) =>
@@ -73,3 +104,4 @@ export function createRealPythonEngineAdapters() {
       }),
   };
 }
+
