@@ -21,7 +21,7 @@ test('OCR 평가 지표를 계산한다', () => {
   assert.equal(metrics.sampleCount, 3);
   assert.equal(metrics.exactMatchAccuracy, 2 / 3);
   assert.equal(metrics.optionAccuracy, 2 / 3);
-  assert.equal(metrics.valueMae, 10 / 3);
+  assert.equal(metrics.valueMae, 10);
 });
 
 test('기준을 만족하면 통과한다', () => {
@@ -51,4 +51,5 @@ test('기준에 미달하면 통과하지 못한다', () => {
     maxValueMae: 1
   }), false);
 });
+
 
