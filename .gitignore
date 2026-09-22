@@ -4,3 +4,4 @@ artifacts/*.joblib
 artifacts/xgboost_admin_review.json
 *.pyc
 __pycache__/
+.wrangler/
