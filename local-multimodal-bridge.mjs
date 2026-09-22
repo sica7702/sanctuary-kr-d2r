@@ -6,22 +6,18 @@ const OLLAMA_URL = 'http://127.0.0.1:11434/api/chat';
 const MODEL = 'qwen2.5vl:7b';
 
 function sendJson(response, status, body) {
-  response.writeHead(status, { 'content-type': 'application/json; charset=utf-8' });
+  response.writeHead(status, {
+    'content-type': 'application/json; charset=utf-8'
+  });
   response.end(JSON.stringify(body));
 }
 
-function parseContent(content) {
+function parseModelJson(content) {
   try {
     return JSON.parse(content);
   } catch {
-    const match = content.match(/\{[\s\S]*\}/);
-    if (!match) return null;
-
-    try {
-      return JSON.parse(match[0]);
-    } catch {
-      return null;
-    }
+    const match = String(content).match(/\{[\s\S]*\}/);
+    return match ? JSON.parse(match[0]) : null;
   }
 }
 
@@ -56,30 +52,27 @@ const server = http.createServer(async (request, response) => {
         messages: [{
           role: 'user',
           content: [
-            {
-              type: 'text',
-              text: [
-                '디아블로2 아이템 이미지와 기존 OCR 결과를 검증하라.',
-                '반드시 JSON만 반환하라.',
-                '형식: {"matches":true|false,"result":{"text":"최종 판독 문자열"}}',
-                `기존 OCR 결과: ${JSON.stringify(ocrResult)}`
-              ].join('\n')
-            },
-            { type: 'image', image: imageBase64 }
-          ]
+            '디아블로2 아이템 이미지를 판독하고 기존 OCR과 비교하라.',
+            '반드시 JSON만 반환하라.',
+            '형식: {"matches":true|false,"result":{"text":"최종 판독 문자열"}}',
+            `기존 OCR 결과: ${JSON.stringify(ocrResult)}`
+          ].join('\n'),
+          images: [imageBase64]
         }]
       })
     });
 
     if (!ollamaResponse.ok) {
+      const detail = await ollamaResponse.text();
       sendJson(response, ollamaResponse.status, {
-        error: `OLLAMA_HTTP_${ollamaResponse.status}`
+        error: `OLLAMA_HTTP_${ollamaResponse.status}`,
+        detail
       });
       return;
     }
 
     const payload = await ollamaResponse.json();
-    const parsed = parseContent(payload?.message?.content ?? '');
+    const parsed = parseModelJson(payload?.message?.content ?? '');
 
     if (!parsed || typeof parsed.matches !== 'boolean') {
       sendJson(response, 502, { error: 'INVALID_MODEL_RESPONSE' });
