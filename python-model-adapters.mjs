@@ -1,35 +1,49 @@
-﻿import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+﻿import { spawn } from "node:child_process";
 
-const execFileAsync = promisify(execFile);
+function runPythonModel(modelName, features) {
+  return new Promise((resolve, reject) => {
+    const child = spawn("python", ["python-model-bridge.py"]);
+    let stdout = "";
+    let stderr = "";
 
-const PYTHON_MODELS = [
-  "xgboost",
-  "regression",
-  "gpr",
-  "dbscan",
-  "genetic",
-  "bayesian",
-];
+    child.stdout.on("data", (chunk) => {
+      stdout += chunk.toString();
+    });
+
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+    });
+
+    child.on("error", reject);
+
+    child.on("close", (code) => {
+      if (code !== 0) {
+        reject(new Error(stderr || `Python bridge exited with code ${code}`));
+        return;
+      }
+
+      resolve(JSON.parse(stdout));
+    });
+
+    child.stdin.end(JSON.stringify({
+      model: modelName,
+      features,
+    }));
+  });
+}
 
 export function createPythonModelAdapters() {
   return Object.fromEntries(
-    PYTHON_MODELS.map((modelName) => [
+    [
+      "xgboost",
+      "regression",
+      "gpr",
+      "dbscan",
+      "genetic",
+      "bayesian",
+    ].map((modelName) => [
       modelName,
-      async (input) => {
-        const request = JSON.stringify({
-          model: modelName,
-          features: input.features,
-        });
-
-        const { stdout } = await execFileAsync(
-          "python",
-          ["python-model-bridge.py"],
-          { input: request },
-        );
-
-        return JSON.parse(stdout);
-      },
+      async (input) => runPythonModel(modelName, input.features),
     ]),
   );
 }
