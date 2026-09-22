@@ -86,3 +86,22 @@ window.SKR_APPRAISAL_UI={refresh,appraise,inferSlot,getResult:()=>lastResult};tr
 document.addEventListener('skr:ocr-ready',initialize);initialize();
 
 
+
+window.addEventListener("real-engine-result", (event) => {
+  const payload = event.detail;
+  const result = payload?.result;
+  if (!result) return;
+
+  const host = document.querySelector("#assessmentResult");
+  if (!host) return;
+
+  const box = document.createElement("div");
+  box.className = "assessment-context real-engine-result";
+  box.innerHTML =
+    "<strong>실제 모델 엔진 결과</strong>" +
+    "<p>종합 점수: " + Number(result.finalScore ?? 0).toFixed(3) + "</p>" +
+    "<p>신뢰도: " + Number(result.confidence ?? 0).toFixed(3) + "</p>" +
+    "<p>자동판정: " + (result.needsHumanReview ? "사람 검수 필요" : "가능") + "</p>";
+
+  host.appendChild(box);
+});
