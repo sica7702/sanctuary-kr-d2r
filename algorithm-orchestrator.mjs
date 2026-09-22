@@ -2,6 +2,7 @@
   createAlgorithmInput,
   createAlgorithmOutput,
 } from "./algorithm-contract.mjs";
+import { normalizeModelResults } from "./score-normalizer.mjs";
 
 const MODEL_NAMES = [
   "xgboost",
@@ -17,15 +18,17 @@ const MODEL_NAMES = [
 
 export async function runAlgorithmPipeline(rawInput, runners = {}) {
   const input = createAlgorithmInput(rawInput);
-  const results = {};
+  const rawResults = {};
 
   for (const modelName of MODEL_NAMES) {
     const runner = runners[modelName];
 
     if (typeof runner === "function") {
-      results[modelName] = await runner(input);
+      rawResults[modelName] = await runner(input);
     }
   }
+
+  const results = normalizeModelResults(rawResults);
 
   const numericScores = Object.values(results)
     .map((result) => result?.score)
