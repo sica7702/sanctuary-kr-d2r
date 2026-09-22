@@ -1,0 +1,29 @@
+Sanctuary KR · Appraisal v28 Audit
+Verified: 2026-09-09
+
+1. 옵션 누락 재감사
+- 반지: 패캐/어레/힘/민첩/마력/생명/마나/리플/생흡/마흡/마상/저항/민·맥뎀/매찬/삥/독감/DR/MDR 입력 보강.
+- 목걸이: 생흡/마흡/리플/마력/민·맥뎀/독감/DR/MDR/피해→마나 등을 보강.
+- 써클릿: 생흡/마흡/리플/어레/ED/민·맥뎀/마상/4저항/매찬/삥/독감/DR/MDR 보강.
+- 장갑/부츠/벨트 및 각 무기군에도 실전 감정에 필요한 누락 수치를 보강.
+
+2. 마쟁 주의
+- 마쟁(마나 재생 %)은 일반 레어 링/아뮬 접사가 아니다.
+- 캐스터 크래프트 링/아뮬의 고정옵으로 4~10%가 존재한다.
+- 그래서 v28은 링/아뮬에 아이템 유형(레어/캐스터 크래프트)을 추가하고, 레어 선택 상태에서 마쟁을 입력하면 경고한다.
+
+3. 악마술사 세분화
+- Blizzard 공식 Reign of the Warlock: 3개 트리 = Chaos / Eldritch / Demon.
+- 한국어 UI/사이트 표기: 혼돈 / 기괴 / 악마.
+- +2 Warlock, +2 Chaos, +2 Eldritch, +2 Demon 레어 써클릿 실제 2026 거래/매물 사례와 LootCube 현행 affix data 교차검증.
+
+4. 최대치 표기 원칙
+- 화면의 '레어 최대'는 일반 현행 레어 생성 기준을 우선.
+- 매직 전용 +3 스킬탭, 크래프트 고정옵, 자동옵/스태프모드는 별도 라벨/경고로 분리.
+- 레거시(pre-1.08 등)는 현행 일반 레어 최대치에 포함하지 않는다.
+
+Primary verification axes
+- Blizzard / Arreat Summit Prefixes & Suffixes, Rare rules, Caster Craft recipes
+- Blizzard Reign of the Warlock official announcement
+- LootCube 2026 Warlock affix data
+- 2026 d2jsp / Korean market examples for cross-check only (not treated as official spawn rules)

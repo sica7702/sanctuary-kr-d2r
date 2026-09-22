@@ -1,0 +1,51 @@
+Sanctuary KR · Build Demand Matrix v4 · Weapon-family Deep Dive
+
+목적
+- 무기/클러/오브/완드/셉터/자벨린의 빌드별 실수요를 기존 범용 점수와 분리해 강화.
+- 단순 옵션 개수보다 실제 구매자가 찾는 조합, 대체 유니크/룬워드 대비 우위, PvP 브레이크포인트/스태프모드 압축을 우선.
+
+추가 수요군
+1) 클러
+- 2 Assassin / 3 Lightning Sentry / 20~40 IAS / 2os 트랩 메인핸드
+- +6 LS급 극딜 클러
+- Fool's/ED/IAS + LS/MB/DF 하이브리드 WW/트랩
+- Wake of Fire IAS/솟 특화
+
+2) 오브
+- Blizzard + Cold Mastery 극딜
+- Fire Ball/Meteor + Fire Mastery
+- Lightning/Chain Lightning + Lightning Mastery
+- ES/Telekinesis/Chilling Armor 프리버프
+- Enchant + Fire Mastery 버프 전용
+
+3) 완드
+- 2 Nec / 20 FCR / 3 Bone Spear 본넥
+- Poison Nova / Lower Resist 독넥
+- LLD/MLD Bone Spear/Teeth + FCR/Mana
+
+4) 셉터
+- FOH + Conviction
+- Blessed Hammer + Concentration
+- Zeal/Smite/Fanaticism + ED/IAS/eth-rep 물리형
+
+5) 자벨린
+- 4/40 + replenish + increased stack 텔레자바
+- 4/40 + eth + rep + high ED 잽/PvP
+- Fool's + 40 IAS + rep PvP
+- 4/40 + MAEK/leech/rep PvM
+
+6) 일반 레어 무기
+- Cruel/Fool's + eth/repair + IAS/2os
+- Amp + high ED/IAS + eth/repair
+- LLD/MLD Fool's/IAS/ED/socket
+
+시장 역추적 근거 요약
+- d2jsp 2025~2026 ISO/FT/price-check에서 4/40 rep/stack 자벨린이 8k~9.5k fg 호가 사례로 반복.
+- 2026 trap claw 매물에서 40 IAS + 3 LS/WoF + 3os 매물이 수천 fg 수준으로 제시.
+- 전통적인 d2jsp price guide는 2 Assassin + 3 LS + 20~40 base IAS + 2os가 IAS 상승에 따라 가격이 급격히 뛰는 패턴을 일관되게 기록.
+- 2026 rare Bone Wand 예시: 2 Nec / 20 FCR / 3 Bone Spear + 보조옵/1os가 별도 거래군.
+- Rare javelin은 eth/rep가 없으면 Titan's 대비 열세라는 price-check가 반복되며, 4/40/eth/rep/ED 또는 4/40/rep/stack이 진짜 상위군으로 취급됨.
+
+주의
+- 호가는 체결가와 동일하지 않음. 매트릭스는 '누가 왜 사는지'와 상대적 프리미엄 추론에 사용하고 단일 숫자 시세로 고정하지 않음.
+- 스태프모드는 정확한 스킬명이 핵심이며, 이미지 OCR/수동 입력이 정확한 스킬명을 확보할수록 다음 단계에서 더 세밀하게 분기할 수 있음.

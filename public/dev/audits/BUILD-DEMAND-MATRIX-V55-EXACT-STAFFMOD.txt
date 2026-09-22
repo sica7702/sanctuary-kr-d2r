@@ -1,0 +1,24 @@
+Sanctuary KR · Build Demand Matrix v55 · Exact Staffmod Skill Weighting
+
+핵심 변경
+- 개별 기술 레벨(스태프모드)을 단일 가중치로 보지 않고 정확한 스킬명으로 분리.
+- 이미지 OCR에서 +3 번개 파수기 / +3 눈보라 / +3 뼈 창 / +3 천상의 주먹 같은 라인을 정확 스킬 옵션으로 정규화.
+- 수동 이미지 감정 카탈로그에서도 정확 스킬명 검색/추가 가능.
+- 일반 아이템 감정 DB의 핵심/보조 스태프모드 입력은 자동완성 목록 제공 및 정확 스킬명 기반 빌드 수요 평가.
+
+대표 가중치 차등
+- 클러: Lightning Sentry > Mind Blast/Dragon Flight/Fade 같은 유틸
+- 오브: Blizzard + Cold Mastery, Lightning/Chain Lightning + Lightning Mastery, Fire Ball + Fire Mastery, Energy Shield + Telekinesis
+- 완드: Bone Spear > Bone Spirit > Teeth, Poison Nova + Lower Resist
+- 셉터: FoH + Conviction, Blessed Hammer + Concentration, Zeal + Fanaticism
+- 직업전용: Tornado/Hurricane/Cyclone Armor/Oak Sage, Battle Orders/Find Item/War Cry
+
+시장 역추적 참고
+- 2026 d2jsp: +3 Lightning Sentry + Mind Blast/Dragon Flight 클러 베이스 반복 거래
+- 2026 d2jsp: +2 Sorc/20FCR/+3 Blizzard/+3 Cold Mastery 오브 사례
+- 2026 d2jsp: Bone Spear 완드 수요
+- 2026 d2jsp 및 과거 고가 패턴: 3 FoH/3 Conviction, 3 Blessed Hammer/3 Concentration 셉터
+
+주의
+- 정확 스킬 가중치는 시장 수요 매트릭스이며 실제 생성 가능 여부/베이스/요구레벨/소켓/래더 상태는 별도 검증.
+- 신규 악마술사 스태프모드는 현행 시장 표본이 충분히 쌓이는 대로 별도 스킬명 레이어에 추가하는 구조로 유지.

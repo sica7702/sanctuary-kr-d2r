@@ -1,0 +1,22 @@
+Sanctuary KR · 레어템 이미지 감정 옵션/전달 경로 재감사
+
+핵심 수정
+- OCR 원문 -> 정규화 -> 오른쪽 결과 목록 전달 경로에서 툴팁 메타 수치(방어력/내구도/요구레벨)가 옵션값으로 섞이는 문제 차단
+- '적에게서 얻는 금화 N% 증가'를 정확한 삥 옵션으로 인식
+- '받는 피해의 N%만큼 마나 회복'을 독립 옵션으로 인식
+- 충전 기술은 스킬명+레벨을 유지 (예: 충전 기술 · 순간이동 / 충전 기술 · 인장: 무기력)
+- 수동 옵션 검색은 엔진 전체 카탈로그를 대상으로 검색
+- 개발중 안내 팝업은 레어템 이미지 감정 페이지 진입 시 항상 표시
+
+교차검증 기준
+- Blizzard Arreat Summit: General Magic Prefixes / Suffixes / Charged Suffixes
+- D2Runewizard: Rare Prefix/Suffix DB, Amulet/Boots/Gloves/Belt/Circlet base affix pages
+
+중요 교정값
+- 레어 부츠/장갑/벨트/목걸이 Extra Gold from Monsters: 최대 120%
+- 레어 반지 Extra Gold from Monsters: 최대 60%
+- 레어 부츠 포함 Any Armor Enhanced Defense: 최대 200%
+- Damage Taken Goes To Mana (Vulpine): 7~12%, Amulet / Shield / Orb / Staff 계열
+
+주의
+- 게임 패치로 신규 접사/직업 전용 옵션이 추가될 수 있으므로, OCR에 잡혔지만 카탈로그에 없는 신규 문구는 계속 audit 대상으로 축적한다.

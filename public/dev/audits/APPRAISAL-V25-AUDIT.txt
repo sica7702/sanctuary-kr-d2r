@@ -1,0 +1,23 @@
+Sanctuary KR · Item Appraisal DB v25 AUDIT
+Verified: 2026-09-09
+
+핵심 변경
+- 직업 7종 + 대표 빌드 선택 추가
+- PvM/PvP/LLD-MLD, Ladder/Non-Ladder 프로필 분리
+- +모든 기술 / +직업 전체 기술 / +스킬탭 / 스태프모드 입력을 서로 분리
+- 일반 레어에서 +모든 기술 입력 시 생성구조 재확인 경고
+- 활과 쇠뇌 분리, 자벨린/투척과 스피어/폴암 분리
+- 클러, 소서 오브, 완드/셉터 전용 감정 트리 추가
+- 근접무기 베이스 선택: 버서커 액스/레전더리 말렛/워 스파이크/미지컬 소드/세라프 로드/캐듀시어스 등
+- 직업/빌드 가중치는 생성 가능 여부가 아닌 실사용 적합도 보정으로만 적용
+
+검증 원칙
+1) Arreat Summit Rare/Magic Prefix/Suffix 구조로 생성가능성 확인
+2) 2026 D2R 거래/ISO 반복 사례로 현재 수요 교차검증
+3) 표본 좁은 트로피는 자동 시세 확정 금지
+4) 베이스 공속/WSM/사거리/요구레벨 등은 별도 확인
+
+2026 시장 확인 예
+- Non-Ladder: eth/rep Cruel/Fool's Berserker Axe, Legendary Mallet, War Spike 등 반복 거래/ISO
+- Amp Bow: Matriarchal/GMB 및 -10 고속 베이스에 amp+20IAS+400ED급 또는 amp+400ED급+2os ISO 반복
+- Trap Claw: +2 Assassin/+3 Lightning Sentry, IAS, 2os, 유틸 staffmod 수요 확인

@@ -1,0 +1,134 @@
+{
+  "repository": "https://github.com/pinkufairy/D2R-Excel",
+  "files": [
+    {
+      "name": "armor.txt",
+      "sha256": "734872B6DDE85073C6EBAF4199EC4BD2B30EFCBF9F0E60E381AF2E22662A1B4F"
+    },
+    {
+      "name": "weapons.txt",
+      "sha256": "B0890901F87FD42FCB474CE835B6E1A9FE1E66DBAB4E7C2F236A3D9C3224F923"
+    },
+    {
+      "name": "misc.txt",
+      "sha256": "4B7259D1DB5FA0A9DA1D9530A019066CD40806EDE91A4C0F4C69F81AEBFFDB7F"
+    },
+    {
+      "name": "itemtypes.txt",
+      "sha256": "AE957ABDE89A2D0276A55FEFFA809E0CCBDAF82F65C6EAED9443B886B960E26A"
+    },
+    {
+      "name": "itemratio.txt",
+      "sha256": "F8EBB2128C09311D2F17F9F3EA9E1933441F3322AB2C4C203EB9858A00AF90FF"
+    },
+    {
+      "name": "levels.txt",
+      "sha256": "67B99EE9C928D758C25A08F3FBC8D2E02ACF57F98E5D351567E20A0FDF37427E"
+    },
+    {
+      "name": "monstats.txt",
+      "sha256": "8831FCE35FC549A4849B13A1BD467EB34913F58B8269C0C1BBFA76AEABB6D32E"
+    },
+    {
+      "name": "monlvl.txt",
+      "sha256": "BDA243EFE1D1E9591F75B8CF97AC73F78FF691362381F35CC000233EB46C092A"
+    },
+    {
+      "name": "treasureclassex.txt",
+      "sha256": "3ABBFC59535E67CF52B0256B3518623EDBA072EB4235E7D1824A7F847ABECA6D"
+    },
+    {
+      "name": "uniqueitems.txt",
+      "sha256": "C9E01849630742F630BABB0BDD33B2E0F5689BD0E13E71F1DA69F8E3E8D238A2"
+    },
+    {
+      "name": "magicprefix.txt",
+      "sha256": "3CF2B5F730D5B93388146ACDB6E2A7CFFB0AA0BF23E2C95B2D80D00841720381"
+    },
+    {
+      "name": "magicsuffix.txt",
+      "sha256": "A697A051D988C78CBBBC8FE30D565CF473989817CE4D8A2BB08A321E2BC15C43"
+    },
+    {
+      "name": "automagic.txt",
+      "sha256": "AA5B30AA2BF51460955A5FB3AD5E9017607EAC8E8CCE40F9C7B08AEB9FFCB7DF"
+    },
+    {
+      "name": "superuniques.txt",
+      "sha256": "F585DDB62B8F7E973A6343D278BDB6A243444CCBA93EF95C0EACD8FAB9F41720"
+    },
+    {
+      "name": "cubemain.txt",
+      "sha256": "785AE4A250244068CD1A5625760C03B86EA5DC73C23B08F6020FA2A240AB028D"
+    },
+    {
+      "name": "properties.txt",
+      "sha256": "382528362751C68646E98D4A296C357276AB9A1EE0B7053C29E5DF6B6252A1EF"
+    },
+    {
+      "name": "itemstatcost.txt",
+      "sha256": "99960B46E1963B20FA120BD4D1F77E4B28138330CCEC65C7FAB0BFD3DB6FD8E8"
+    },
+    {
+      "name": "charstats.txt",
+      "sha256": "4F9E9B670727634298AE562753966BAAB7EAE701CEEB4EDD159BA10E18E899C2"
+    }
+  ],
+  "downloadedAt": "2026-09-11T10:33:39.6748634Z",
+  "commit": "1f16064e09b97e3e65abd6943662207cff00b07f",
+  "localization": {
+    "repository": "https://github.com/SeonEngineer/D2R",
+    "purpose": "D2R 원본 한글·영문 지역·몬스터·아이템·접사·기술 문자열",
+    "files": [
+      {
+        "name": "item-names.json",
+        "sha256": "D07A968337CD3E4BF840D6EAECC06342AAB7182301C3A79DF216E3E0F235EE2E"
+      },
+      {
+        "name": "monster-names.json",
+        "sha256": "44154B1091FCECB5363353DF70AF390E34FAB1862607062ECB7BEF6C3D121E97"
+      },
+      {
+        "name": "level-names.json",
+        "sha256": "2CF7764386C2DAE4CE434948BEA472C515CD572B6B012A1E746B2B69A1EBCB0E"
+      },
+      {
+        "name": "item-nameaffixes.json",
+        "sha256": "C2FD38BC3855B8596899A40880E5E37517D7340617151C3E2C409CA64CC79788"
+      },
+      {
+        "name": "skill-names.json",
+        "sha256": "6A1F7FB944BBB4F7E86573967C3AEDD70C779775794E1182848FBC7B5BB0DD0A"
+      }
+    ],
+    "downloadedAt": "2026-09-11T13:00:00.000Z"
+  },
+  "featureCoverage": {
+    "affixEngine": [
+      "magicprefix.txt",
+      "magicsuffix.txt",
+      "automagic.txt",
+      "itemtypes.txt",
+      "armor.txt",
+      "weapons.txt",
+      "misc.txt"
+    ],
+    "monsterAtlas": [
+      "levels.txt",
+      "monstats.txt",
+      "monlvl.txt",
+      "monster-names.json",
+      "level-names.json"
+    ],
+    "reverseDrop": [
+      "uniqueitems.txt",
+      "levels.txt",
+      "monstats.txt",
+      "treasureclassex.txt"
+    ],
+    "specialDrops": [
+      "superuniques.txt",
+      "treasureclassex.txt"
+    ]
+  }
+}

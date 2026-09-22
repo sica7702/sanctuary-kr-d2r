@@ -1,0 +1,29 @@
+Sanctuary KR · Build Demand Matrix v56 · Non-standard Market Deep Dive
+
+Purpose
+- Extend appraisal beyond fixed "godly" templates.
+- Identify rare items whose price is created by a specific build, duel bracket, breakpoint, staffmod, base or utility compression.
+
+2026 market reverse-audit signals added
+1. Warlock FCR + dual leech rings: FCR/dual-leech became a distinct RotW demand axis; AR/STR/Mana/Res/MAEK materially separate ordinary from high-end examples.
+2. FCR+AR+STR+Mana rings and LLD FCR+min-dmg+AR+Mana rings.
+3. Amazon/Necro 30FRW+20FCR circlets where huge stats/res can partially compensate for missing 2os; Visio/2os physical circlets.
+4. Teleport-build boots where FRW is optional; GF Barb FR+EG+MF boots; caster mana boots; eth-rep high-defense Myrmidons.
+5. LLD/MLD rare belts: 24FHR + high life + STR/replenish + useful resist.
+6. LLD shields: 30/20 block + FHR/-req/2os/res.
+7. Necro heads: 2PNB + Bone Spear + Bone Spirit; singer/hybrid Barb helms with War Cry/BO/Visio/Increased Speed.
+8. Lightning-sorc orbs: +3 lightning tab + 20FCR + Lightning/Mastery + sockets.
+9. LLD Bone Necro wands: 2PNB/20FCR/Bone Spear/Bone Spirit/Fire Golem utility.
+10. LLD eth-rep Harpoons with 30IAS + ED + AR/max/leech/MAEK.
+11. LLD/MLD rare bows and HLD Amp GMB high-ED/AR archetypes.
+
+Evidence consulted
+- d2jsp 2026 FT/ISO threads for rare rings, circlets, boots, belts, javelins, bows, shields, barbarian helms, orbs and LLD necro gear.
+- Traderie 2026 listings to validate active affix combinations and RotW/Warlock-specific trade demand.
+- Reddit 2026 price checks/community discussion for FCR+dual-leech Warlock demand and circlet socket/skill-tree distinctions.
+
+Important
+- Listed asks are not treated as completed-sale truth. They are demand signals.
+- Build-specific score is separate from universal liquidity.
+- A niche S/A build-fit item can still have lower liquidity than a generic high-end item.
+- Required level/base/socket state must be checked for LLD/MLD archetypes before assigning strong market value.

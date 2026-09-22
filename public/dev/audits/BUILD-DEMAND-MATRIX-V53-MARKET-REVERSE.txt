@@ -1,0 +1,33 @@
+Sanctuary KR · Build Demand Matrix v3 market reverse audit
+Date: 2026-09-09
+
+Purpose
+- Expand the build-demand matrix using market reverse-engineering and slot-by-slot demand exploration.
+- Separate generic affix quality from "who actually buys this combination".
+
+New/strengthened profiles
+AMULET
+- Barbarian FCR/leech/gold-find crafted hybrid
+- LLD/MLD caster breakpoint amulets
+- RotW Warlock caster amulets
+RING
+- FCR dual-leech trophy rings
+- FCR AR/STR/Mana hybrid rings
+- Non-FCR high-STR/high-mana/resist niche rings
+CIRCLET
+- 2/20/Visio/2os melee-PvP
+- Hammerdin 2/20/2os life/dex
+- RotW Warlock skill/FCR/2os
+GLOVES
+- 2/20 Javazon + lightning-res or mana-leech variants
+BOOTS
+- Teleport builds: high res boots without FRW
+- 30FRW + 100+ true tri-res + 25MF trophy PvM/MF boots
+- LLD/MLD 30FRW/10FHR/res profiles
+BELT
+- 24FHR + life + strength baseline for valuable rare belts
+
+Research cautions
+- Asking prices are not treated as completed trades.
+- Build demand is inferred from repeated ISO/FT patterns and community price-check discussions.
+- Requirements differ between PvM, PvP, LLD/MLD, ladder timing, and specific breakpoints.

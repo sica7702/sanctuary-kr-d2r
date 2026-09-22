@@ -1,0 +1,22 @@
+Sanctuary KR : D2R — v26 정밀 감정 DB 감사
+
+핵심 변경
+1) 빌드별 세부 가중치 추가: 해머딘/FOH/독넥/퓨리늑드루/무술씬 등 기존보다 세분화.
+2) 주요 레어 무기 베이스에 WSM, rangeadder, 기본 요구레벨, 힘/민첩, 최대소켓 연결.
+3) 무기 외 IAS와 스킬 IAS를 별도 입력.
+4) 프레임은 조건이 충분한 경우에만 자동 출력. 오라·스킬IAS·쌍수 WSM 등 변수가 남으면 확정 금지.
+5) 휠윈드: D2R 2.4.3+ 규칙에 맞춰 스킬IAS 0, 1H/2H소드 조건에서 공개 breakpoint 표만 사용.
+6) 메이트리어컬 보우: Fanaticism/스킬IAS 0 일반 공격 참고표만 표시. Strafe/Multi는 별도 계산.
+7) 트랩 클러: -30/-20 WSM 대표 IAS 목표를 참고값으로 제공하되 BoS/쌍수 조건은 자동확정 금지.
+8) 최종 레어 요구레벨은 베이스 기본 요구레벨과 다를 수 있음. 접사 요구레벨이 더 높을 수 있으므로 기본레벨은 '베이스 기준'으로 명시.
+
+주요 교차검증
+- D2Runewizard base tables: Berserker Axe, Legendary Mallet, War Spike, Small Crescent, Mythical Sword, Ataghan, Seraph Rod, Matriarchal Bow, Grand Matron Bow, Greater/Runic Talons, Feral Claws, Suwayyah, War Fist, Wrist Sword, Scissors Suwayyah.
+- Amazon Basin weapon tables: base range/requirement/WSM 구조 교차검증.
+- Blizzard D2R Forum: 2.4.3+ Whirlwind breakpoint/IAS 규칙.
+- 2026 d2jsp: rare melee eth/rep/fools/high ED, amp bow ISO/FT 시장수요 확인.
+
+주의
+- 자동 감정지수는 가격이 아니다.
+- 베이스/프레임 표는 정확한 조건이 없으면 자동 확정하지 않는다.
+- 실제 거래가는 Ladder/Non-Ladder, PvP/PvM, 베이스 선호, 체결 이력으로 별도 교차검증한다.

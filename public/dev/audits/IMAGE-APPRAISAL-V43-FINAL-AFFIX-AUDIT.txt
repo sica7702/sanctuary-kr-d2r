@@ -1,0 +1,28 @@
+Sanctuary KR · Image Appraisal v43
+Final affix coverage / manual-search audit
+
+1) Manual catalog
+- 103 normalized modifier families are exposed to the image-appraisal manual editor.
+- Search includes canonical Korean option names plus aliases (패캐, 공속, 패힛, 중감, 마흡, 라흡, 증뎀, FCR/IAS/FHR, etc.).
+- Search is global: current slot recommendation does not hide other catalog options.
+- Clicking a search result appends an editable option row immediately.
+
+2) OCR coverage expanded
+- compound leech / mana regen / resistances / stats / FCR / IAS / FRW / FHR
+- block rate / block chance
+- enhanced defense / defense vs missile / defense vs melee
+- requirements reduction / magic damage reduction / damage reduction
+- poison length reduction / half freeze duration
+- stamina / energy / light radius / life or mana after kill
+- weapon combat utility: deadly strike, crushing blow, open wounds, knockback, PMH, target defense reduction, ITD
+- demon/undead damage & AR, elemental/poison damage families
+- ctc/charges and staffmod/skill-tab manual families
+
+3) Safety behavior
+- Base metadata lines (plain Defense, Durability, Required Level/Stats) are excluded only when they match metadata form.
+- Modifier lines containing increase/reduction/recovery are still eligible for recognition.
+- Last-resort alias matching occurs after specific/compound rules, preventing broad aliases from stealing leech/regen lines.
+- Unknown/base-specific caps remain non-authoritative rather than inventing a false maximum; user can still enter the observed value manually.
+
+4) Remaining structural limit
+- Individual staffmod skill names are represented by the generic “개별 기술 레벨 (스태프모드)” family in the current valuation layer. They can be recorded manually even when the specialist market model does not yet price every single skill combination separately.

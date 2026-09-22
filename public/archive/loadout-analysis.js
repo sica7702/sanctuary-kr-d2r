@@ -1,0 +1,8 @@
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.SKRLoadoutAnalysis=api})(typeof globalThis!=='undefined'?globalThis:this,function(){
+ const rules={fcr:/시전 속도 \+(\d+)(?:~(\d+))?%/,fhr:/타격 회복 속도 \+(\d+)(?:~(\d+))?%/,mf:/마법 아이템 발견 확률 \+(\d+)(?:~(\d+))?%/,skills:/(?:모든|아마존|암살자|야만용사|성기사|강령술사|원소술사|드루이드|악마술사) 기술 \+(\d+)/,res:/모든 저항 \+(\d+)(?:~(\d+))?%/};
+ function parseOption(s){for(const[k,re]of Object.entries(rules)){const m=String(s||'').match(re);if(m)return{key:k,min:+m[1],max:+(m[2]||m[1]),text:s}}return null}
+ function itemStats(item){const out={fcr:[0,0],fhr:[0,0],mf:[0,0],skills:[0,0],res:[0,0],unknown:[]};for(const s of item?.options||[]){const p=parseOption(s);if(p){out[p.key][0]+=p.min;out[p.key][1]+=p.max}else if(/시전 속도|타격 회복|마법 아이템|모든 저항|기술 \+/.test(s))out.unknown.push(s)}return out}
+ function analyzeBuild(build,details){const total={fcr:[0,0],fhr:[0,0],mf:[0,0],skills:[0,0],res:[0,0]},items=[];for(const g of build?.gear||[]){const d=details[g.name],stats=itemStats(d);for(const k of Object.keys(total)){total[k][0]+=stats[k][0];total[k][1]+=stats[k][1]}items.push({slot:g.slot,name:g.name,role:g.role,alternative:g.alternative,verified:!!d,stats,options:d?.options||[]})}return{buildId:build?.id,name:build?.name,className:build?.className,total,items}}
+ function compareBuilds(a,b,details){const A=analyzeBuild(a,details),B=analyzeBuild(b,details),delta={};for(const k of Object.keys(A.total))delta[k]=[B.total[k][0]-A.total[k][0],B.total[k][1]-A.total[k][1]];return{before:A,after:B,delta}}
+ return{parseOption,itemStats,analyzeBuild,compareBuilds};
+});

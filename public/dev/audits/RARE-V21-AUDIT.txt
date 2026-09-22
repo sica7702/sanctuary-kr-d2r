@@ -1,0 +1,18 @@
+Rare DB v21 검증 메모
+
+[공식 게임 규칙]
+- Arreat Summit "Procing Spell Suffixes": of Amplify Damage = 5% Chance to cast Level 1 Amplify Damage on Striking.
+- Available on Weapons, cannot spawn on Orbs.
+- Rare 아이템은 최대 3 Prefix + 3 Suffix 범위에서 총 2~6개 magical properties를 가질 수 있음.
+
+[2026 시장 재검증]
+- d2jsp 2026-04 ISO: Matriarchal Bow, amp + 20 IAS + 400 ED+ 또는 amp + 10 IAS + 400 ED+ + 2os 조건 직접 확인.
+- d2jsp 2026-07 ISO: base speed -10 (Mat/Blade/Great Bow), 20 IAS, 400 ED+, amp, 2os 선호 확인.
+- d2jsp 2026-01 Non-Ladder ISO: 30 FRW + Fire/Light res + Gold Find 부츠 수요 확인.
+- d2jsp 2026-08: 30 FRW / 31 CR / 25 LR / 32 FR / 80 GF / 22 MF 부츠가 GF/MF 하이브리드 트로피 후보로 논의됨. 단 커뮤니티 평가는 저항 총합/파레 비중 때문에 엇갈림 → 자동 S++ 금지.
+- d2jsp 2026-09 Ladder 부츠 상점: Gold Find/Horker Barb는 Fire Res + Extra Gold + Magic Find를 우선할 수 있다고 명시.
+
+[오감정 방지]
+- 앰플 단독 = 득 아님. ED/IAS/2os/Fool's/베이스 시너지 필수.
+- 삥 80 단독 = 득 아님. 파레/라레, 매찬, 달려/패힛 등 실전축 동반 확인.
+- 스탠과 래더는 별도 시장으로 본다. 특히 PvP/트로피는 스탠 표본을 우선하되, 단일 호가를 시세로 고정하지 않는다.

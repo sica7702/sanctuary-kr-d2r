@@ -1,0 +1,23 @@
+import {itemFlags} from './item-identity.js?v=115';
+import {sameOption} from './quality-unique.js?v=129';
+import {reconcileOptions} from './unified-core.js?v=129';
+import {rollMetadata,observedRollMetadata} from './market-search.js?v=129';
+const labels={'dmg-min':['Minimum Damage',''],'dmg-max':['Maximum Damage',''],att:['Attack Rating',''],'mana-kill':['Mana after each Kill',''],'heal-kill':['Life after each Kill',''],'regen-stam':['Heal Stamina Plus','%'],knock:['Knockback',''],swing1:['Increased Attack Speed','%'],swing2:['Increased Attack Speed','%'],slow:['Slows Target','%'],'mana%':['Increase Maximum Mana','%'],ac:['Added Defense',''],cast1:['Faster Cast Rate','%'],cast2:['Faster Cast Rate','%'],cast3:['Faster Cast Rate','%'],allskills:['All Skills',''],str:['Strength',''],dex:['Dexterity',''],vit:['Vitality',''],enr:['Energy',''],hp:['Life',''],mana:['Mana',''],'hp/lvl':['Life (Based on Character Level)',''],'mana/lvl':['Mana (Based on Character Level)',''],'mag%':['Better Chance of Getting Magic Items','%'],'red-dmg%':['Physical Damage Reduced','%'],'extra-ltng':['Lightning Skill Damage','%'],'extra-fire':['Fire Skill Damage','%'],'extra-cold':['Cold Skill Damage','%'],'extra-pois':['Poison Skill Damage','%'],'pierce-ltng':['Enemy Lightning Resistance','%'],'pierce-fire':['Enemy Fire Resistance','%'],'pierce-cold':['Enemy Cold Resistance','%'],'pierce-pois':['Enemy Poison Resistance','%'],'res-all':['All Resistances',''],'res-fire':['Fire Resist','%'],'res-cold':['Cold Resist','%'],'res-ltng':['Lightning Resist','%'],'res-pois':['Poison Resist','%'],'ac%':['Enhanced Defense','%'],'dmg%':['Enhanced Damage','%'],lifesteal:['Life Stolen per Hit','%'],manasteal:['Mana Stolen per Hit','%'],sock:['Sockets',''],'regen-mana':['Regenerate Mana','%'],move3:['Faster Run/Walk','%'],swing3:['Increased Attack Speed','%'],balance3:['Faster Hit Recovery','%']};
+export function tradeDraft({result,data,ledger,quality,baseCode}){
+ if(!result||!['unique','set','normal','superior','magic','rare','crafted'].includes(quality))return null;
+ const record=['unique','set'].includes(quality)?data.records.find(r=>r.id===result.id):data.records.find(r=>r.id==='base:'+baseCode);
+ const rows=['unique','set'].includes(quality)?result.rows.map(r=>({code:r.mod.code,param:r.mod.param,name:r.mod.label,value:r.value,status:r.assessment.status,fixed:r.mod.min===r.mod.max&&!/\/lvl|skill$|charged|aura/.test(r.mod.code),searchRange:rollMetadata(r.mod)})):reconcileOptions(ledger).map(o=>({...o,searchRange:observedRollMetadata(o,data,baseCode,quality),status:o.conflict?'서로 다른 판독값':o.value===''?'미인식':'인식값'}));
+ // Unique DB rows do not include socket additions or other observed effects.
+ // Keep every additional observed option instead of silently dropping it.
+ if(['unique','set'].includes(quality))for(const o of reconcileOptions(ledger)){const row=rows.find(r=>sameOption(r,o));if(row&&String(row.value)===String(o.value)){row.raw=o.raw;row.charges=o.charges;row.sources=o.sources;row.observations=[...(row.observations||[]),o];}if(row&&String(row.value)!==String(o.value)){row.observations=[...(row.observations||[]),o];}if(!row)rows.push({...o,status:o.conflict?'서로 다른 판독값':o.value===''?'미인식':'인식값',origin:'observed-extra'});}
+ const options=rows.map(o=>{const t=labels[o.code];return {...o,searchFixed:['unique','set'].includes(quality)&&o.code==='charged'&&(o.origin!=='observed-extra'||record?.mods?.some(m=>m.code==='charged'&&m.label===o.name)),english:t?.[0]||null,unit:t?.[1]||'',translated:!!t}});
+ return {schema:1,quality,flags:itemFlags(ledger.map(l=>({text:l.raw}))),itemId:record?.id||null,name:record?.name||'',englishName:record?.en||'',options,unresolvedLines:ledger.filter(l=>l.status==='unresolved').map(l=>l.raw),rawLines:ledger.map(l=>l.raw),reviewRequired:true,createdAt:new Date().toISOString()};
+}
+export function saleText(d,market){
+ if(!d?.englishName)throw Error('정확한 아이템 이름을 먼저 선택하세요.');
+ for(const key of ['platform','mode','region'])if(!market[key])throw Error('거래 환경을 모두 선택하세요.');
+ return [d.englishName+' ('+d.quality+')',Object.values(market).join(' / '),'',...d.options.map(o=>{if(o.value===''||o.value==null)return (o.english||o.name)+': NOT VERIFIED';const v=/^pierce-/.test(o.code)?-Math.abs(Number(o.value)):o.value;return (o.english||o.name)+': '+v+o.unit+(o.translated?'':' [translation needed]')}),'',...(d.options.some(o=>o.value===''||o.value==null)?['Incomplete OCR: verify missing stats before listing.']:[])].join('\n');
+}
+export const traderieHome='https://traderie.com/diablo2resurrected';
+
+export const traderieCreate='https://traderie.com/diablo2resurrected/listings/create';

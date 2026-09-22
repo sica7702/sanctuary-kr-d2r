@@ -1,0 +1,50 @@
+/* Reading-size pass: refinement must not trade away comfortable Korean text. */
+#studio-preview .studio-hero p{font-size:15px!important;line-height:1.9!important;word-break:keep-all;text-wrap:balance;max-width:520px!important}
+#studio-preview .atelier-step-copy b{font-size:14px}
+#studio-preview .atelier-step-copy small{font-size:11px}
+#studio-preview .studio-options>p,#studio-preview .studio-photo>.studio-section-description{font-size:14px!important}
+#studio-preview label{font-size:14px!important}
+#studio-preview :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){font-size:15px!important}
+#studio-preview #evidenceStatus{font-size:13px!important}
+#studio-preview .studio-item-details>summary{font-size:13px!important}
+#studio-preview #qualityStatus{font-size:13px!important}
+#studio-preview .recognized-option>span{font-size:15px!important}
+#studio-preview #assessmentStatus{font-size:12px!important}
+#studio-preview .atelier-column-labels{font-size:12px}
+#studio-preview .atelier-judge-note{font-size:13px!important}
+#studio-preview #openManualOptions{min-height:44px;font-size:14px!important}
+#studio-preview .publisher-corrections>summary{font-size:13px!important;min-height:48px!important}
+#studio-preview .studio-photo-helper,#studio-preview .studio-photo>.hint{font-size:12px!important}
+#studio-preview .studio-photo summary{font-size:13px!important;min-height:48px!important}
+#studio-preview .studio-photo #ocrStatus{font-size:12px!important}
+#studio-preview .atelier-item-english{font-size:12px}
+#studio-preview .atelier-item-kind{font-size:11px}
+#studio-preview .publisher-result-layout p,#studio-preview .publisher-result-layout td{font-size:14px!important}
+#studio-preview .publisher-result-layout th{font-size:13px!important}
+#studio-preview #tradeBridge .publisher-disclosure>summary{font-size:13px!important;min-height:48px!important}
+#studio-preview .publisher-result-layout #marketAppliedState{font-size:13px!important}
+@media(max-width:1200px){
+ #studio-preview .publisher-steps{gap:12px!important}
+ #studio-preview .atelier-step-copy b{font-size:12px}
+ #studio-preview .atelier-step-copy small{font-size:10px}
+}
+@media(max-width:600px){
+ #studio-preview .primary-navigation strong{font-size:13px!important}
+ #studio-preview .studio-hero p{font-size:14px!important;line-height:1.9!important}
+ #studio-preview .atelier-step-copy b{font-size:12px;letter-spacing:-.04em}
+ #studio-preview .atelier-step-copy small{display:none}
+ #studio-preview .publisher-steps li{align-items:center}
+ #studio-preview .studio-photo>.studio-section-description,#studio-preview .studio-options>p{font-size:14px!important;line-height:1.8!important}
+ #studio-preview :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){font-size:16px!important}
+ #studio-preview .recognized-option>span{font-size:15px!important;line-height:1.7!important}
+ #studio-preview .recognized-option input{font-size:16px!important}
+ #studio-preview .studio-item-details>summary{font-size:13px!important}
+ #studio-preview #qualityStatus{font-size:13px!important}
+ #studio-preview #assessmentStatus{font-size:12px!important}
+ #studio-preview .atelier-judge-note{font-size:13px!important}
+ #studio-preview #openManualOptions{font-size:14px!important}
+ #studio-preview .publisher-corrections>summary{font-size:13px!important}
+ #studio-preview .publisher-result-layout :is(p,label,summary){font-size:14px!important;line-height:1.85!important}
+ #studio-preview .publisher-result-layout h2{font-size:22px!important}
+ #studio-preview .studio-photo-helper,#studio-preview .studio-photo>.hint{font-size:12px!important}
+}

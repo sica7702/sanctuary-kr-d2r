@@ -1,0 +1,121 @@
+/* v124: deliberately scoped to build guides and the build/mercenary directory. */
+#guide{--build-ink:#183e32;--build-muted:#52685d;--build-line:#ced8cb;--build-accent:#235c47;max-width:1320px}
+#guide .hero{padding-bottom:24px}
+#guide .hero h1{letter-spacing:-.045em}
+#guide .guide-review,#guide .guide-context{font-size:14px!important;line-height:1.8;color:#536559!important}
+#guide .guide-review a{border-bottom:1px solid #bccbbc}
+#guide .guide-kicker,#pane-builds .guide-kicker{display:block;color:#826637!important;font-size:11px!important;font-weight:700;letter-spacing:.12em;margin-bottom:8px}
+#guide .build-journey{padding:30px;margin:28px 0 8px;border:1px solid #c4d2c3;border-radius:14px;background:#fffefa;box-shadow:0 8px 30px #173d2e05}
+#guide .journey-heading,#guide .section-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+#guide .journey-heading h2,#guide .section-heading h2{margin:0 0 10px!important;font-size:25px!important}
+#guide .journey-heading>a,#guide .section-heading>a{white-space:nowrap;font-size:14px}
+#guide .build-journey>p{font-size:15px;color:#52685d}
+#guide .stage-selector{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0}
+#guide .stage-selector button{display:flex;align-items:center;gap:12px;min-height:88px;text-align:left;padding:16px!important;border:1px solid #c4d2c3!important;border-radius:9px!important;background:#f8faf4!important;color:#254737!important}
+#guide .stage-selector button:hover{background:#edf3e8!important;border-color:#49775d!important}
+#guide .stage-selector button[aria-pressed="true"]{background:#205540!important;border-color:#205540!important;color:#fff!important;box-shadow:0 4px 12px #20554020}
+#guide .stage-selector b{font-size:17px!important;display:block;color:inherit!important}
+#guide .stage-selector small{display:block;margin-top:4px;font-size:12px!important;color:inherit!important;opacity:.9}
+#guide .stage-number{font-family:Georgia,serif;font-size:25px;opacity:.6}
+#guide .stage-brief{display:grid;grid-template-columns:1.65fr 1fr;gap:28px;padding:24px 0 6px;border-top:1px solid #dae2d5}
+#guide .stage-brief h3{font-size:20px!important;color:#1b4030!important}
+#guide .stage-brief li{font-size:15px;line-height:1.85;margin:8px 0;color:#334d3f}
+#guide .stage-brief aside{background:#f2f5e9;border-radius:8px;padding:22px;border-left:3px solid #a38950;align-self:start}
+#guide .stage-brief aside p{font-size:15px;line-height:1.8}
+#guide .selected-stage-label{padding:12px 16px;background:#eaf2e9;color:#23533c;border-left:3px solid #397152;font-size:16px!important}
+#guide .layout{gap:30px;grid-template-columns:minmax(0,1fr) 155px}
+#guide .priority-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+#guide .priority-strip>div{padding:18px 20px;background:#f0f4e9;border:1px solid #d6dfcd;border-radius:8px}
+#guide .priority-strip span{display:block;font-size:12px;color:#776333;margin-bottom:7px}
+#guide .priority-strip b{font-size:16px;color:#234735}
+#guide .equipment-summary{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#guide .equipment-card{margin:0!important;padding:0!important;border:1px solid #cbd7c7!important;border-radius:9px!important;background:#fffefa!important;box-shadow:none!important;overflow:hidden;align-self:start}
+#guide .equipment-card > summary{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px 12px;list-style:none;padding:20px!important;min-height:112px;cursor:pointer;color:#183e32!important}
+#guide .equipment-card > summary::-webkit-details-marker{display:none}
+#guide .equipment-card > summary:after{display:none!important}
+#guide .equipment-card > summary:hover{background:#f6f8ef}
+#guide .equipment-card[open] > summary{background:#edf3e8;border-bottom:1px solid #d6dfce}
+#guide .slot-label{font-size:12px;color:#586e5f!important;grid-column:1}
+#guide .equipment-name{font-size:18px!important;line-height:1.55;font-weight:700;grid-column:1;grid-row:2}
+#guide .gear-change{font-size:11px;color:#5c704f;background:#edf2e4;border-radius:20px;padding:3px 8px;grid-column:2;grid-row:1}
+#guide .expand-label{font-size:12px;color:#366348;grid-column:2;grid-row:2;white-space:nowrap}
+#guide .equipment-card[open] > summary .expand-label:after{content:' −'}
+#guide .equipment-card > summary{margin-bottom:0!important}
+#guide .equipment-card .item-facts{margin:14px 0!important;padding:0!important}
+#guide .equipment-card .item-facts > summary{display:list-item!important;min-height:48px;font-size:14px!important;padding:13px 15px!important;line-height:1.7}
+#guide .equipment-body{padding:18px 20px;font-size:15px}
+#guide .equipment-body>p{font-size:15px!important;color:#3f594a!important;line-height:1.9}
+#guide .equipment-body h3{font-size:14px!important;margin:18px 0 6px}
+#guide .equipment-body>a{display:inline-block;margin:10px 0;min-height:30px}
+#guide .previous-item{padding-bottom:14px;border-bottom:1px solid #e0e5d9}
+#guide .stage-comparison{margin:22px 0!important;padding:0!important;border:1px solid #ccd7c6!important;border-radius:8px;background:#fffefa!important}
+#guide .stage-comparison>summary{padding:18px!important;font-size:16px!important;cursor:pointer}
+#guide .comparison-scroll{overflow:auto;padding:0 14px 14px}
+#guide .comparison-scroll table{width:100%;min-width:740px;border-collapse:collapse;font-size:14px;table-layout:fixed}
+#guide .comparison-scroll th,#guide .comparison-scroll td{padding:13px 12px;vertical-align:top;border-bottom:1px solid #d9e0d0;text-align:left;overflow-wrap:anywhere}
+#guide .comparison-scroll th{background:#edf2e4;color:#224532}
+#guide .comparison-scroll th:first-child{width:90px}
+#guide .guide-callout{padding:20px 24px;border-left:3px solid #a78a4b;background:#f4f2e7;margin:20px 0}
+#guide .guide-callout p{font-size:15px;line-height:1.85;margin:8px 0}
+#guide .merc-head{display:flex;gap:18px;align-items:flex-start;margin:20px 0}
+#guide .merc-head p{font-size:16px;color:#49604f;margin:6px 0}
+#guide .merc-act{display:grid;place-items:center;min-width:62px;height:62px;border-radius:10px;background:#205540;color:#fff;font-size:21px}
+#guide .merc-gear{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#guide .merc-gear article{padding:22px;background:#fffefa;border:1px solid #cbd7c7;border-radius:9px;display:flex;flex-direction:column}
+#guide .merc-gear small{font-size:12px;color:#697252}
+#guide .merc-gear h3{margin:9px 0;font-size:19px}
+#guide .merc-gear p{font-size:14px;line-height:1.85;color:#48614f;flex:1}
+#guide .merc-gear a{font-size:14px}
+#guide .merc-checks{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-top:24px}
+#guide .merc-checks li,#guide .merc-checks p{font-size:15px;line-height:1.9}
+#guide .source-panel{font-size:15px;line-height:1.9}
+#guide .source-panel a{text-decoration:underline;text-underline-offset:3px}
+#guide :is(button,summary,a,input,select):focus-visible,#pane-builds :is(a,button,input,select):focus-visible{outline:3px solid #367459!important;outline-offset:4px}
+#pane-builds .guide-intro{padding:28px!important;border-radius:12px!important}
+#pane-builds .build-tools{display:grid;grid-template-columns:2fr 1fr 1.2fr auto;gap:12px;align-items:end;margin:22px 0}
+#pane-builds .build-tools label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#49604f!important;background:transparent!important;border:0!important;padding:0!important;box-shadow:none!important;border-radius:0!important}
+#pane-builds .build-tools :is(input,select,button){width:100%;min-height:48px;font-size:15px!important}
+#pane-builds .build-layout{display:block!important}
+#pane-builds #buildView{display:none!important}
+#pane-builds .build-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+#pane-builds a.build-card{display:flex!important;flex-direction:column;align-items:flex-start;text-align:left;padding:24px!important;min-height:235px;background:#fffefa!important;border:1px solid #c5d4c3!important;border-radius:10px!important;text-decoration:none!important;transition:transform .15s,border-color .15s;overflow:hidden}
+#pane-builds a.build-card:hover{transform:translateY(-3px);border-color:#50755c!important;box-shadow:0 8px 20px #214b300a}
+#pane-builds .build-card small{font-size:12px!important;color:#576e59!important}
+#pane-builds .build-card h3{font-size:20px!important;line-height:1.5;margin:12px 0 5px;color:#204431!important;letter-spacing:-.035em}
+#pane-builds .build-card .build-aliases{font-size:13px!important;color:#69766a!important}
+#pane-builds .build-card p{font-size:14px!important;line-height:1.9;color:#4c6352!important;margin:12px 0 20px;flex:1}
+#pane-builds .build-card .build-card-footer{display:flex;gap:8px;align-items:center;justify-content:space-between;width:100%;border-top:1px solid #dce3d4;padding-top:14px;font-size:13px;color:#285d41}
+#pane-builds .build-path{font-size:11px!important;padding:4px 7px;background:#edf3e6;color:#3e6545}
+#pane-builds .build-empty{grid-column:1/-1;padding:50px;text-align:center;border:1px dashed #b9ccb5;border-radius:10px}
+#pane-builds .build-review-note{font-size:14px;line-height:1.85;color:#596851}
+#pane-merc .merc-stage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#pane-merc .merc-stage-card{padding:22px;border:1px solid #c8d4c0;border-radius:9px;background:#fffefa}
+#pane-merc .merc-stage-card h3{font-size:20px;color:#244733}
+#pane-merc .merc-stage-card dt{font-size:12px;color:#6f7054;margin-top:12px}
+#pane-merc .merc-stage-card dd{margin:4px 0;font-size:16px;line-height:1.7}
+#pane-merc .merc-stage-card p,#pane-merc .merc-explain{font-size:15px;line-height:1.9}
+@media(max-width:1000px){
+ #guide .layout{grid-template-columns:1fr}
+ #guide .stage-selector{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #pane-builds .build-tools{grid-template-columns:1fr 1fr}
+ #pane-builds .build-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+ #guide .build-journey{padding:20px 16px}
+ #guide .journey-heading,#guide .section-heading{display:block}
+ #guide .stage-selector{gap:8px}
+ #guide .stage-selector button{padding:12px!important;gap:8px;min-height:82px}
+ #guide .stage-selector b{font-size:16px!important}
+ #guide .stage-selector small{font-size:11px!important}
+ #guide .stage-number{font-size:19px}
+ #guide .stage-brief,#guide .priority-strip,#guide .equipment-summary,#guide .merc-checks,#guide .merc-gear{grid-template-columns:1fr}
+ #guide .equipment-card > summary{min-height:102px;padding:17px!important}
+ #guide .equipment-name{font-size:17px!important}
+ #guide .merc-gear article{padding:18px}
+ #pane-builds .build-tools{grid-template-columns:1fr}
+ #pane-builds .build-grid{grid-template-columns:1fr!important}
+ #pane-builds a.build-card{min-height:210px}
+ #pane-merc .merc-stage-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){#pane-builds a.build-card{transition:none;transform:none!important}}
+@media print{#guide .stage-selector{display:none}#guide .equipment-card{break-inside:avoid}#guide .equipment-summary{display:block}}

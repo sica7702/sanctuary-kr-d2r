@@ -1,0 +1,43 @@
+Sanctuary KR : D2R — APPRAISAL V29 FINAL CONSISTENCY AUDIT
+검증일: 2026-09-09
+
+1) 일반 레어 상한 재교정
+- 반지 마력: 레어 최대 15 (16~20 Wizardry는 Magic only)
+- 반지/목걸이/써클릿 최소피해: 레어 최대 9 (10~13 Performance는 Magic only)
+- 목걸이/써클릿 생명력 회복: 레어 최대 10 (11~15 Revivification은 Magic only)
+- 써클릿 최대피해: 레어 최대 8 (9~12 Maiming은 Magic only)
+- 목걸이/써클릿 민첩: 레어 최대 20 (21~30 Nirvana는 Magic only)
+- 일반 레어 장갑/부츠의 생명력 입력 제거. 해당 생명력은 Blood Craft 고정옵 등과 구분.
+
+2) 크래프트 구조 분리
+- 아이템 유형: 레어 / 캐스터 / 블러드 / 힛파워 / 세이프티
+- 크래프트 고정옵은 랜덤 접사 수에 포함하지 않음.
+- Crafted Item은 고정옵 외 1~4개의 랜덤 접사를 가짐. 레어의 2~6개, 최대 3 Prefix + 3 Suffix 규칙과 별도 처리.
+- 부위별 고정옵을 선택 즉시 화면에 표시.
+
+3) 접사 정합성 검사
+- 반지/목걸이/써클릿/장갑/부츠/벨트는 입력된 핵심 옵션을 Prefix/Suffix 후보로 분류해 3/3 한도 초과 가능성을 경고.
+- 자동옵/스태프모드/크래프트 고정옵은 해당 추정치에서 별도 취급.
+- 이 검사는 '최소 접사 슬롯 추정'이며, 화면 합산 수치나 복합 접사는 최종 수동 검증 대상으로 남김.
+
+4) 요구레벨
+- 모든 부위에 요구레벨 입력 추가.
+- LLD: 요구레벨 30 이하 후보.
+- MLD: 요구레벨 31~49 후보.
+- 50 이상은 LLD/MLD 선택 시 경고.
+
+5) 직업전용/스태프모드
+- 핵심/보조 스태프모드는 수치만 적지 않고 실제 게임 화면의 스킬명을 함께 입력.
+- Warlock: 혼돈 / 기괴 / 악마 3트리 유지.
+- Warlock 나이프와 그리모어를 분리.
+- Blizzard 공식 공개 명칭으로 확인되는 Chaos 예시: Miasma, Apocalypse, Abyss. Demon 계열은 Goatmen/Tainted/Defiler binding 관련 설명이 공식 확인됨. 이름이 확인되지 않은 스킬은 임의 번역/추정하지 않고 직접 입력 방식 유지.
+
+6) 검증원
+- Blizzard / Arreat Summit: Rare/Magic affix rules, General Prefixes/Suffixes, Circlets, Crafted Items, Caster/Blood/Hit Power/Safety recipes
+- D2Runewizard: affix rarity(Magic only vs Magic and Rare), affix level/item type 교차검증
+- Blizzard Reign of the Warlock: Warlock 3 trees / class mechanics
+
+원칙
+- 자동 점수는 가격표가 아니다.
+- 생성 가능성 → 접사 구조 → 수치 상한 → 요구레벨 → 스킬/베이스 → 빌드 적합도 → Ladder/Non-Ladder 실거래 순으로 최종 감정.
+- 정보 충돌 시 자동 트로피 확정 금지, 개별 감정으로 보낸다.

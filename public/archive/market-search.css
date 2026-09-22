@@ -1,0 +1,22 @@
+.market-search-settings{margin:18px 0;padding:14px;border:1px solid #665b3a;border-radius:8px;min-width:0}
+.market-search-settings legend{color:#dfc78e;font-weight:700;padding:0 7px}
+.market-search-settings .formrow{display:flex;flex-wrap:wrap;gap:12px}
+.market-search-settings label{display:flex;flex-direction:column;gap:6px;min-width:150px;flex:1}
+.market-search-settings input,.market-search-settings select{width:100%;min-width:0;box-sizing:border-box}
+.market-search-settings p,.market-manual-note{font-size:14px;line-height:1.65;color:#bac5ca}
+.market-table-wrap{max-width:100%;overflow-x:auto;margin:10px 0}
+.market-table-wrap table{width:100%;border-collapse:collapse;min-width:420px}
+.market-table-wrap th,.market-table-wrap td{text-align:left;vertical-align:top;padding:9px;border-bottom:1px solid #3b4337;line-height:1.6}
+.market-search-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.market-search-links a{border:1px solid #716442;border-radius:5px;padding:8px 11px;color:#e2c788;text-decoration:none}
+#tradePreview{width:100%;box-sizing:border-box}
+#recentMarketRows{overflow-wrap:anywhere}
+#marketAppliedState,.listing-warning{border-left:4px solid #d6ae5b;background:#292719;padding:12px;margin:12px 0;line-height:1.7;overflow-wrap:anywhere}
+#directMarketLink[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+#tradeBridge>.formrow{display:flex;flex-wrap:wrap;gap:12px;margin-block:12px}
+#tradeBridge>.formrow>label{display:flex;flex-direction:column;gap:6px;flex:1 1 180px;min-width:0}
+#tradeBridge>.formrow select{width:100%;min-width:0}
+#marketCoverage:empty{display:none}
+#marketCoverage{line-height:1.7;margin-block:12px}
+@media(max-width:600px){.market-search-settings{padding:10px}.market-search-settings label{min-width:100%}}
+@media(max-width:600px){html[data-publisher] #tradeBridge>.formrow{grid-template-columns:minmax(0,1fr)}#tradeBridge>.actions>*{width:100%;box-sizing:border-box;text-align:center}}

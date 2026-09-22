@@ -1,0 +1,114 @@
+/* Final surface/contrast pass for legacy tool-specific styles. No display gates are overridden. */
+#site-preview[data-publisher-page=traderie-extension-guide] body{max-width:none;padding:0}
+#site-preview .refined-document-head{background:#153c2d;border-bottom:1px solid #aa915c;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px max(24px,calc((100vw - 1200px)/2))}
+#site-preview .refined-document-head>a:last-child{color:#cbd6bd;font-size:13px}
+#site-preview .refined-guide-main{max-width:950px;margin:40px auto;padding:32px;background:#fffefa;border:1px solid #d3ddc6;border-radius:8px}
+#site-preview .refined-guide-main p{color:#65755b;line-height:2}
+@media(max-width:600px){#site-preview .refined-document-head{flex-direction:column;padding:24px}#site-preview .refined-guide-main{margin:24px 16px;padding:23px}}
+#site-preview :is(.frame-chip,.prob,.rule,.rule-card,.drop-result,.tz-card,.tz-quick-grid>div){background:#f2f6e9!important;border-color:#c9d9b9!important;color:#48683b}
+#site-preview :is(.frame-chip b,.prob b,.rule b,.rule-card strong,.tz-card h3,.tz-quick-grid b){color:#56723e!important}
+#site-preview :is(.frame-chip span,.prob span,.rule span,.mini-note,.tz-quick-grid span,.tz-en){color:#657951!important;font-size:13px!important}
+#site-preview .frame-chip{padding:13px 8px;border-radius:5px}
+#site-preview .frame-chip b{font-size:17px;font-variant-numeric:tabular-nums}
+#site-preview :is(.verify-note,.warnbox){background:#f1eddf!important;border-color:#b9aa79!important;color:#7c7048!important}
+#site-preview .rule-card span{color:#617552!important}
+#site-preview .search-results{background:#fffefa!important;border-color:#bacbb0!important;box-shadow:0 12px 24px #18372a13!important}
+#site-preview .search-result{border-color:#d5dfca!important;min-height:68px}
+#site-preview .search-result:hover{background:#eef4e5!important}
+#site-preview .search-result b{color:#45633b!important;font-size:15px}
+#site-preview .search-result small,#site-preview .search-result em{color:#6d805e!important}
+#site-preview #runtimeDbStatus{background:#f4ecda!important;border-color:#d4c396!important;color:#85672d!important}
+#site-preview[data-publisher-page=library] .searchbox{background:transparent!important;border:0!important;padding:0!important;gap:0!important}
+#site-preview[data-publisher-page=library] .searchbox input{width:100%!important}
+#site-preview .area-card :is(small,em,.act),#site-preview .detail-head .act,#site-preview .monster-title em{color:#60764e!important}
+#site-preview .command-input>span{color:#826a35!important}
+#site-preview .journey-nav a>span{color:#786b44!important}
+#site-preview .tz-grade.grade-S{color:#896718!important;background:#f4edd2!important;border-color:#cabb84!important}
+#site-preview .tz-grade.grade-A{color:#306b8b!important;background:#e5eef1!important;border-color:#b9ceda!important}
+#site-preview .tz-grade.grade-B{color:#725696!important;background:#eee8f3!important;border-color:#cabce0!important}
+#site-preview .tz-grade.grade-D{color:#925044!important;background:#f4e8df!important;border-color:#d6b7a5!important}
+#site-preview .tz-searchbox{background:#fffefa!important;border-color:#becfb0!important;box-shadow:none!important}
+#site-preview .tz-source-strip #tzSourceDetail span{background:#e6eeda;color:#657c50}
+#site-preview .tz-source-strip b{color:#84723d}
+@media(max-width:600px){#site-preview .primary-navigation>*{flex-direction:row!important}}
+#site-preview#site-preview .primary-navigation>*{background:transparent!important;border:0!important;color:#e6ebd9!important;box-shadow:none!important}
+#site-preview#site-preview .primary-navigation>:is([aria-selected=true],[aria-current=page]){background:#ffffff0a!important;color:#f7e2ab!important;box-shadow:inset 0 -2px #c6ae78!important}
+#site-preview#site-preview .primary-navigation>*:hover{background:#ffffff0c!important}
+#site-preview :is(td,.line,.condition,.tier,.bonus-line,.result-card div){color:#53634d!important}
+#site-preview :is(.line,.condition,.tier,.bonus-line){font-size:14px;line-height:1.85}
+#site-preview :is(.line b,.line strong,.result b,.count,.ledger-card b,.sourcebox b,.source-ledger b,.step b,.build-card b,.small-card strong){color:#6e6138!important}
+#site-preview :is(.line.alias,.line.aliases,.base-aliases){color:#77724d!important}
+#site-preview :is(.tier strong,.tier b,.condition strong,.decision-rows b){color:#83652c!important}
+#site-preview td.runes{color:#7a602b!important}
+#site-preview .page-title .badge{color:#75612f!important}
+#site-preview .sidebar .brand{overflow-wrap:anywhere}
+#site-preview .sidebar .brand small{font-size:9px!important;white-space:normal;letter-spacing:.03em!important}
+#site-preview .archive-emblem{flex:none;min-width:30px}
+#site-preview :is(.searchbox,.command-input,.item-command){background:#fffefa;border:1px solid #bac9ad;color:#647b55;box-shadow:none;border-radius:7px}
+#site-preview[data-publisher-page=library] .searchbox{background:transparent;border:0;position:relative}
+#site-preview[data-publisher-page=library] .searchbox>span{position:absolute;z-index:2;left:15px;top:16px;color:#87966f}
+#site-preview[data-publisher-page=library] #globalSearch{padding-left:43px!important}
+#site-preview :is(.panel,.hero-db,.appraise-box,.app-dev-modal,.app-dev-item,.field,.base-card,.magic-card,.rare-card,.set-block,.set-bonus,.bonus-box,.fact-card,.proof-card,.search-command,.detail-panel,.monster,.source-ledger,.result,.ledger-card,.slot,.total,.step,.small-card,.gear-row,.skill-note,.item-facts,.recommendation,.build-facts section){background:#fffefa!important;border-color:#d3ddc7!important;color:#4a6040;border-radius:7px!important;box-shadow:none!important}
+#site-preview :is(.hero-db,.appraise-box,.explorer-hero,.item-bridge){background:#fffefa!important;border-color:#d3ddc7!important;box-shadow:none!important;border-radius:9px!important}
+#site-preview :is(.hero-db h2,.panel h3,.appraise-head h3,.app-dev-modal h2,.base-summary h2,.set-head h2,.explorer-hero h1,.proof-card b,.detail-head h2,.item-bridge h2,.detail-empty b,.guide-intro h2){color:#345330!important}
+#site-preview :is(.hero-db .lead,.hero-db p,.appraise-head p,.profile-note,.result-card div,.app-dev-modal>p,.app-dev-item,.legend p,.explorer-hero p,.proof-card span,.detail-head p,.search-hint,.item-bridge p,.guide-intro p,.guide-title p,.step p,.build-facts p,.small-card p,.stat p,.gear-row p,.item-facts li,.recommendation-note,.recommendation>span){color:#65795a!important;font-size:14px!important;line-height:1.85}
+#site-preview :is(.field,.slot){padding:14px}
+#site-preview :is(.field label,.slot label){color:#566e4c!important;font-size:14px!important}
+#site-preview :is(.pillrow span,.fact-row span,.fact-strip span,.mods span,.level-list span,.tc-row span,.monster-facts span,.mini-tags em,.detail-list li,.check-list li){background:#eff4e7!important;color:#5b7350!important;border-color:#d0dec1!important;font-size:12px}
+#site-preview :is(.status-card,.status-card.yes,.verify-stamp span,.verified){background:#eaf2e2!important;border-color:#b7c9a4!important;color:#46703a!important}
+#site-preview :is(.status-card.no,.app-dev-warn,.result-warn,.detail-warning){background:#f8eee4!important;border-color:#bc9574!important;color:#986444!important;font-size:13px;line-height:1.8}
+#site-preview :is(.market,.proto-note){background:#f3f0e2!important;border-color:#b9a46b!important;color:#7b704a!important;font-size:13px;line-height:1.85}
+#site-preview :is(.empty,.set-empty,.detail-empty,.maxhint,.score){color:#6a7a5d!important}
+#site-preview :is(.condition,.tier,.set-head,.set-bonus,.tool-title,.source-ledger small,.profile-note){border-color:#d4ddc7!important}
+#site-preview .area-card b,#site-preview .monster b{color:#557047!important;font-size:14px!important}
+#site-preview .area-card :is(small,em,.act){color:#77896a!important}
+#site-preview .monster .res{background:#eef3e4;border-color:#cbdabb;color:#648054;font-size:11px}
+#site-preview .monster .res.immune{background:#f7ebe2;border-color:#d5b89d;color:#9b5a3e}
+#site-preview .tools .gold,#site-preview .tools button.gold,#site-preview .actions a{background:#edf2e5!important;border-color:#b5c7a4!important;color:#416236!important}
+#site-preview .criterion-open header{border-color:#cdd9bf}
+#site-preview :is(.criteria-count,.criteria-legend,.criteria-shortcuts>span){color:#727c55!important}
+#site-preview .criteria-browser .eyebrow{color:#687955!important}
+#site-preview :is(.criterion-open header p,.criterion-card summary p){color:#657957!important}
+#site-preview .criterion-kind{color:#726c91!important}
+#site-preview .criterion-card.base .criterion-kind{color:#608446!important}
+#site-preview .criterion-card.rare .criterion-kind{color:#8d742f!important}
+#site-preview .criterion-open.base .criterion-kind{color:#608446!important}
+#site-preview :is(.criterion-card,.criterion-body,.base-controls,.auto-ranges p,.shield-result){background:#f8faf1!important;border-color:#d0ddbf!important;color:#506847}
+#site-preview .criterion-card summary{background:#f0f4e6!important}
+#site-preview .criterion-card h3{color:#3c5c30!important}
+#site-preview .expand-label{color:#507843!important}
+#site-preview :is(.decision-runes a,.base-runes a){background:#eaf0df!important;color:#506a3f!important;border-color:#c5d4b1!important;font-size:12px;min-height:36px;padding:7px 11px}
+#site-preview .decision-rows>div{border-color:#c8d5b6!important}
+#site-preview .decision-rows b{font-weight:750}
+#site-preview :is(.stats,.stats>div,.fact-strip){color:#586d49!important}
+#site-preview[data-unified] .entry-card.rare-entry .entry-label{color:#8b7135!important}
+#site-preview .guide-top small{color:#b9c8a9!important}
+#site-preview .guide-hero em{color:#857039!important}
+#site-preview :is(.first-help p,.first-help li,.next-step p,.route span,.quest p,.quest li,.act-exit p){color:#5a714e!important;font-size:14px}
+#site-preview #next-title{color:#345930!important;font-size:20px}
+#site-preview .preflight :is(b,strong){color:#416137!important}
+#site-preview .preflight li{color:#6c7e5c!important}
+#site-preview .tz-level-control span{color:#60764e!important}
+#site-preview[data-publisher-page=home] .hero h1{color:#2b4931!important;-webkit-text-fill-color:#2b4931!important;background:none!important}
+#site-preview[data-publisher-page=home] .navlinks small{color:#aebe9a!important}
+#site-preview[data-publisher-page=admin] .msg{background:#f6eee3!important;border-color:#d4b896!important;color:#98603c!important}
+#site-preview[data-publisher-page=bgm-credits] b{color:#81672d!important}
+#site-preview[data-publisher-page=build-guide] .topbar{background:#e7eee0!important;border-color:#c5d4b6!important;position:static;backdrop-filter:none}
+#site-preview[data-publisher-page=build-guide] .topbar :is(a,span){color:#536e45!important}
+#site-preview[data-publisher-page=build-guide] .controlbar{background:#eff3e7!important;border-color:#d0ddbf!important;padding:13px;border-radius:6px}
+#site-preview[data-publisher-page=build-guide] :is(.pros,.cons){background:#f2f6e9!important;border-color:#c8dabb!important}
+#site-preview[data-publisher-page=build-guide] .cons{background:#f6eee7!important;border-color:#dbc6b2!important}
+#site-preview[data-publisher-page=build-guide] .pros h3{color:#456c36!important}
+#site-preview[data-publisher-page=build-guide] .cons h3{color:#936a45!important}
+#site-preview[data-publisher-page=build-guide] .tree{background:#f1f4e8!important;border-color:#bdceab!important}
+#site-preview[data-publisher-page=build-guide] .tree h3{background:#e3ecda!important;color:#496c36!important;border-color:#bdceab!important}
+#site-preview[data-publisher-page=build-guide] .tree:nth-child(2) h3{background:#eee9d8!important;color:#7f7342!important}
+#site-preview[data-publisher-page=build-guide] .tree:nth-child(3) h3{background:#eee2db!important;color:#8e6246!important}
+#site-preview[data-publisher-page=build-guide] .skill .seal{background:#e3ebd6!important;color:#788864;border-color:#c6d4b4;box-shadow:none}
+#site-preview[data-publisher-page=build-guide] .skill .rank{background:#345529;color:#fff1c2}
+#site-preview[data-publisher-page=build-guide] .paperdoll{background:#e1e9d2!important;border:1px solid #bdcca8!important;padding:15px;border-radius:7px}
+#site-preview[data-publisher-page=build-guide] .gear-slot{background:#f6f8ef!important;border-color:#c5d4b0!important}
+#site-preview[data-publisher-page=build-guide] .gear-slot span{color:#7b6e35!important}
+#site-preview[data-publisher-page=build-guide] .gear-slot small{color:#6e805c!important}
+#site-preview [style*="color:#f0d49a"]{color:#82692e!important}
+@media(max-width:600px){#site-preview :is(.line,.condition,.tier){font-size:14px}#site-preview .explorer-hero{padding:22px!important}#site-preview .guide-hero h1{font-size:29px!important}}

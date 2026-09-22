@@ -1,0 +1,12 @@
+Sanctuary KR D2R Image Appraisal v36
+
+Fixes
+- v35 JavaScript syntax error fixed (page initialization was stopping before event handlers were registered)
+- File select button restored
+- Drop area click also opens file picker
+- Ctrl+V image paste handler hardened
+- Drag/drop retained
+- Precision OCR / crop / zoom / normalizer retained
+
+QA
+- Inline JavaScript parsed with Node syntax checker

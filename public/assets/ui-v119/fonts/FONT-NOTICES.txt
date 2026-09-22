@@ -1,0 +1,14 @@
+Font copyright notices preserved from the bundled fonts' name tables:
+
+Noto Sans KR:
+© 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+
+Noto Serif KR:
+© 2017-2023 Adobe (http://www.adobe.com/).
+
+Both fonts are licensed under the SIL Open Font License, Version 1.1.
+The full license texts are provided in the adjacent OFL files. Original
+copyright and license metadata are also retained inside the font binaries.
+
+Packaging modification: converted from variable TTF to WOFF2 for web use.
+No glyphs, names, or variable weight axes were removed or changed.

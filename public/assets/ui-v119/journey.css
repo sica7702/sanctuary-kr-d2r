@@ -1,0 +1,26 @@
+/* Only new help components; existing page widths, grids, typography and assets stay intact. */
+:is(#site-preview,#studio-preview) .skr-support{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-top:18px;margin-top:18px;border-top:1px solid var(--line,#d8dcd3)}
+:is(#site-preview,#studio-preview) .skr-support>a{font-size:14px;min-height:44px;display:inline-flex;align-items:center}
+:is(#site-preview,#studio-preview) .skr-next-hint{margin:22px 0 10px;color:#526557;font-size:14px}
+:is(#site-preview,#studio-preview) .skr-backup-help{margin:20px 0;padding:18px 20px;border:1px solid #d2dcca;border-radius:6px;background:#f3f6ed}
+:is(#site-preview,#studio-preview) .skr-backup-help p,:is(#site-preview,#studio-preview) .skr-result-next>p{margin:8px 0;color:#526557;font-size:14px}
+:is(#site-preview,#studio-preview) .skr-backup-help details{margin-top:12px}
+:is(#site-preview,#studio-preview) .skr-backup-help details p{padding:0 16px 14px}
+:is(#site-preview,#studio-preview) .skr-result-next{margin-top:26px;padding-top:20px;border-top:1px solid var(--line,#d8dcd3)}
+:is(#site-preview,#studio-preview) .skr-result-next h3{margin:0 0 14px}
+:is(#site-preview,#studio-preview) .skr-next-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+:is(#site-preview,#studio-preview) .skr-next-actions>a{min-height:44px;display:inline-flex;align-items:center;font-size:14px}
+:is(#site-preview,#studio-preview) .skr-result-next .skr-inline-report{margin-top:12px}
+:is(#site-preview,#studio-preview) .skr-report{box-sizing:border-box;width:min(640px,calc(100vw - 32px));max-height:calc(100dvh - 40px);padding:28px;border:1px solid #bfcbbf;border-radius:10px;background:var(--paper,#fffefa);color:var(--ink,#213c31);box-shadow:0 24px 80px #152a2640;overflow:auto;overscroll-behavior:contain}
+:is(#site-preview,#studio-preview) .skr-report:not([open]){display:none}
+:is(#site-preview,#studio-preview) .skr-report::backdrop{background:#172b265e}
+:is(#site-preview,#studio-preview) .skr-report-head{display:flex;align-items:center;justify-content:space-between;gap:20px}
+:is(#site-preview,#studio-preview) .skr-report-head h2{margin:0;font-size:24px}
+:is(#site-preview,#studio-preview) .skr-report form>label{display:block;margin:14px 0;font-size:15px;font-weight:600}
+:is(#site-preview,#studio-preview) .skr-report :is(textarea,select){box-sizing:border-box;display:block;width:100%;max-width:100%;margin-top:6px;resize:vertical}
+:is(#site-preview,#studio-preview) .skr-report-preview textarea{width:calc(100% - 24px);margin:12px}
+:is(#site-preview,#studio-preview) .skr-report :is(p,.skr-report-privacy){font-size:14px;color:#526557}
+:is(#site-preview,#studio-preview) .skr-report-actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:20px}
+:is(#site-preview,#studio-preview) .skr-report-actions a{display:inline-flex;align-items:center;min-height:44px;font-size:15px}
+:is(#site-preview,#studio-preview) .skr-report-status:empty{display:none}
+@media(max-width:600px){:is(#site-preview,#studio-preview) .skr-report{padding:20px;max-height:calc(100dvh - 24px)}:is(#site-preview,#studio-preview) .skr-next-actions{align-items:stretch;flex-direction:column}:is(#site-preview,#studio-preview) .skr-next-actions>a{padding-block:4px}:is(#site-preview,#studio-preview) .skr-backup-help{padding:16px}}

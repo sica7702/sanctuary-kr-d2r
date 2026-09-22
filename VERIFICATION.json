@@ -1,0 +1,107 @@
+{
+  "version": "v136",
+  "baseline": "v135",
+  "verifiedOn": "2026-09-22",
+  "productionDeployed": false,
+  "productionDatabaseModified": false,
+  "productionModelActivated": false,
+  "scope": "PC pretrained MiniLM fine-tuning, numeric student distillation, private server validation, shared OCR/manual value inference, validated review nominations. Original recognition, score engines, item criteria and layout preserved.",
+  "tests": {
+    "node": {
+      "passed": 145,
+      "failed": 0
+    },
+    "pythonRunner": {
+      "passed": 3,
+      "failed": 0
+    },
+    "browser": {
+      "passed": true,
+      "scripts": [
+        "ai-browser.cjs",
+        "manual-appraisal-browser.cjs",
+        "ocr-runtime-browser.cjs",
+        "review-value-admin-browser.cjs",
+        "statistical-admin-browser.cjs"
+      ],
+      "checks": [
+        "two-screen primary value integration",
+        "16 manual item slots and search",
+        "stale response rejected",
+        "unresolved OCR option abstains",
+        "offline original appraisal",
+        "admin tags preserved",
+        "admin mobile 390px"
+      ]
+    },
+    "localWorkerdD1": {
+      "passed": true,
+      "productionWrites": 0,
+      "checks": [
+        "additive migration and triggers",
+        "scoped trainer auth",
+        "admin session guard",
+        "sync",
+        "no-data job",
+        "public fallback",
+        "static asset"
+      ]
+    },
+    "fineTuningSmoke": {
+      "passed": true,
+      "fixtureOnly": true,
+      "pretrainedModel": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "encoderLayersTrained": 2,
+      "device": "cpu",
+      "syntheticTrainingExamples": 64,
+      "epochs": 1,
+      "teacherSteps": 8,
+      "pretrainedWeightDelta": 13.023454666137695,
+      "seconds": 1.8909999999996217,
+      "pythonJsMaxProbabilityError": 1.5682784682002904e-8,
+      "actualMarketAccuracyVerified": false
+    },
+    "wranglerDryRun": {
+      "passed": true,
+      "uploaded": false,
+      "version": "4.131.0",
+      "assets": 318,
+      "workerKiB": 909.44,
+      "gzipKiB": 175.17
+    }
+  },
+  "productionReadOnlyCounts": {
+    "total": 223,
+    "reviewed": 129,
+    "valueTagged": 18,
+    "eligibleAndValueTaggedBeforeNewNormalization": 7,
+    "rowsWritten": 0,
+    "notIndependentValidatedSampleCounts": true
+  },
+  "safety": {
+    "sourceHashes": true,
+    "independentGroupHoldout": true,
+    "serverOnlyFinalTest": true,
+    "humanWeakAutoLabelsSeparated": true,
+    "staleDatasetPromotionBlocked": true,
+    "changedReviewedSourcesInvalidateActiveModel": true,
+    "unvalidatedInputAbstains": true,
+    "existingEngineProjectionComparison": true,
+    "championRegressionCheck": true,
+    "modelExpiryDays": 90,
+    "fixtureUploadRejected": true,
+    "scopedToken": true,
+    "rollback": true,
+    "rawHistoryNotDeleted": true
+  },
+  "knownLimits": [
+    "No live deployment or real-data validated model activation was performed.",
+    "Common representable rare/magic/crafted options only; unique/set/runeword/base and unsupported complex affixes keep existing appraisal.",
+    "OCR glyph recognition is not retrained; no verified transaction-price or multi-exchange price model.",
+    "Per-job latest 2000 eligible records; permanent group hash split, recent 90-day human test; not chronological holdout.",
+    "Repeated holdout use and actual production predictive accuracy require prospective validation.",
+    "Required levels not seen in training abstain; some source snapshots do not supply this dimension.",
+    "PC installation and running learner required for new training; deployed inference does not depend on PC power."
+  ]
+}

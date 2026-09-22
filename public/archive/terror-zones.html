@@ -1,0 +1,63 @@
+<!doctype html>
+<html id="site-preview" data-publisher="readable" data-publisher-page="terror-zones" data-archive-theme lang="ko">
+<head><script>if(new URLSearchParams(location.search).has("compact")){document.documentElement.classList.add("tz-compact");document.write('<base target="_top">');}</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="archive.css">
+<title>D2R 공포의 영역 실시간 트래커 | Sanctuary KR</title>
+<meta name="description" content="D2R 공포의 영역 현재/다음 지역 실시간 트래커, 지역 DB, 파밍 추천 및 드랍 계산 연동.">
+<link rel="stylesheet" href="navigation.css"><link rel="stylesheet" href="professional.css"><link rel="stylesheet" href="archive-theme.css"><link rel="stylesheet" href="/assets/css/publisher.css?v=118">
+<link rel="stylesheet" href="/assets/ui-v119/site.css"><link rel="stylesheet" href="/assets/ui-v119/site-detail.css"></head>
+<body><div class="archive-menu-wrap"><nav class="primary-navigation" aria-label="자료실 주요 기능"><a href="unified.html?view=loot" ><strong>득환 기준</strong><span>베이스·매직·레어 보기</span></a><a href="image-appraisal.html" class="photo-link"><strong>사진 감정</strong><span>사진으로 옵션 확인</span></a><a href="unified.html?view=detail" ><strong>아이템 검색</strong><span>이름·별칭으로 찾기</span></a><a href="unified.html?view=farm" ><strong>파밍·드랍</strong><span>지역·몬스터·아이템</span></a><a href="unified.html?view=gear" ><strong>장비 비교</strong><span>교체 전후 수치 비교</span></a><a href="unified.html?view=collection" ><strong>내 보관함</strong><span>수집 현황·파밍 목표</span></a></nav></div>
+<div class="shell">
+<aside class="sidebar"><div class="brand">Sanctuary Archive<small>D2R DATABASE</small></div><nav class="nav">
+<a href="index.html">⌂ 자료실 홈</a><a href="runewords.html">룬워드 찾기</a><a href="cube.html">호라드림의 함 조합법</a><a href="sockets.html">소켓 개수·라주크</a><a href="breakpoints.html">직업별 시전·타격 속도</a><a class="active" href="terror-zones.html">☠ 공포의 영역</a><a href="drop-calculator.html">⌖ 아이템 드랍 가능 여부</a><a href="uniques.html">★ 유니크 아이템 찾기</a><a href="sets.html">✦ 세트 아이템 찾기</a><a href="bases.html">◇ 베이스 · 재료템 DB</a><a href="magic.html">✧ 가치 있는 매직 아이템</a><a href="rare-preview.html">◆ 가치 있는 레어 아이템</a><a href="appraisal.html">◇ 아이템 가치 확인</a><div class="sep"></div><a href="../index.html">🏛 성역 메인</a>
+</nav></aside>
+<div class="content">
+<header class="topbar"><div class="status"><span class="dot"></span> ROTW 3.3 · 30분 로테이션</div><div class="toplinks"><a href="drop-calculator.html">드랍 계산기</a></div></header>
+<main class="main tz-dashboard-page">
+<section class="tz-headline">
+  <div><div class="eyebrow">SANCTUARY KR · LIVE TERROR ZONE</div><h1>공포의 영역 실시간 트래커</h1><p>현재/다음 공포영역을 실시간 소스에서 확인하고, 지역 DB·파밍 점수·드랍 계산기로 바로 연결합니다.</p></div>
+  <div class="tz-live-status"><span id="tzVerifyBadge" class="live-pill pending">연결 중</span><span id="tzLastSync">—</span></div>
+</section>
+<div class="tz-toolbar">
+  <div class="tz-searchbox"><span>⌕</span><input id="tzSearchTop" placeholder="지역 이름 검색…" autocomplete="off"></div>
+  <div class="tz-level-control"><span>캐릭터 Lv</span><input id="tzCharLevel" type="number" min="1" max="99" value="93" inputmode="numeric"><small>공포영역 mlvl 계산</small></div><button type="button" id="tzNotifyBtn" class="tz-notify">🔔 TZ 변경 알림 받기</button>
+</div>
+<div class="skr-tabs"><button class="skr-tab active" data-tab="live">실시간 현황</button><button class="skr-tab" data-tab="db">지역 DB</button><button class="skr-tab" data-tab="rules">레벨 규칙</button><button class="skr-tab" data-tab="farm">파밍 추천</button></div>
+<section class="skr-tabpanel active" id="tab-live">
+  <div class="tz-hero-grid">
+    <article id="currentCard" class="tz-spotlight current loading">
+      <div class="tz-card-top"><span class="tz-kicker">현재 공포영역</span><span id="tzTimer" class="tz-countdown">--:-- 후 변경</span></div>
+      <div class="tz-title-row"><span id="currentGrade" class="tz-grade">—</span><div><h2 id="tzCurrent">실시간 데이터 연결 중…</h2><div id="tzCurrentEn" class="tz-subtitle"></div></div></div>
+      <div class="tz-statline"><span id="currentAct">Act —</span><span id="currentLevel">지역 Lv —</span><span id="currentPacks">엘리트팩 —</span></div>
+      <div class="tz-section-label">포함 지역</div><div id="currentAreas" class="tz-area-list"><span>불러오는 중</span></div>
+      <div class="tz-section-label">주요 면역</div><div id="currentImmune" class="tz-immune-list"><span class="immune none">확인 중</span></div>
+      <div class="tz-farm-row"><div><span>파밍 추천</span><b id="currentFarmScore">—</b></div><div class="tz-progress"><i id="currentFarmBar"></i></div><small id="currentFarmNote">밀도·엘리트팩·지역레벨 기반</small></div>
+      <div class="tz-section-label item-label">고레벨 TZ 주요 노림수 <small>카드를 누르면 아이템 드랍 가능 여부로 이동</small></div><div id="currentItems" class="tz-item-grid"></div>
+      <div class="tz-actions"><button id="currentDbBtn" type="button">지역 DB 보기</button><a id="currentDropBtn" href="drop-calculator.html">드랍 계산기로 열기 ›</a></div>
+    </article>
+    <article id="nextCard" class="tz-spotlight next loading">
+      <div class="tz-card-top"><span class="tz-kicker">다음 공포영역</span><span class="tz-next-label">NEXT</span></div>
+      <div class="tz-title-row"><span id="nextGrade" class="tz-grade">—</span><div><h2 id="tzNext">다음 지역 확인 중…</h2><div id="tzNextEn" class="tz-subtitle"></div></div></div>
+      <div class="tz-statline"><span id="nextAct">Act —</span><span id="nextLevel">지역 Lv —</span><span id="nextPacks">엘리트팩 —</span></div>
+      <div class="tz-section-label">포함 지역</div><div id="nextAreas" class="tz-area-list"><span>불러오는 중</span></div>
+      <div class="tz-section-label">주요 면역</div><div id="nextImmune" class="tz-immune-list"><span class="immune none">확인 중</span></div>
+      <div class="tz-farm-row"><div><span>파밍 추천</span><b id="nextFarmScore">—</b></div><div class="tz-progress"><i id="nextFarmBar"></i></div><small id="nextFarmNote">밀도·엘리트팩·지역레벨 기반</small></div>
+      <div class="tz-section-label item-label">고레벨 TZ 주요 노림수 <small>카드를 누르면 아이템 드랍 가능 여부로 이동</small></div><div id="nextItems" class="tz-item-grid"></div>
+      <div class="tz-actions"><button id="nextDbBtn" type="button">지역 DB 보기</button><a id="nextDropBtn" href="drop-calculator.html">드랍 계산기로 열기 ›</a></div>
+    </article>
+  </div>
+  <div class="tz-source-strip"><div><b>LIVE SOURCE</b><span id="tzSource">연결 확인 중…</span></div><div id="tzSourceDetail"></div><div class="tz-credit">Terror Zone public source: <a href="https://diablo2.io/tzonetracker.php" target="_blank" rel="noopener">diablo2.io</a> · 공개 트래커 · 시각 검증 실패 시 게임 내 확인</div></div>
+  <div class="tz-quick-grid"><div><span>로테이션</span><b>30분</b></div><div><span>수록 그룹</span><b>34</b></div><div><span>데이터 우선순위</span><b>Blizzard → 게임 원본 → 트래커</b></div><div><span>최종 확인</span><b>게임 내 /terrorized</b></div></div>
+</section>
+<section class="skr-tabpanel" id="tab-db"><div class="section-head"><h2>공포영역 지역 DB</h2><p>현행 로테이션 33그룹. 지역 레벨은 D2R 원본 데이터를 우선합니다.</p></div><div class="filter-row"><button class="act-filter active" data-act="all">전체</button><button class="act-filter" data-act="1">Act 1</button><button class="act-filter" data-act="2">Act 2</button><button class="act-filter" data-act="3">Act 3</button><button class="act-filter" data-act="4">Act 4</button><button class="act-filter" data-act="5">Act 5</button><input id="tzSearch" placeholder="지역명 검색"></div><div class="tz-grid" id="tzGrid"></div></section>
+<section class="skr-tabpanel" id="tab-rules"><div class="section-head"><h2>공포영역 몬스터 레벨</h2><p>지옥 기준, 게임 생성자 레벨 또는 원래 몬스터 레벨 중 높은 값 적용</p></div><div class="rule-grid"><div class="rule-card"><b>일반</b><strong>호스트 +2</strong><small>최대 96</small></div><div class="rule-card"><b>챔피언</b><strong>호스트 +4</strong><small>최대 98</small></div><div class="rule-card"><b>유니크</b><strong>호스트 +5</strong><small>최대 99</small></div></div></section>
+<section class="skr-tabpanel" id="tab-farm"><div class="section-head"><h2>파밍 추천 티어</h2><p>밀도·정예팩·동선·파밍 목적을 고려한 편집 추천 티어입니다. 빌드에 따라 효율은 달라집니다. 탈 라샤의 무덤과 혼돈의 성역은 종합 S 티어로 분류합니다.</p></div><div class="filter-row"><button class="farm-filter active" data-farm="overall">종합</button><button class="farm-filter" data-farm="xp">경험치</button><button class="farm-filter" data-farm="unique">유니크/세트</button><button class="farm-filter" data-farm="base">베이스</button><button class="farm-filter" data-farm="rune">룬</button></div><div id="farmGrid" class="farm-tier-board"></div></section>
+<div class="footer"><span>Sanctuary Archive · Live TZ Dashboard v75</span><span>diablo2.io 공개 트래커 · 다음 지역은 예측</span></div>
+</main></div></div>
+<script src="terror-data.js"></script><script src="js/pages/terror-zones-03.js"></script>
+<script src="professional.js"></script><script src="/assets/js/publisher.js?v=118" defer></script>
+<script src="/assets/ui-v119/site.js" defer></script></body></html>
+
+
+

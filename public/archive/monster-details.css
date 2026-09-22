@@ -1,0 +1,2 @@
+.monster small{display:block}.monster-title{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.monster-title em{color:#87919d;font-size:8px;font-style:normal;text-align:right}.res-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}.res{padding:3px 5px;border:1px solid #29313a;border-radius:5px;color:#84909c;font-size:7px}.res.immune{border-color:#653b34;background:#1b100e;color:#d28b7d}
+.monster-facts{margin:9px 0 0}.monster-facts span{background:#090d12;border-color:#26303a;color:#9ca9b7}

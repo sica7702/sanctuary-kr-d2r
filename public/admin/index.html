@@ -1,0 +1,1188 @@
+<!doctype html>
+<html id="site-preview" data-publisher="readable" data-publisher-page="admin" lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sanctuary KR · 감정 DB 관리자</title>
+<style>
+:root{--bg:#090b0e;--panel:#11141a;--line:#303641;--gold:#e4c27f;--text:#eceff3;--muted:#929ba7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif}
+.wrap{width:min(1180px,calc(100% - 28px));margin:34px auto 70px}.head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap}
+h1{margin:0;color:#f0d49a;font-size:28px}.sub{color:var(--muted);font-size:13px;margin-top:8px}.stats{display:flex;gap:7px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);border-radius:99px;padding:7px 10px;font-size:11px;color:#bfc5ce;background:#0e1116}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 12px}.tabs button,.btn{border:1px solid var(--line);background:#11151b;color:#c4cad2;border-radius:8px;padding:9px 12px;cursor:pointer}
+.tabs button.active{border-color:#7b6138;color:#efd39a;background:#18130d}.panel{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:16px;margin:12px 0}
+.card{border:1px solid #292f38;background:#0d1015;border-radius:11px;padding:16px;margin:10px 0}.card h3{margin:0 0 5px;color:#e0c27f}.meta{font-size:11px;color:#89929e}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.box{border:1px solid #272d35;background:#0a0d11;border-radius:8px;padding:11px}
+.box b{display:block;color:#cfae73;font-size:11px;margin-bottom:6px}pre,textarea,input,select{font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}
+pre{white-space:pre-wrap;word-break:break-word;color:#b9c0ca;margin:0}textarea,input,select{width:100%;background:#0b0e12;color:#e9edf2;border:1px solid #343b45;border-radius:7px;padding:9px}
+textarea{min-height:220px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.approve{background:#d7b36e;color:#171108;border-color:#d7b36e}.hold{background:#40382c}.reject{background:#542c2c;color:#f1cdcd}.danger{background:#4e2929;color:#f0cccc}.good{color:#a5d1b0}.bad{color:#d6a59c}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.full{grid-column:1/-1}.hidden{display:none!important}.msg{padding:10px 12px;border-radius:8px;margin:10px 0;font-size:12px;background:#15120d;border:1px solid #4b3f2a;color:#d8c296}
+.compare-row{display:grid;grid-template-columns:1fr 64px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid #252d37;font-size:11px}.compare-row .match{color:#99cca6}.compare-row .miss{color:#df9b91}
+@media(max-width:800px){.grid,.formgrid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style><link rel="stylesheet" href="/assets/css/publisher.css?v=118">
+<link rel="stylesheet" href="/assets/ui-v119/site.css"><link rel="stylesheet" href="/assets/ui-v119/site-detail.css"><link rel="stylesheet" href="/admin/review-ui.css?v=125">
+<style>
+#site-preview .queue-intro{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;padding:18px 20px;border:1px solid #d4ddcf;border-radius:10px;background:#f4f8f1;color:#244332;margin-bottom:16px}
+#site-preview .queue-intro h2{font-size:19px;line-height:1.35;margin:0 0 6px;color:#1c4030}
+#site-preview .queue-intro p{font-size:13px;line-height:1.65;margin:0;max-width:700px;color:#4d6253}
+#site-preview .queue-counts{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+#site-preview .queue-counts span{display:inline-flex;align-items:center;min-height:30px;padding:5px 9px;border:1px solid #ccd8c6;border-radius:999px;background:#fff;color:#355642;font-size:12px;font-weight:650;white-space:nowrap}
+#site-preview .queue-auto{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 14px;padding:12px 16px;border:1px solid #d6dfd1;border-radius:9px;background:#fff}
+#site-preview .queue-auto b{font-size:13px;color:#284b38}
+#site-preview .queue-auto span{font-size:12px;color:#617365}
+#site-preview .queue-auto-status{width:100%;font-size:12px;color:#385641}
+#site-preview .queue-toolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+#site-preview .queue-toolbar label{display:grid;gap:5px;font-size:12px;font-weight:700;color:#425846}
+#site-preview .queue-toolbar select{min-width:180px;min-height:40px;font:inherit}
+#site-preview .queue-maintenance{border:1px solid #d7dfd0;border-radius:9px;padding:0 12px;margin:0 0 18px;background:#fff}
+#site-preview .queue-maintenance>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:13px;font-weight:700;color:#425846}
+#site-preview .queue-maintenance[open]>summary{border-bottom:1px solid #e1e8da}
+#site-preview .queue-maintenance .actions{padding:12px 0}
+#site-preview .queue-maintenance .meta{padding:0 0 12px}
+#site-preview .review-card{padding:18px 20px}
+#site-preview .review-card h3{font-size:17px;line-height:1.5;margin-bottom:4px;word-break:keep-all;overflow-wrap:anywhere}
+#site-preview .review-card .review-card-meta{display:flex;gap:5px 10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+#site-preview .review-card .review-card-meta span{font-size:12px;color:#64786c}
+#site-preview .review-card .review-card-meta b{font-size:11px;color:#35533d;background:#eff4eb;border:1px solid #d4dfce;border-radius:999px;padding:3px 8px}
+#site-preview .review-card .review-card-meta b.is-repair{color:#795529;background:#faf2e7;border-color:#e8d4ae}
+#site-preview .review-card .review-queue-note{margin:8px 0;padding:9px 12px}
+#site-preview .review-card .review-queue-note p{font-size:12px;line-height:1.6}
+#site-preview .review-card .review-evidence{margin-top:12px;border:1px solid #d9e1d4;border-radius:8px;padding:0 12px;background:#fff}
+#site-preview .review-card .review-evidence>summary{cursor:pointer;padding:11px 0;color:#365742;font-size:13px;font-weight:700}
+#site-preview .review-card .review-evidence[open]>summary{border-bottom:1px solid #e1e8db;margin-bottom:12px}
+#site-preview .review-card .review-evidence .grid{min-width:0}
+#site-preview .review-card .review-evidence .box{min-width:0;overflow:auto}
+#site-preview .review-card .review-evidence pre{max-height:320px;overflow:auto}
+#site-preview .review-card .review-card-actions{border-top:1px solid #e2e7dd;padding-top:12px;margin-top:14px}
+#site-preview .review-card .review-card-actions .action-hint{width:100%;font-size:12px;color:#657666}
+@media(max-width:600px){#site-preview .queue-intro{padding:16px}#site-preview .review-card{padding:15px}#site-preview .queue-toolbar{display:block}#site-preview .queue-toolbar label{margin:8px 0}#site-preview .queue-toolbar select{width:100%}}
+</style></head><body>
+<div class="wrap">
+  <div class="head"><div><h1>Sanctuary KR · 감정 DB 관리자</h1><div class="sub">AI/수집 후보를 검수하고 승인된 규칙만 운영 감정기에 반영합니다.</div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="stats" id="stats"></div><form method="post" action="/api/admin/logout" style="margin:0"><button class="btn" type="submit">로그아웃</button></form></div></div>
+  <div id="message"></div>
+  <div class="tabs">
+    <button data-tab="pending" class="active">검수 대기</button>
+    <button data-tab="repair">수집 보완 필요</button>
+    <button data-tab="hold">보류</button>
+    <button data-tab="approved">승인 이력</button>
+    <button data-tab="rules">운영 규칙</button>
+    <button data-tab="new">후보 직접 추가</button><button data-tab="market">시장 관측</button><button data-tab="patterns">시장 패턴</button><button data-tab="testlab">테스트 랩</button><button data-tab="statistical">통계 검증</button><button data-tab="crawler">자동 수집</button>
+  </div>
+  <section id="candidatePanel" class="panel"><div class="queue-auto"><b>자동 검수</b><span>매시간 원본을 다시 확인한 뒤 통계 기준을 통과한 후보만 처리합니다.</span><button class="btn" type="button" onclick="loadAutoReviewStatus()">처리 가능 여부 확인</button><button class="btn approve" id="autoReviewApply" type="button" onclick="applyAutoReview()">지금 자동 검수 실행</button><div id="autoReviewStatus" class="queue-auto-status" role="status" aria-live="polite">아직 확인하지 않았습니다.</div></div><div id="list">불러오는 중...</div></section>
+  <section id="rulePanel" class="panel hidden"><div id="rules">불러오는 중...</div></section>
+  <section id="newPanel" class="panel hidden">
+    <h3 style="margin-top:0;color:#e0c27f">신규 후보 직접 추가</h3>
+    <div class="formgrid">
+      <div><label>부위 ID</label><select id="nItem"><option>ring</option><option>amulet</option><option>circlet</option><option>gloves</option><option>boots</option><option>belt</option><option>classarmor</option><option>melee</option><option>polearm</option><option>bow</option><option>crossbow</option><option>jav</option><option>claw</option><option>orb</option><option>wand</option><option>caster</option></select></div>
+      <div><label>신뢰도 0~1</label><input id="nConf" value="0.85"></div>
+      <div class="full"><label>후보 제목</label><input id="nTitle" placeholder="예: 10패캐 + 고힘 + 고피 + 올레 조합"></div>
+      <div class="full"><label>근거 JSON 배열</label><textarea id="nEvidence">[{"source":"manual","note":"실거래/커뮤니티 교차검증"}]</textarea></div>
+      <div class="full"><label>제안 규칙 JSON</label><textarea id="nProposal">{
+  "rule_key": "rare_ring_example_v1",
+  "label": "레어 링 예시 규칙",
+  "slot": "ring",
+  "item_type": "레어",
+  "priority": 100,
+  "conditions": {
+    "fcr": {"gte": 10},
+    "str": {"gte": 18},
+    "life": {"gte": 30},
+    "allres": {"gte": 10}
+  },
+  "effects": {
+    "score_delta": 8,
+    "strength_note": "패캐·고힘·고피·올레가 한 방향으로 밀집된 상위 조합",
+    "tags": ["caster","high-demand"]
+  }
+}</textarea></div>
+    </div>
+    <div class="actions"><button class="btn approve" id="createCandidate">검수 후보로 저장</button></div>
+  </section>
+  <section id="marketPanel" class="panel hidden">
+    <h3 style="margin-top:0;color:#e0c27f">시장 관측 데이터 입력</h3>
+    <div class="msg">자동 수집 허용이 불명확한 소스는 여기서 수동/반자동으로만 적재합니다. d2jsp는 manual_only로 강제됩니다.</div>
+    <div class="formgrid">
+      <div><label>출처</label><select id="mSource"></select></div>
+      <div><label>관측 유형</label><select id="mType"><option value="asking">asking</option><option value="sold">sold</option><option value="completed">completed</option><option value="manual_quote">manual_quote</option><option value="community_check">community_check</option></select></div>
+      <div><label>아이템 타입</label><input id="mItemType" value="레어"></div>
+      <div><label>부위</label><select id="mSlot"><option>ring</option><option>amulet</option><option>circlet</option><option>gloves</option><option>boots</option><option>belt</option><option>classarmor</option><option>melee</option><option>polearm</option><option>bow</option><option>crossbow</option><option>jav</option><option>claw</option><option>orb</option><option>wand</option><option>caster</option></select></div>
+      <div class="full"><label>출처 URL</label><input id="mUrl" placeholder="https://..."></div>
+      <div><label>원 가격</label><input id="mPrice" type="number" step="any"></div>
+      <div><label>원 가격 단위</label><input id="mCurrency" placeholder="Jah / fg / Ist ..."></div>
+      <div><label>정규화 값</label><input id="mNorm" type="number" step="any"></div>
+      <div><label>정규화 단위</label><input id="mNormCur" placeholder="JahEq 등"></div>
+      <div><label>시즌</label><input id="mSeason" placeholder="예: S15"></div>
+      <div><label>지역</label><select id="mRegion"><option value="">미지정</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Europe">Europe</option></select></div>
+      <div><label>래더</label><select id="mLadder"><option value="">미지정</option><option value="1">Ladder</option><option value="0">Non-Ladder</option></select></div>
+      <div><label>HC/SC</label><select id="mHardcore"><option value="">미지정</option><option value="0">Softcore</option><option value="1">Hardcore</option></select></div>
+      <div class="full"><label>옵션 JSON</label><textarea id="mAffixes">{
+  "fcr": 10,
+  "str": 18,
+  "life": 30,
+  "allres": 10
+}</textarea></div>
+      <div class="full"><label>메모</label><input id="mNote" placeholder="실거래 확인 여부, 시즌, 기타 근거"></div>
+      <div class="full actions">
+        <button type="button" class="btn" id="presetRareRing">레어 링 예시 불러오기</button>
+        <button type="button" class="btn" id="clearMarketForm">입력 초기화</button>
+      </div>
+    </div>
+    <div class="actions"><button class="btn approve" id="saveMarket">시장 관측 저장</button><button class="btn" id="runAnalyze">전체 패턴 분석 실행</button></div>
+    <div id="selectedSourcePolicy" class="msg" style="margin-top:12px"></div>
+    <div id="sourcePolicy" style="margin-top:12px"></div>
+    <div id="marketRecent" style="margin-top:12px"></div>
+  </section>
+
+  <section id="patternsPanel" class="panel hidden">
+    <h3 style="margin-top:0;color:#e0c27f">자동 발견 시장 패턴</h3>
+    <div class="msg">여기서 승인해도 곧바로 운영 규칙이 되지 않습니다. 기존 '검수 대기' 큐로 한 번 더 승격되어 최종 검수를 거칩니다.</div>
+    <div id="patternsList">불러오는 중...</div>
+  </section>
+
+  <section id="testlabPanel" class="panel hidden">
+    <h3 style="margin-top:0;color:#e0c27f">시장 학습 테스트 랩</h3>
+    <div class="msg">
+      이 영역의 데이터는 운영 시장 DB와 물리적으로 분리된
+      <b>market_observations_test / price_clusters_test / pattern_candidates_test</b>에만 저장됩니다.
+      실제 감정 규칙에는 절대 반영되지 않습니다.
+    </div>
+    <div class="actions">
+      <button class="btn approve" id="testGenerate">① 테스트 데이터 생성</button>
+      <button class="btn" id="testAnalyze">② 테스트 패턴 분석</button>
+      <button class="btn danger" id="testClear">④ 테스트 데이터 전체 삭제</button>
+    </div>
+    <div id="testStatus" style="margin-top:14px">불러오는 중...</div>
+  </section>
+
+  <section id="statisticalPanel" class="panel hidden">
+    <section class="card" id="neuralLearningPanel" aria-labelledby="neuralTitle">
+      <h3 id="neuralTitle">PC 파인튜닝 · 자동 학습</h3>
+      <p>PC에서 학습한 모델을 서버가 별도 검증합니다. 통과한 모델만 사진·수동감정과 자동 검수에 적용합니다.</p>
+      <div class="actions"><button class="btn" type="button" id="neuralRefresh">상태 새로고침</button><button class="btn" type="button" id="neuralToken">PC 연결 키 발급</button><button class="btn" type="button" id="neuralPause">학습·모델 사용 중지</button><button class="btn" type="button" id="neuralRollback">기존 감정으로 복귀</button></div>
+      <div id="neuralStatus" role="status" aria-live="polite">상태를 확인해 주세요.</div>
+      <dialog id="neuralTokenDialog"><h3>PC 학습 실행기 연결</h3><p>아래 키는 한 번만 표시됩니다. START-LEARNING.cmd에서 입력하세요. 외부에 공유하지 마세요. 새 키를 발급하면 이전 키는 폐기됩니다.</p><textarea id="neuralTokenValue" readonly aria-label="PC 학습 연결 키"></textarea><button type="button" id="neuralTokenClose">닫기 · 화면에서 키 지우기</button></dialog>
+    </section>
+    <details><summary>이전 방식의 통계·패턴 참고 자료</summary>
+    <div class="card" style="margin-bottom:14px">
+      <h3 style="margin-top:0;color:#e0c27f">기존 조합별 가치 패턴 · 관리자 참고</h3>
+      <div class="msg">이 영역은 이전 조합별 통계 자료입니다. v136에서는 이 패턴을 사용자 감정 화면에 공개하지 않습니다. 실제 파인튜닝·검증·모델 적용 상태는 위의 <b>PC 파인튜닝 · 자동 학습</b>에서 확인하세요.</div>
+      <div class="actions"><button class="btn approve" id="reviewValueRun">가치 학습 다시 계산</button><button class="btn" id="reviewValueRefresh">가치 학습 상태 새로고침</button></div>
+      <div id="reviewValueStatus" style="margin-top:10px">불러오는 중...</div>
+    </div>
+    <h3 style="margin-top:0;color:#e0c27f">검수 통계 모델 · 시험 결과</h3>
+    <div class="msg">과거 관리자 검수로 학습해 최근 검수의 <b>승인 가능성</b>을 예측하는 내부 시험입니다. 시세·아이템 가치·OCR 정확도 예측이 아니며 감정 점수와 운영 규칙을 변경하지 않습니다. 기존 메모 자동학습과도 별개입니다.</div>
+    <div class="actions"><button class="btn" id="statisticalRefresh">통계 다시 계산</button></div>
+    <div id="statisticalStatus" style="margin-top:14px" aria-live="polite">불러오는 중...</div>
+    </details>
+  </section>
+
+  <section id="crawlerPanel" class="panel hidden">
+    <h3 style="margin-top:0;color:#e0c27f">공개 시장 자동 수집</h3>
+    <div class="msg">
+      매시간 외부 페이지를 1개씩 저빈도 처리합니다. 공개 HTTPS 페이지만 GET하며 robots.txt를 확인하고,
+      로그인·403/429 우회는 하지 않습니다. 한 Worker 요청은 외부 페이지 1개만 처리합니다. HTTP 200이어도 실제 거래 본문이 없으면 획득 실패로 분류합니다. Playnote는 장신구/장갑/부츠/무기 등 희귀 후보를 우선 수집합니다. 강제 재처리 시 실제 공개 레어 상세 3건을 검증용 bootstrap으로 함께 큐잉하며, 구조화된 시장관측은 자동 활성화 없이 검수 대기에만 등록합니다.
+      d2jsp는 이 자동 수집기에 포함되지 않습니다.
+    </div>
+    <div class="actions">
+      <button class="btn approve" id="crawlRunAll">지금 1회 수집 실행</button><button class="btn" id="crawlForceAll">파서 강제 재처리</button><button class="btn" id="crawlSelfTest">파서 자체검사</button><button class="btn" id="traderieApiTest">Traderie API 테스트</button><button class="btn approve" id="traderieApiCollect">Traderie API 1회 수집</button><button class="btn" id="crawlClearDiag">진단 기록 초기화</button>
+      <button class="btn" id="crawlRefresh">상태 새로고침</button>
+      <div id="traderieApiPanel" style="margin-top:12px;padding:12px;border:1px solid #303845;border-radius:10px;background:#0d1117">
+        <b style="color:#e0c27f">Traderie API-first</b>
+        <div id="traderieApiStatus" class="meta" style="margin-top:6px">아직 API 테스트를 실행하지 않았습니다.</div>
+        <pre id="traderieApiDebug" style="white-space:pre-wrap;max-height:560px;overflow:auto;margin-top:10px;font-size:11px"></pre>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;color:#e0c27f">시장 커버리지 확장</h3>
+      <div class="msg">매시간 Cron마다 Traderie seller 최대 8명, Playnote seller 최대 3명을 순환 수집합니다. 최근 활동 seller를 우선하고 실패 seller는 자동 backoff합니다. 신규 seller와 listing은 자동 discovery pool에 누적합니다.</div>
+      <div class="actions">
+        <button class="btn approve" id="coverageRun">커버리지 1회 실행</button>
+        <button class="btn" id="traderieDiagnose">Traderie 후보 0 진단</button>
+        <button class="btn" id="coverageRefresh">커버리지 상태 새로고침</button>
+      </div>
+      <div id="coverageStatus" style="margin-top:10px">불러오는 중...</div>
+      <pre id="coverageDebug" style="max-height:420px;overflow:auto;margin-top:10px;font-size:11px;white-space:pre-wrap"></pre>
+      <div id="traderieDiagStatus" style="margin-top:12px"></div>
+      <pre id="traderieDiagDebug" style="max-height:620px;overflow:auto;margin-top:8px;font-size:11px;white-space:pre-wrap"></pre>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;color:#e0c27f">소스 정확도 감사</h3>
+      <div class="msg">
+        최근 저장된 시장관측을 원본에서 다시 조회하고 재파싱하여
+        <b>가격 · 부위 · 베이스 · 옵션 값</b>이 실제 원본과 일치하는지 검사합니다.
+        Playnote는 listing ID로 개별 상세페이지를 다시 열고,
+        Traderie는 listing ID로 JSON API를 다시 조회합니다.
+      </div>
+      <div class="actions">
+        <button class="btn approve" id="auditPlaynote">Playnote 정확도 감사</button>
+        <button class="btn approve" id="auditTraderie">Traderie 정확도 감사</button>
+        <button class="btn" id="auditTransport">ChaosCube / Inven 진단</button>
+      </div>
+      <div id="sourceAuditStatus" style="margin-top:10px">아직 감사를 실행하지 않았습니다.</div>
+      <pre id="sourceAuditDebug" style="max-height:560px;overflow:auto;margin-top:10px;font-size:11px;white-space:pre-wrap"></pre>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 style="margin-top:0;color:#e0c27f">기존 운영자 메모 신호 분석 · 감정 반영 제외</h3>
+      <div class="msg">
+        승인·폐기·보류 메모를 원문으로 보존하고 의미 신호로 구조화합니다.
+        이 분석은 검증된 가치 정답이 아니므로 사진·수동 감정 점수에는 더 이상 자동 적용하지 않습니다.
+        기록 확인용으로 유지하고, 실제 가치 학습에는 위의 명시적 등급만 사용합니다.
+      </div>
+      <div class="actions">
+        <button class="btn approve" id="learningRun">학습 지금 실행</button>
+        <button class="btn" id="learningRefresh">학습 상태 새로고침</button>
+      </div>
+      <div class="meta" style="margin-top:10px;line-height:1.7">
+        메모는 <b>결론 + 이유</b>로 적을수록 학습 품질이 좋아집니다.<br>
+        예: <span style="color:#e0c27f">옵션 시너지는 좋지만 소켓이 없어서 고가 형성은 어려움</span><br>
+        예: <span style="color:#e0c27f">이 조합은 2소켓이 있어야 상위 가격대 형성 가능</span>
+      </div>
+      <div id="learningStatus" style="margin-top:10px">불러오는 중...</div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3>추가 자동 Seed</h3>
+      <div class="grid">
+        <div><label>소스</label><select id="newSeedSource">
+          <option value="playnote">Playnote</option>
+          <option value="chaoscube">ChaosCube</option>
+          <option value="traderie">Traderie</option>
+          <option value="inven">Inven</option>
+        </select></div>
+        <div><label>공개 HTTPS URL</label><input id="newSeedUrl" placeholder="https://..."></div>
+      </div>
+      <div class="actions"><button class="btn" id="addSeedBtn">Seed 추가</button></div>
+      <div class="meta">한 번 추가하면 이후 매시간 자동 수집됩니다. 허용된 각 사이트 도메인만 등록됩니다.</div>
+    </div>
+    <div id="parserHealth" style="margin-top:14px"></div>
+    <div id="rejectStats" style="margin-top:14px"></div>
+    <div id="recentRejects" style="margin-top:14px"></div><div id="seedHealth" style="margin-top:14px"></div><div id="crawlMetrics" style="margin-top:14px"></div><div id="crawlSeeds" style="margin-top:14px"></div>
+    <div id="crawlRuns" style="margin-top:14px"></div>
+  </section>
+</div>
+<script>
+const $=id=>document.getElementById(id);let current='pending';
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function say(t,bad=false){$('message').innerHTML=`<div class="msg ${bad?'bad':'good'}">${esc(t)}</div>`;setTimeout(()=>{$('message').innerHTML=''},3500)}
+async function api(url,opt){const r=await fetch(url,opt);let j={};try{j=await r.json()}catch{}if(!r.ok||j.ok===false)throw new Error(j.error||`HTTP ${r.status}`);return j}
+const AUTO_REVIEW_REASONS={
+ model_not_validated:'통계 검증 미완료',cohort_not_validated:'해당 유형의 검증 부족',
+ source_integrity_incomplete:'원본 수집 불완전',parser_incomplete:'옵션 파싱 불완전',
+ price_incomplete:'가격 정보 불완전',snapshot_incomplete:'원본 기록 불완전',
+ stale_capture:'수집 자료 만료',item_identity_incomplete:'아이템 정보 불완전',
+ proposal_mismatch:'원본과 제안 불일치',option_mismatch:'옵션 불일치',
+ wrong_source:'자동 검수 대상 소스 아님',missing_source_evidence:'원본 근거 없음',
+ source_identity_mismatch:'원본 주소 불일치',already_reviewed_source:'이미 검수한 원본',
+ source_snapshot_changed:'원본 변경',source_recheck_unavailable:'원본 재조회 실패',
+ candidate_changed:'검수 중 후보 변경',legacy_unverifiable:'이전 수집본 검증 불가'
+};
+function autoReviewPills(values){
+ return Object.entries(values||{}).filter(([,count])=>Number(count)>0)
+  .sort((a,b)=>Number(b[1])-Number(a[1]))
+  .map(([reason,count])=>'<span class="pill">'+esc(AUTO_REVIEW_REASONS[reason]||reason)+' '+Number(count).toLocaleString('ko-KR')+'</span>').join('');
+}
+function renderAutoReviewStatus(j,mode){
+ const n=value=>(Number(value)||0).toLocaleString('ko-KR');
+ const applied=j.applied||[],sourceChecks=j.source_checks||[];
+ const approved=applied.filter(x=>x.ok&&x.action==='approve').length;
+ const rejected=applied.filter(x=>x.ok&&x.action==='reject').length;
+ const failed=applied.filter(x=>!x.ok);
+ const sourceFailures=sourceChecks.filter(x=>!x.ok);
+ const pending=Number(j.pending_count)||0,matched=Number(j.policy_matches)||0;
+ const parts=[
+  '<div class="stats"><span class="pill">전체 대기 '+n(pending)+'</span><span class="pill">통계 기준 통과 '+n(matched)+'</span><span class="pill">보류 '+n(pending-matched)+'</span><span class="pill">이번 원본 확인 통과 '+n(j.eligible_count)+'</span></div>',
+  '<div class="meta">독립 사람 검수 '+n(j.samples?.independent)+'건 · 과거 학습 '+n(j.samples?.train)+'건 · 최근 검증 '+n(j.samples?.holdout)+'건 · 95% 단측 Wilson 하한 '+n((Number(j.thresholds?.minLowerBound)||0)*100)+'% 이상 기준. 오판 0건을 보장하지 않습니다.</div>'
+ ];
+ if(j.status==='insufficient_data')parts.push('<div class="msg">독립 검수 표본이 아직 통계 기준에 부족하여 자동 승인·폐기를 실행하지 않습니다.</div>');
+ else if(!matched)parts.push('<div class="msg">이번 대기 목록에서 통계 기준을 통과한 후보가 없습니다.</div>');
+ else parts.push('<div class="meta">통계 기준 통과 '+n(matched)+'건 중 이번 회차 '+n(sourceChecks.length)+'건을 원본 재확인했습니다. 나머지는 이후 회차에서 확인합니다.</div>');
+ if(j.automation_enabled===false)parts.push('<div class="msg bad">자동 검수가 환경 설정에서 중지되어 있습니다.</div>');
+ if(Number(j.reparse_needed)>0)parts.push('<div class="msg">기존 대기 '+n(j.reparse_needed)+'건은 수집 정보가 불완전합니다. 이 중 원본 ID가 확인된 '+n(j.reparse_eligible)+'건을 매시간 최대 3건씩 재수집하며, 아래 목록에서도 직접 재수집할 수 있습니다.</div>');
+ if(mode==='apply')parts.push('<div class="msg">이번 실행: 자동 승인 '+n(approved)+'건 · 자동 폐기 '+n(rejected)+'건 · 기록 실패 '+n(failed.length)+'건</div>');
+ else parts.push('<div class="meta">미리보기입니다. 이 조회는 검수 기록을 변경하지 않습니다.</div>');
+ parts.push('<details><summary>보류 이유와 원본 확인 결과</summary><div class="stats">'+(autoReviewPills(j.abstention_reasons)||'<span class="meta">보류 없음</span>')+'</div>');
+ if(sourceFailures.length)parts.push('<div class="meta">이번 원본 확인 실패: '+sourceFailures.map(x=>'#'+n(x.id)+' '+esc(AUTO_REVIEW_REASONS[x.reason]||x.reason)).join(' · ')+'</div>');
+ if(failed.length)parts.push('<div class="meta">기록 실패: '+failed.map(x=>'#'+n(x.id)+' '+esc(x.error||'알 수 없는 오류')).join(' · ')+'</div>');
+ if(autoReviewPills(j.exclusions))parts.push('<div class="meta">학습에서 제외된 이력</div><div class="stats">'+autoReviewPills(j.exclusions)+'</div>');
+ parts.push('</details>');
+ $('autoReviewStatus').innerHTML=parts.join('');
+}
+async function loadAutoReviewStatus(){
+ const el=$('autoReviewStatus');el.textContent='대기 목록과 통계 기준을 확인하는 중...';
+ try{renderAutoReviewStatus(await api('/api/admin/auto-review'),'preview')}
+ catch(e){el.textContent='자동 검수 상태를 불러오지 못했습니다: '+e.message}
+}
+async function applyAutoReview(){
+ if(!confirm('원본 재확인과 통계 기준을 통과한 대기 후보를 지금 자동 승인·폐기할까요?'))return;
+ const el=$('autoReviewStatus');el.textContent='원본을 재확인하고 자동 검수를 실행하는 중...';
+ $('autoReviewApply').disabled=true;
+ try{
+  const j=await api('/api/admin/auto-review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({mode:'apply',confirm:true})});
+  renderAutoReviewStatus(j,'apply');await stats();await loadCandidates(current);
+ }catch(e){el.textContent='자동 검수 실행 실패: '+e.message}
+ finally{$('autoReviewApply').disabled=false}
+}
+async function stats(){try{const j=await api('/api/admin/stats');$('stats').innerHTML=`<span class="pill">대기 ${j.candidates.pending||0}</span><span class="pill">수집 보완 ${j.candidates.repair||0}</span><span class="pill">보류 ${j.candidates.hold||0}</span><span class="pill">승인 ${j.candidates.approved||0}</span><span class="pill">활성규칙 ${j.rules.active||0}</span>`}catch(e){$('stats').innerHTML='<span class="pill bad">관리자 API 연결 실패</span>'}}
+async function loadStatisticalShadow(){
+ const box=$('statisticalStatus');box.textContent='검수 이력을 읽고 시간순으로 검증하는 중...';
+ try{
+  const j=await api('/api/admin/statistical-shadow'),r=j.report||{},s=r.samples||{},m=r.metrics||{},market=j.market_evidence||{};
+  const n=v=>Number.isFinite(Number(v))?Number(v).toLocaleString('ko-KR'):'—';
+  const decimal=v=>Number.isFinite(Number(v))?Number(v).toFixed(4):'측정 불가';
+  const sufficient=m.sampleGatePassed===true;
+  const verdict=!sufficient?'독립 표본과 승인·폐기 사례가 충분히 쌓이기 전에는 예측값을 사용하지 않습니다.':r.status==='shadow_validated'?'이번 최근 검수 구간에서 단순 기준선보다 오차가 낮았습니다. 다른 기간에도 재현되는지는 아직 확인이 필요합니다.':'이번 최근 검수 구간에서는 단순 기준선보다 나은 결과가 나오지 않았습니다. 운영에 적용하지 않습니다.';
+  box.innerHTML=`<div class="card"><h3>${sufficient?'시간순 검증 결과':'학습·검증 표본 부족'}</h3>
+   <div class="meta">최근 검수 최대 1,500건을 읽고 동일 원천을 한 묶음으로 처리합니다. 검수 후 메모·태그·수정된 제안서는 입력으로 사용하지 않습니다.</div>
+   <div class="stats" style="margin-top:12px"><span class="pill">읽은 검수 ${n(s.inputRows)}</span><span class="pill">중복 제거 묶음 ${n(s.independentGroups)}</span><span class="pill">과거 학습 ${n(s.train)}</span><span class="pill">최근 검증 ${n(s.holdout)}</span></div>
+   <div class="grid"><div class="box"><b>모델 예측 오차 · 낮을수록 좋음</b>${sufficient?decimal(m.brier):'측정 불가'}</div><div class="box"><b>단순 기준선 오차 · 낮을수록 좋음</b>${sufficient?decimal(m.baselineBrier):'측정 불가'}</div></div>
+   <div class="msg">${verdict} ${sufficient?'이 숫자는 관리자 승인 여부에 대한 오차이며 실제 시세나 감정 정확도가 아닙니다.':''}</div></div>
+   <div class="card"><h3>가격 AI 준비 상태</h3><div class="stats"><span class="pill">최근 시장 관측 ${n(market.sampled)}</span><span class="pill">공통 단위 가격 ${n(market.normalized)}</span><span class="pill">완료 표시 ${n(market.completed_unverified)}</span><span class="pill">검증된 체결가 ${n(market.verified_settlement_labels)}</span></div>
+   <p class="meta" style="margin:12px 0 0;line-height:1.7">‘완료’ 표시나 관리자 승인은 실제 체결가의 정답이 아닙니다. 체결가·화폐·시즌·모드별 독립 표본이 확인되기 전에는 자동 시세 예측을 하지 않습니다.</p></div>`;
+ }catch(e){box.innerHTML=`<div class="msg bad">통계 검증을 불러오지 못했습니다: ${esc(e.message)}</div>`}
+}
+function show(tab){
+ current=tab;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+ $('candidatePanel').classList.toggle('hidden',['rules','new','market','patterns','testlab','statistical','crawler'].includes(tab));
+ $('rulePanel').classList.toggle('hidden',tab!=='rules');
+ $('newPanel').classList.toggle('hidden',tab!=='new');
+ $('marketPanel').classList.toggle('hidden',tab!=='market');
+ $('patternsPanel').classList.toggle('hidden',tab!=='patterns');
+ $('testlabPanel').classList.toggle('hidden',tab!=='testlab');
+ $('statisticalPanel').classList.toggle('hidden',tab!=='statistical');
+ $('crawlerPanel').classList.toggle('hidden',tab!=='crawler');
+ if(tab==='rules')loadRules();
+ else if(tab==='market')loadMarket();
+ else if(tab==='patterns')loadPatterns();
+ else if(tab==='testlab')loadTestLab();
+ else if(tab==='statistical'){loadReviewValueLearning();loadStatisticalShadow();window.loadNeuralLearning?.();}
+ else if(tab==='crawler')loadCrawler();
+ else if(tab!=='new')loadCandidates(tab);
+}
+
+const KO_AFFIX_LABELS={
+ fcr:'시전 속도',frw:'달리기/걷기 속도',fhr:'타격 회복 속도',ias:'공격 속도',
+ str:'힘',dex:'민첩',vit:'활력',energy:'마력',life:'생명력',mana:'마나',allres:'모든 저항',
+ ed:'증가된 피해',edef:'방어력 증가',defense:'방어력',min_damage:'최소 피해',max_damage:'최대 피해',
+ replenish_life:'생명력 회복',dr_flat:'피해 감소',dr_pct:'물리 피해 감소',mdr:'마법 피해 감소',
+ cb:'강타 확률',ds:'치명적 공격',ow:'상처 악화',sockets:'소켓',gf:'괴물에게서 얻는 금화 증가',
+ fireres:'화염 저항',lightres:'번개 저항',coldres:'냉기 저항',poisonres:'독 저항',
+ ar:'명중률',ll:'적중당 생명력 훔침',ml:'적중당 마나 훔침',mf:'마법 아이템 발견 확률',
+ amazon_javelin_spear:'투창과 창 기술',amazon_bow_crossbow:'활과 쇠뇌 기술',amazon_passive_magic:'지속 효과와 마법 기술',assassin_traps:'덫 기술',assassin_martial_arts:'무술 기술',assassin_shadow:'그림자 단련',amazon_skills:'모든 아마존 기술 레벨',sorc_skills:'모든 원소술사 기술 레벨',
+ necro_skills:'모든 강령술사 기술 레벨',paladin_skills:'모든 성기사 기술 레벨',
+ barbarian_skills:'모든 야만용사 기술 레벨',druid_skills:'모든 드루이드 기술 레벨',
+ assassin_skills:'모든 암살자 기술 레벨',warlock_skills:'모든 악마술사 기술 레벨'
+};
+const KO_SLOT_LABELS={
+ ring:'반지',amulet:'목걸이',circlet:'써클릿류',gloves:'장갑',boots:'부츠',
+ belt:'벨트',claw:'클러',jav:'자벨린',bow:'활',crossbow:'석궁',orb:'오브',wand:'완드',
+ equipment:'장비',other:'기타'
+};
+const KO_CURRENCY_LABELS={
+ 'Ist Rune':'이스트 룬','Gul Rune':'굴 룬','Vex Rune':'벡스 룬','Ohm Rune':'오움 룬',
+ 'Lo Rune':'로 룬','Sur Rune':'수르 룬','Ber Rune':'베르 룬','Jah Rune':'자 룬',
+ 'Cham Rune':'참 룬','Zod Rune':'조드 룬','Mal Rune':'말 룬','Um Rune':'우움 룬',
+ 'Pul Rune':'풀 룬','Lem Rune':'렘 룬','Forum Gold':'포럼 골드'
+};
+function koAffixValue(k,v){
+ const n=Number(v);
+ if(!Number.isFinite(n))return String(v);
+ if(['fcr','frw','fhr','ias','fireres','lightres','coldres','poisonres','ll','ml','mf'].includes(k))return `${n}%`;
+ return `+${n}`;
+}
+function koEvidenceSummary(x){
+ const e=Array.isArray(x?.evidence)?x.evidence[0]:null;
+ if(!e)return '';
+ const ko=e.display_ko;
+ if(ko){
+   return `<div class="msg" style="margin:0 0 10px 0">
+     <b>한글 요약</b><br>
+     ${esc(ko.item||KO_SLOT_LABELS[e.slot]||e.slot||'')} ·
+     ${esc(ko.price||'')}<br>
+     <span style="color:#e0c27f">${esc(ko.affix_text||'')}</span>
+   </div>`;
+ }
+ const aff=e.affixes||{};
+ const affText=Object.entries(aff).map(([k,v])=>`${KO_AFFIX_LABELS[k]||k} ${koAffixValue(k,v)}`).join(' / ');
+ const price=`${KO_CURRENCY_LABELS[e.price_currency]||e.price_currency||''} ${e.price_amount??''}`.trim();
+ if(!affText&&!price)return '';
+ return `<div class="msg" style="margin:0 0 10px 0"><b>한글 요약</b><br>
+   ${esc(KO_SLOT_LABELS[e.slot]||e.slot||'')} · ${esc(price)}<br>
+   <span style="color:#e0c27f">${esc(affText)}</span>
+ </div>`;
+}
+
+
+const REVIEW_TAG_DEFS={
+ value_low:['낮음','value'],value_trade:['거래 가능','value'],value_high:['높은 가치','value'],value_trophy:['최상급 후보','value'],
+ synergy_good:['옵션 시너지 좋음','positive'],highend_possible:['고가 가능','positive'],build_demand_high:['빌드 수요 높음','positive'],
+ price_undervalued:['가격 저평가','positive'],socket_premium:['소켓 프리미엄 중요','positive'],rare_combo:['희소 조합','positive'],
+ build_demand_low:['빌드 수요 낮음','negative'],socket_missing:['소켓 부족','negative'],stat_missing:['스탯 부족','negative'],
+ resist_missing:['저항 부족','negative'],core_affix_missing:['핵심 옵션 부족','negative'],price_overvalued:['가격 고평가','negative'],synergy_weak:['옵션 시너지 약함','negative'],
+ option_missing:['옵션 누락','quality'],parse_error:['파싱 오류','quality'],price_error:['가격 인식 오류','quality'],wrong_slot:['부위 인식 오류','quality'],
+ wrong_base:['베이스 인식 오류','quality'],duplicate_listing:['중복/잘못된 매물','quality'],source_mismatch:['원본과 불일치','quality'],incomplete_data:['데이터 불완전','quality'],
+ test_only:['테스트','admin'],other:['기타','admin']
+};
+function parserQualityOf(x){return x?.proposal?.parser_quality||x?.evidence?.[0]?.parser_quality||null}
+function parserQualityHtml(x){
+ const q=parserQualityOf(x);if(!q)return '';const pct=Math.round(Number(q.property_coverage||0)*100),c=q.critical_missing||[],u=q.unmapped_properties||[];
+ return `<div class="msg ${(q.complete===false||c.length||pct<95)?'bad':''}" style="margin:8px 0"><b>옵션 해석 상태</b> · 옵션 커버리지 <b>${pct}%</b> · 의미 property ${q.meaningful_property_count??'-'} · 매핑 ${q.mapped_known_count??'-'}/${q.expected_known_count??'-'}${c.length?`<br><b>CRITICAL 누락:</b> ${esc(c.map(v=>v.raw||v.canonical||'?').join(' / '))}`:''}${u.length?`<br><span class="meta">미매핑 후보: ${esc(u.map(v=>v.raw||v.canonical||'?').join(' / '))}</span>`:''}</div>`;
+}
+function chooseFeedback(action,x){return new Promise(resolve=>{
+ const previousFocus=document.activeElement,dialog=document.createElement('dialog');dialog.className='review-dialog';dialog.setAttribute('aria-labelledby','review-dialog-title');dialog.setAttribute('aria-describedby','review-dialog-intro');
+ const selected=new Set(),q=parserQualityOf(x);if(q&&(q.complete===false||Number(q.property_coverage||0)<.95||(q.critical_missing||[]).length))selected.add('incomplete_data');
+ dialog.innerHTML=`<header class="review-dialog-header"><h2 id="review-dialog-title">${action==='approve'?'승인':action==='reject'?'폐기':'보류'} · 판정 이유</h2><p id="review-dialog-intro" class="review-dialog-intro">이유를 눌러 선택하세요. 가치 등급은 아이템 자체에 대한 판단으로 하나만 고르세요. 등급을 고르지 않아도 기존 검수는 그대로 할 수 있습니다.<br>승인·폐기만으로 가치를 학습하지 않습니다. 원본이 검증된 명시적 가치 등급만 학습 후보가 되며, 데이터 품질 문제는 제외합니다.</p><p class="review-selection-status" role="status" aria-live="polite"></p></header><div class="review-dialog-body"></div>`;
+ const card=dialog.querySelector('.review-dialog-body'),selectionStatus=dialog.querySelector('.review-selection-status');
+ const updateSelection=()=>{selectionStatus.textContent=selected.size?`선택한 이유 ${selected.size}개: ${[...selected].map(key=>REVIEW_TAG_DEFS[key][0]).join(' · ')}`:'선택된 이유 없음';};
+ for(const [domain,title] of [['value','아이템 가치 등급 · 학습 정답 하나 선택'],['positive','긍정 시장 신호'],['negative','부정 시장 신호'],['quality','데이터 품질 / 파싱 문제'],['admin','기타']]){
+  const group=document.createElement('fieldset');group.className='review-group';const legend=document.createElement('legend');legend.textContent=title;group.appendChild(legend);const row=document.createElement('div');row.className='review-tags';group.appendChild(row);card.appendChild(group);
+  for(const [key,[label,d]] of Object.entries(REVIEW_TAG_DEFS)){if(d!==domain)continue;const b=document.createElement('button');b.className='btn review-tag';b.type='button';b.setAttribute('aria-pressed',String(selected.has(key)));const check=document.createElement('span');check.className='review-check';check.setAttribute('aria-hidden','true');check.textContent='✓';b.append(check,document.createTextNode(label));b.onclick=()=>{const wasSelected=selected.has(key);if(d==='value'){for(const other of Object.keys(REVIEW_TAG_DEFS).filter(name=>REVIEW_TAG_DEFS[name][1]==='value'))selected.delete(other);}if(wasSelected)selected.delete(key);else selected.add(key);for(const button of row.querySelectorAll('button')){const valueKey=button.dataset.reviewTag;button.setAttribute('aria-pressed',String(selected.has(valueKey)));}updateSelection();};b.dataset.reviewTag=key;row.appendChild(b)}
+ }
+ const noteLabel=document.createElement('label');noteLabel.className='review-note-label';noteLabel.htmlFor='review-feedback-note';noteLabel.textContent='추가 메모 (선택)';card.appendChild(noteLabel);const ta=document.createElement('textarea');ta.id='review-feedback-note';ta.placeholder='판단에 참고한 내용을 적어 주세요.';ta.rows=3;card.appendChild(ta);
+ const row=document.createElement('footer');row.className='review-dialog-footer';dialog.appendChild(row);const ok=document.createElement('button');ok.type='button';ok.className='btn primary review-confirm';ok.textContent='선택 완료';row.appendChild(ok);const cancel=document.createElement('button');cancel.type='button';cancel.className='btn';cancel.textContent='취소';row.appendChild(cancel);
+ let finished=false;const finish=value=>{if(finished)return;finished=true;dialog.close();dialog.remove();if(previousFocus?.isConnected)previousFocus.focus();resolve(value);};
+ dialog.addEventListener('keydown',event=>{if(event.key!=='Tab')return;const controls=[...dialog.querySelectorAll('button:not([disabled]),textarea:not([disabled])')].filter(el=>el.getClientRects().length),first=controls[0],last=controls.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}});
+ ok.onclick=()=>finish({tags:[...selected],note:ta.value||''});cancel.onclick=()=>finish(null);dialog.addEventListener('cancel',event=>{event.preventDefault();finish(null);});updateSelection();document.body.appendChild(dialog);dialog.showModal();
+})}
+function reviewQueueHtml(x){
+ if(x.needs_repair)return `<div class="review-queue-note is-repair"><b>수집 보완이 필요한 이유</b><ul>${(x.repair_reasons||['원본 수집 정보를 확인하세요.']).map(reason=>`<li>${esc(reason)}</li>`).join('')}</ul></div>`;
+ if(x.quantity_unconfirmed)return `<div class="review-queue-note"><b>${x.status==='pending'?'검수 대기 · 이전 수집 자료':'이전 수집 자료 · 원본 재확인 필요'}</b><p>이전 수집본은 레어 장비의 단품 거래 여부를 검증하지 않았습니다. 원본 다시 수집 후 판단하세요. 그대로 승인하면 검토 이력만 남고 운영 규칙·시장가치 학습에는 반영되지 않습니다.</p></div>`;
+ return '';
+}
+function integrityRowsHtml(x){
+ const e=x.evidence?.[0];if(e?.source!=='traderie')return '';
+ if(!e.source_snapshot)return '<div class="msg bad">이전 버전 데이터: 원본 옵션·가격 전체를 다시 수집해야 합니다.</div>';
+ const rows=e.option_rows||[],s=e.source_snapshot;
+ return `<div class="msg"><b>수집 시점 원본 대조</b><br>매물 #${esc(e.listing_id)} · 수집 ${esc(e.fetched_at||'-')}<br>${esc(s.item?.name||s.name||e.base_name)} · ${e.integrity?.quantity_basis==='implicit_single_nonstackable_rare'?'단품 거래 기준 (원본 수량 미제공)':`원본 수량 ${esc(s.quantity??'미제공')}`} · ${esc(e.item_type)}<br>판매자가 이후 수정한 내용은 ‘원본 다시 수집’으로 확인합니다.</div>
+ <div class="box" style="overflow:auto"><b>원본 옵션 → 해석 결과 (누락 없이 표시)</b><table style="width:100%;font-size:12px;text-align:left"><thead><tr><th>원본 항목 / 수치</th><th>해석 결과</th><th>상태</th></tr></thead><tbody>${rows.filter(r=>r.status!=='metadata').map(r=>`<tr><td style="padding:8px;border-bottom:1px solid #303641">${esc(r.text)}<details><summary>원본 값</summary><pre>${esc(JSON.stringify(r.raw,null,2))}</pre></details></td><td>${esc(r.display||r.reason||'해석 필요')}</td><td>${esc(({mapped:'해석됨',not_present:'미부착',conflict:'중복 충돌',unmapped:'보완 필요'})[r.status]||r.status)}</td></tr>`).join('')}</tbody></table></div>
+ <div class="msg"><b>판매자 제시 가격 (체결가 아님)</b><br>${esc(e.display_ko?.price||e.price_structure?.display||'확인 필요')}<br>${(e.price_structure?.issues||[]).map(esc).join(' · ')}<details><summary>원본 가격·매물 환경</summary><pre>${esc(JSON.stringify({prices:s.prices,game_version:s.game_version,ladder:s.ladder,hardcore:s.hardcore,region:s.region,platform:s.platform,metadata:rows.filter(r=>r.status==='metadata')},null,2))}</pre></details></div>`;
+}
+let candidateCursor=null,candidatePage=[];
+function queueClassOf(x){return x.needs_repair?'repair':x.quantity_unconfirmed?'quantity':'ready'}
+function candidateSourceHtml(x){
+ if(!x.source_url)return '';
+ try{const url=new URL(x.source_url);if(url.protocol==='https:')return `<div class="meta">출처: <a href="${esc(url.href)}" target="_blank" rel="noopener noreferrer">원본 매물 열기 ↗</a></div>`;}catch{}
+ return `<div class="meta">출처: ${esc(x.source_url)}</div>`;
+}
+function filterCandidateCards(){
+ const selected=$('queueFilter')?.value||'all';
+ document.querySelectorAll('#list .review-card').forEach(card=>{card.hidden=selected!=='all'&&card.dataset.queueClass!==selected});
+ const visible=[...document.querySelectorAll('#list .review-card:not([hidden])')].length;
+ const count=$('queueVisibleCount');if(count)count.textContent=`현재 화면 ${visible}건 표시`;
+}
+async function loadCandidates(status,before=null){
+ $('list').textContent='불러오는 중...';
+ try{
+  const j=await api('/api/admin/candidates?status='+encodeURIComponent(status)+(before?'&before='+before:''));candidatePage=j.results;candidateCursor=j.next_cursor;
+  const pending=['pending','repair'].includes(status);
+  const counts=j.results.reduce((acc,x)=>(acc[queueClassOf(x)]++,acc),{ready:0,quantity:0,repair:0});
+  const queueTitle=status==='pending'?'검수 대기 · 우선 확인할 항목':status==='repair'?'수집 보완 · 원본 확인 필요':status==='hold'?'보류 이력':'승인 이력';
+  const queueHelp=status==='pending'?'옵션·가격·아이템 종류가 검증된 레어 장비는 원본에 수량이 없어도 단품 거래로 검수할 수 있습니다. 이전 수집본은 원본 재수집 후 판단하세요.':status==='repair'?'원본 정보가 불완전합니다. 먼저 원본 재수집을 확인하세요. 여기서 승인해도 운영 규칙이나 자동 학습에는 반영되지 않습니다.':'과거 검수 기록을 확인할 수 있습니다.';
+  $('list').innerHTML=`<div class="queue-intro"><div><h2>${queueTitle}</h2><p>${queueHelp}</p></div><div class="queue-counts"><span>현재 페이지 ${j.results.length}건</span>${pending?`<span>일반 검수 ${counts.ready}건</span><span>이전 수집본 ${counts.quantity}건</span><span>수집 보완 ${counts.repair}건</span>`:''}</div></div>
+  ${pending?`<div class="queue-toolbar"><label>현재 페이지 상태별 보기<select id="queueFilter" onchange="filterCandidateCards()"><option value="all">모두 보기</option><option value="ready">일반 검수 (${counts.ready})</option><option value="quantity">이전 수집본 (${counts.quantity})</option><option value="repair">수집 보완 (${counts.repair})</option></select></label><span id="queueVisibleCount" class="meta" role="status">현재 화면 ${j.results.length}건 표시</span></div><details class="queue-maintenance"><summary>선택 항목 관리 · 원본 재수집 / 삭제</summary><div class="actions"><button class="btn" onclick="document.querySelectorAll('.candidate-check').forEach(x=>x.checked=true)">이 페이지 전체 선택</button><button class="btn" onclick="document.querySelectorAll('.candidate-check').forEach(x=>x.checked=false)">선택 해제</button><button class="btn" onclick="reparseSelected()">선택 항목 원본 재수집</button><button class="btn danger" onclick="deleteCandidates(false)">선택 항목 삭제</button><button class="btn danger" onclick="deleteCandidates(true)">대기 항목 모두 삭제</button></div><div class="meta">삭제는 영구 삭제입니다. 전체 삭제에는 ‘수집 보완 필요’도 포함되며, 승인·보류·운영 규칙은 제외됩니다.</div></details>`:''}
+  ${!j.results.length?'<div class="meta">해당 후보가 없습니다.</div>':''}
+  ${j.results.map(x=>`<article class="card review-card" data-id="${x.id}" data-queue-class="${queueClassOf(x)}">
+   <h3>${pending?`<input type="checkbox" class="candidate-check" value="${x.id}" aria-label="후보 ${x.id} 선택" style="width:auto;margin-right:8px">`:''}#${x.id} ${esc(x.title)}</h3>
+   <div class="review-card-meta"><b class="${x.needs_repair?'is-repair':''}">${x.needs_repair?'수집 보완 · 이력만':x.quantity_unconfirmed?'이전 수집본 · 이력만':'원본 확인 후보'}</b><span>${esc(x.item_type)} · ${esc(x.source_type)} · ${esc(x.created_at)}</span></div>
+   ${reviewQueueHtml(x)}${koEvidenceSummary(x)}
+   ${candidateSourceHtml(x)}
+   <details class="review-evidence"><summary>원본 옵션·가격·해석 결과 자세히 보기</summary>${parserQualityHtml(x)}${integrityRowsHtml(x)}<details><summary>수집 근거와 운영 제안 JSON</summary><div class="grid"><div class="box"><b>수집 근거</b><pre>${esc(JSON.stringify(x.evidence,null,2))}</pre></div><div class="box"><b>운영 제안 — 원본 옵션·가격은 수정 불가</b><textarea id="p_${x.id}">${esc(JSON.stringify(x.proposal,null,2))}</textarea></div></div></details></details>
+   ${x.review_reason_type==='manual_review_only'?'<div class="msg">검토 이력으로만 승인됨 · 운영 규칙·학습 제외</div>':''}
+   ${x.reviewer_note?`<div class="meta">검수메모: ${esc(x.reviewer_note)}</div>`:''}
+   ${(pending||status==='hold')?`<div class="actions review-card-actions"><button class="btn approve" ${(x.review_only_required??x.needs_repair)?'title="검토 이력으로 승인 · 운영 규칙과 학습에는 반영하지 않음"':''} onclick="review(${x.id},'approve')">승인</button><button class="btn hold" onclick="review(${x.id},'hold')">보류</button><button class="btn reject" onclick="review(${x.id},'reject')">폐기</button>${x.evidence?.[0]?.source==='traderie'?`<button class="btn" onclick="reparseSelected([${x.id}])">원본 다시 수집</button>`:''}${(x.review_only_required??x.needs_repair)?'<span class="action-hint">이 항목의 승인은 검토 이력만 남기며 운영 규칙·학습에는 반영되지 않습니다.</span>':'<span class="action-hint">승인 전 원본 옵션과 가격을 확인하세요.</span>'}</div>`:''}
+  </article>`).join('')}
+  <div class="actions">${before?`<button class="btn" onclick="loadCandidates(current)">처음 페이지</button>`:''}${j.has_more?`<button class="btn" onclick="loadCandidates(current,candidateCursor)">다음 페이지</button>`:''}</div>`;
+ }catch(e){$('list').innerHTML=`<div class="msg bad">불러오기 실패: ${esc(e.message)}</div>`}
+}
+function selectedCandidateIds(){return [...document.querySelectorAll('.candidate-check:checked')].map(x=>Number(x.value));}
+async function deleteCandidates(all){
+ try{
+  const ids=selectedCandidateIds();if(!all&&!ids.length){say('삭제할 항목을 선택하세요.',true);return;}
+  const payload=all?{all:true}:{ids},preview=await api('/api/admin/candidates/delete-pending',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,mode:'preview'})});
+  if(!preview.count){say('삭제할 대기 항목이 없습니다.');return;}
+  if(!confirm(`대기 항목 ${preview.count}개를 영구 삭제합니다. 승인 이력·보류·운영 규칙은 유지됩니다. 계속할까요?`))return;
+  const result=await api('/api/admin/candidates/delete-pending',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,mode:'delete',max_id:preview.max_id,expected_count:preview.count})});
+  say(`대기 항목 ${result.deleted}개 삭제 완료`);await stats();await loadCandidates(current);
+ }catch(e){say('삭제 실패: '+e.message,true);}
+}
+async function reparseSelected(ids=selectedCandidateIds()){
+ if(!ids.length){say('재수집할 항목을 선택하세요.',true);return;}
+ let done=0,fail=[];for(let i=0;i<ids.length;i+=5){try{const r=await api('/api/admin/candidates/reparse',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ids:ids.slice(i,i+5)})});for(const x of r.results){x.ok?done++:fail.push('#'+x.id+' '+x.error);}}catch(e){fail.push(e.message);}say(`원본 재수집 중 ${Math.min(i+5,ids.length)}/${ids.length}`);}
+ await loadCandidates(current);await stats();$('message').innerHTML=`<div class="msg ${fail.length?'bad':'good'}">재수집 ${done}개 완료 · 실패 ${fail.length}개${fail.length?'<pre>'+esc(fail.join('\n'))+'</pre>':''}</div>`;
+}
+
+async function review(id,action){
+ try{
+  const list=candidatePage||[],x=list.find(v=>Number(v.id)===Number(id))||{};
+  const reviewOnly=action==='approve'&&(x.review_only_required??x.needs_repair)===true;
+  if(reviewOnly&&!confirm(x.quantity_unconfirmed?'이전 수집본이라 단품 거래 검증이 필요합니다. 검토 이력으로만 승인할까요?\n승인 이력으로 이동하며 운영 규칙·감정 결과·자동 학습에는 반영하지 않습니다.':'원본 수집이 불완전하거나 이전 버전 자료입니다. 검토 이력으로만 승인할까요?\n승인 이력으로 이동하며 운영 규칙·감정 결과·자동 학습에는 반영하지 않습니다. 정상 반영하려면 취소 후 원본을 다시 수집하세요.'))return;
+  let proposal;const ta=$('p_'+id);if(ta&&!reviewOnly)proposal=JSON.parse(ta.value);
+  const fb=await chooseFeedback(action,x);if(!fb)return;
+  const j=await api('/api/admin/review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id,action,note:fb.note||'',tags:fb.tags||[],proposal,review_only:reviewOnly})});
+  const decision=j.review_only?'검토 이력 승인 · 감정 규칙·학습 제외':action==='approve'?(x.source_type==='market_observation'?'시장관측 승인 · 단일 매물 점수 미반영':'운영 규칙 승인'):action==='reject'?'폐기 · 시장 패턴 근거 제외':'보류 · 시장 패턴 근거 제외';
+  const feedback=j.feedback_learning;
+  const feedbackStatus=feedback?.stored?'운영자 피드백 저장 · 패턴 검증 대기':feedback?.error?'피드백 저장 실패 · 다시 확인 필요':feedback?.reason==='already_recorded'?'피드백 기존 기록 유지':'자동 패턴 피드백 없음';
+    const valueStatus=j.value_learning==='queued'?' · 명시적 가치 등급 저장: 학습 재계산 대기 (검증 통과 전 감정 변경 없음)':'';
+    say(decision+' · '+feedbackStatus+valueStatus,!!feedback?.error);await stats();show(current);
+ }catch(e){say('처리 실패: '+e.message,true)}
+}
+async function loadRules(){
+ $('rules').textContent='불러오는 중...';
+ try{
+  const j=await api('/api/admin/rules');
+  $('rules').innerHTML=j.results.length?j.results.map(x=>`<article class="card"><h3>${esc(x.label)}</h3><div class="meta">${esc(x.rule_key)} · ${esc(x.slot||'전체')} · 우선순위 ${x.priority} · ${x.active?'<span class="good">활성</span>':'<span class="bad">비활성</span>'}</div><div class="box" style="margin-top:10px"><pre>${esc(JSON.stringify(x.rule,null,2))}</pre></div><div class="actions"><button class="btn ${x.active?'danger':'approve'}" onclick="toggleRule(${x.id},${x.active?0:1})">${x.active?'비활성화':'다시 활성화'}</button></div></article>`).join(''):'<div class="meta">등록된 운영 규칙이 없습니다.</div>';
+ }catch(e){$('rules').innerHTML=`<div class="msg bad">운영 규칙 불러오기 실패: ${esc(e.message)}</div>`}
+}
+async function toggleRule(id,on){
+ try{const note=prompt('변경 메모(선택)','')??'';await api('/api/admin/rules',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id,action:on?'activate':'deactivate',note})});say('운영 규칙 상태를 변경했습니다.');await stats();loadRules()}catch(e){say('변경 실패: '+e.message,true)}
+}
+
+async function loadMarket(){
+ try{
+  const [s,o]=await Promise.all([api('/api/admin/market/sources'),api('/api/admin/market/observations?limit=30')]);
+  $('mSource').innerHTML=s.results.map(x=>`<option value="${esc(x.source_key)}">${esc(x.display_name)} · ${esc(x.policy_class)} · ${esc(x.automation_mode)}</option>`).join('');
+  window.__marketSources=s.results;
+  updateSelectedSourcePolicy();
+  $('sourcePolicy').innerHTML=s.results.map(x=>`<div class="card"><h3>${esc(x.display_name)}</h3><div class="meta">${esc(x.policy_class)} · ${esc(x.automation_mode)} · trust ${x.trust_weight}</div><div class="meta">${esc(x.terms_note||'')}</div></div>`).join('');
+  $('marketRecent').innerHTML='<h3 style="color:#e0c27f">최근 관측</h3>'+(
+    o.results.length?o.results.map(x=>`<div class="card"><b>${esc(x.source_key)} · ${esc(KO_SLOT_LABELS[x.slot]||x.slot)} · ${esc(x.observation_type)}</b><div class="meta">${esc(x.signature)}</div><div class="meta">${esc(KO_CURRENCY_LABELS[x.price_currency]||x.price_currency||'')} ${esc(x.price_amount??'')} → ${esc(x.normalized_value??'')} ${esc(x.normalized_currency||'')}</div></div>`).join(''):'<div class="meta">아직 관측 데이터가 없습니다.</div>'
+  );
+ }catch(e){say('시장 데이터 불러오기 실패: '+e.message,true)}
+}
+
+function updateSelectedSourcePolicy(){
+ const key=$('mSource').value;
+ const src=(window.__marketSources||[]).find(x=>x.source_key===key);
+ if(!src){$('selectedSourcePolicy').textContent='출처 정책을 불러오는 중...';return}
+ const manual=src.automation_mode==='manual_only'?' · 자동 수집 금지':'';
+ $('selectedSourcePolicy').innerHTML=`선택 출처: <b>${esc(src.display_name)}</b> · ${esc(src.policy_class)} · ${esc(src.automation_mode)} · trust ${src.trust_weight}${manual}<br>${esc(src.terms_note||'')}`;
+}
+function marketConfidenceForForm(){
+ const src=(window.__marketSources||[]).find(x=>x.source_key===$('mSource').value);
+ const base=Number(src?.trust_weight||0.5);
+ const t=$('mType').value;
+ let mult=1;
+ if(t==='sold'||t==='completed') mult=1.15;
+ else if(t==='asking') mult=.75;
+ else if(t==='community_check') mult=.95;
+ else if(t==='manual_quote') mult=.9;
+ return Math.max(.1,Math.min(1,base*mult));
+}
+$('mSource').addEventListener('change',updateSelectedSourcePolicy);
+$('presetRareRing').onclick=()=>{
+ $('mItemType').value='레어';$('mSlot').value='ring';
+ $('mAffixes').value=JSON.stringify({fcr:10,str:18,life:30,allres:10},null,2);
+ $('mNormCur').value=$('mNormCur').value||'JahEq';
+};
+$('clearMarketForm').onclick=()=>{
+ $('mUrl').value='';$('mPrice').value='';$('mCurrency').value='';
+ $('mNorm').value='';$('mNormCur').value='';$('mSeason').value='';
+ $('mRegion').value='';$('mLadder').value='';$('mHardcore').value='';
+ $('mNote').value='';
+};
+
+$('saveMarket').onclick=async()=>{
+ try{
+  const body={
+   source_key:$('mSource').value,observation_type:$('mType').value,item_type:$('mItemType').value,
+   slot:$('mSlot').value,source_url:$('mUrl').value||null,
+   price_amount:$('mPrice').value===''?null:Number($('mPrice').value),
+   price_currency:$('mCurrency').value||null,
+   normalized_value:$('mNorm').value===''?null:Number($('mNorm').value),
+   normalized_currency:$('mNormCur').value||null,
+   affixes:JSON.parse($('mAffixes').value),raw_note:$('mNote').value||null,
+   season:$('mSeason').value||null,
+   region:$('mRegion').value||null,
+   ladder:$('mLadder').value===''?null:$('mLadder').value==='1',
+   hardcore:$('mHardcore').value===''?null:$('mHardcore').value==='1',
+   source_confidence:marketConfidenceForForm(),
+   verified:$('mType').value==='sold'||$('mType').value==='completed',
+   ingest_mode:'manual'
+  };
+  await api('/api/admin/market/observations',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
+  say('시장 관측을 저장했습니다. 운영 감정기에는 아직 영향이 없습니다.');loadMarket();
+ }catch(e){say('저장 실패: '+e.message,true)}
+};
+$('runAnalyze').onclick=async()=>{
+ try{
+  const j=await api('/api/admin/market/analyze',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  say(`분석 완료 · 관측 ${j.observations}건 · 군집 ${j.clusters}개 · 신규 후보 ${j.candidates}개`);
+ }catch(e){say('분석 실패: '+e.message,true)}
+};
+async function loadPatterns(){
+ $('patternsList').textContent='불러오는 중...';
+ try{
+  const j=await api('/api/admin/market/patterns?status=pending');
+  $('patternsList').innerHTML=j.results.length?j.results.map(x=>`<article class="card">
+   <h3>#${x.id} ${esc(x.title)}</h3>
+   <div class="meta">${esc(x.item_type)} · ${esc(x.slot)} · 확신도 ${Math.round((x.confidence||0)*100)}%</div>
+   <div class="grid"><div class="box"><b>교차검증 근거</b><pre>${esc(JSON.stringify(x.evidence,null,2))}</pre></div>
+   <div class="box"><b>제안 규칙</b><textarea id="mp_${x.id}">${esc(JSON.stringify(x.proposal,null,2))}</textarea></div></div>
+   <div class="actions"><button class="btn approve" onclick="reviewPattern(${x.id},'approve')">기존 검수 큐로 승격</button><button class="btn hold" onclick="reviewPattern(${x.id},'hold')">보류</button><button class="btn reject" onclick="reviewPattern(${x.id},'reject')">폐기</button></div>
+  </article>`).join(''):'<div class="meta">현재 자동 발견 후보가 없습니다.</div>';
+ }catch(e){$('patternsList').innerHTML=`<div class="msg bad">불러오기 실패: ${esc(e.message)}</div>`}
+}
+async function reviewPattern(id,action){
+ try{
+  let proposal;const ta=$('mp_'+id);if(ta)proposal=JSON.parse(ta.value);
+  const note=prompt('검수 메모(선택)','')??'';
+  const j=await api('/api/admin/market/patterns/review',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id,action,note,proposal})});
+  say(action==='approve'?`검수 큐로 승격했습니다. 후보 #${j.review_candidate_id}`:'처리 완료');
+  loadPatterns();stats();
+ }catch(e){say('처리 실패: '+e.message,true)}
+}
+
+
+async function loadTestLab(){
+ $('testStatus').textContent='불러오는 중...';
+ try{
+  const j=await api('/api/admin/market/test/status');
+  const cards=(j.patterns||[]).map(x=>`<article class="card">
+    <h3>${esc(x.title)}</h3>
+    <div class="meta">확신도 ${Math.round((x.confidence||0)*100)}% · ${esc(x.slot)} · TEST ONLY · 임계값 ${esc(JSON.stringify(x.proposal?.conditions||{}))}</div>
+    <div class="grid">
+      <div class="box"><b>격리 테스트 근거</b><pre>${esc(JSON.stringify(x.evidence,null,2))}</pre></div>
+      <div class="box"><b>생성된 테스트 제안</b><pre>${esc(JSON.stringify(x.proposal,null,2))}</pre></div>
+    </div>
+  </article>`).join('');
+  $('testStatus').innerHTML=`
+    <div class="stats" style="margin-bottom:12px">
+      <span class="pill">테스트 관측 ${j.observations}</span>
+      <span class="pill">테스트 군집 ${j.clusters}</span>
+      <span class="pill">테스트 후보 ${j.candidates}</span>
+    </div>
+    ${cards||'<div class="meta">아직 테스트 후보가 없습니다.</div>'}`;
+ }catch(e){
+  $('testStatus').innerHTML=`<div class="msg bad">테스트 상태 확인 실패: ${esc(e.message)}</div>`;
+ }
+}
+$('testGenerate').onclick=async()=>{
+ try{
+  const j=await api('/api/admin/market/test/generate',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  say(`테스트 관측 ${j.inserted}건을 격리 테이블에 생성했습니다.`);
+  loadTestLab();
+ }catch(e){
+  if(e.message==='test_data_exists') say('이미 테스트 데이터가 있습니다. 먼저 전체 삭제 후 다시 생성하세요.',true);
+  else say('테스트 생성 실패: '+e.message,true);
+ }
+};
+$('testAnalyze').onclick=async()=>{
+ try{
+  const j=await api('/api/admin/market/test/analyze',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  say(`테스트 분석 완료 · 관측 ${j.observations} · 군집 ${j.clusters} · 신규후보 ${j.candidates}`);
+  loadTestLab();
+ }catch(e){say('테스트 분석 실패: '+e.message,true)}
+};
+$('testClear').onclick=async()=>{
+ if(!confirm('격리된 테스트 관측/군집/후보를 전부 삭제할까요? 운영 시장 DB에는 영향이 없습니다.'))return;
+ try{
+  await api('/api/admin/market/test/clear',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  say('테스트 데이터 전체 삭제 완료. 운영 데이터는 건드리지 않았습니다.');
+  loadTestLab();
+ }catch(e){say('테스트 삭제 실패: '+e.message,true)}
+};
+
+
+function fmtTime(ms){
+ if(!ms)return '-';
+ try{return new Date(Number(ms)).toLocaleString()}catch{return String(ms)}
+}
+
+
+async function loadCoverage(){
+ const box=$('coverageStatus');if(!box)return;
+ try{
+  const j=await api('/api/admin/coverage/status');
+  const pool=Object.fromEntries((j.pool||[]).map(x=>[x.source_key,x]));
+  const t=pool.traderie||{},p=pool.playnote||{};
+  box.innerHTML=`Traderie seller <b>${t.total||0}</b> · 실행대기 ${t.due||0} &nbsp;|&nbsp; Playnote seller <b>${p.total||0}</b> · 실행대기 ${p.due||0}`;
+  const last=(j.recent_runs||[])[0]?.summary||null;
+  $('coverageDebug').textContent=last?JSON.stringify(last,null,2):'아직 커버리지 실행 기록이 없습니다.';
+ }catch(e){box.innerHTML=`<div class="msg bad">커버리지 상태 오류: ${esc(e.message)}</div>`}
+}
+
+function renderAuditSummary(j){
+ const pct=Math.round(Number(j.average_score||0)*100);
+ const box=$('sourceAuditStatus');
+ const comparisons=(j.audits||[]).map(x=>{
+   const stored=x.stored?.affixes||{},reparsed=x.reparsed?.affixes||{},keys=[...new Set([...Object.keys(stored),...Object.keys(reparsed)])].sort();
+   const identity=[['아이템',x.stored?.base_name,x.reparsed?.base_name],['부위',x.stored?.slot,x.reparsed?.slot],['가격',`${x.stored?.price_amount??'-'} ${x.stored?.price_currency||''}`,`${x.reparsed?.price_amount??'-'} ${x.reparsed?.price_currency||''}`]];
+   return `<details class="card"><summary>#${esc(x.listing_id||x.observation_id)} · ${esc(x.comparison?.status||x.error||'확인 필요')} · 원문/저장값 행 단위 대조</summary><div class="grid" style="margin-top:10px"><div class="box"><b>식별 정보</b>${identity.map(([n,a,b])=>`<div class="compare-row"><span>${esc(n)} · 저장 ${esc(a)}</span><strong class="${String(a)===String(b)?'match':'miss'}">${String(a)===String(b)?'일치':'불일치'}</strong><span>재수집 ${esc(b)}</span></div>`).join('')}</div><div class="box"><b>옵션 전체</b>${keys.map(k=>`<div class="compare-row"><span>${esc(KO_AFFIX_LABELS[k]||k)} · 저장 ${esc(stored[k]??'누락')}</span><strong class="${Number(stored[k])===Number(reparsed[k])&&stored[k]!==undefined&&reparsed[k]!==undefined?'match':'miss'}">${Number(stored[k])===Number(reparsed[k])&&stored[k]!==undefined&&reparsed[k]!==undefined?'일치':'불일치'}</strong><span>재수집 ${esc(reparsed[k]??'누락')}</span></div>`).join('')||'<div class="meta">비교할 옵션 없음</div>'}</div></div>${x.canonical_source_url||x.source_url?`<div class="actions"><a class="btn" href="${esc(x.canonical_source_url||x.source_url)}" target="_blank" rel="noopener">원문 열기</a></div>`:''}</details>`;
+ }).join('');
+ box.innerHTML=`<b>${esc(j.source||'source')}</b> · 검사 ${j.checked||0}건 ·
+   일치 ${j.passed||0} · 부분일치 ${j.partial||0} · 실패 ${j.failed||0} ·
+   평균 정확도 <b>${pct}%</b>
+   ${j.source==='playnote'?` · 기존 ID 복구 <b>${j.recovered_listing_ids||0}</b> · 현재 상세후보 ${j.live_candidates||0}`:''}${comparisons}`;
+
+ const slim=(j.audits||[]).map(x=>({
+   observation_id:x.observation_id,
+   listing_id:x.listing_id,
+   source_url:x.canonical_source_url||x.source_url||null,
+   status:x.comparison?.status,
+   score:Math.round(Number(x.comparison?.score||0)*100)+"%",
+   price_match:x.comparison?.price_match,
+   slot_match:x.comparison?.slot_match,
+   base_match:x.comparison?.base_match,
+   affix_accuracy:Math.round(Number(x.comparison?.affixes?.accuracy||0)*100)+"%",
+   missing_affixes:x.comparison?.affixes?.missing_in_reparse||[],
+   value_mismatch:x.comparison?.affixes?.value_mismatch||[],
+   stored:x.stored||null,
+   reparsed:x.reparsed||null,
+   acquisition_status:x.acquisition_status||null,
+   error:x.error||null
+ }));
+ $('sourceAuditDebug').textContent=JSON.stringify({
+   recovery_meta:j.recovery_meta||null,
+   recovery_diagnostic:j.recovery_diagnostic||null,
+   audits:slim
+ },null,2);
+}
+
+async function runSourceAudit(kind){
+ const btn=kind==='playnote'?$('auditPlaynote'):$('auditTraderie');
+ const old=btn.textContent;btn.disabled=true;btn.textContent='감사 중...';
+ try{
+   const j=await api('/api/admin/source-audit/'+kind,{
+     method:'POST',headers:{'content-type':'application/json'},body:'{}'
+   });
+   renderAuditSummary(j);
+   say(`${kind} 정확도 감사 완료 · ${j.checked||0}건 · 평균 ${Math.round(Number(j.average_score||0)*100)}%`);
+ }catch(e){
+   $('sourceAuditStatus').innerHTML=`<div class="msg bad">감사 실패: ${esc(e.message)}</div>`;
+   say('정확도 감사 실패: '+e.message,true);
+ }finally{
+   btn.disabled=false;btn.textContent=old;
+ }
+}
+
+async function loadReviewValueLearning(){
+ const box=$('reviewValueStatus');if(!box)return;
+ box.textContent='검수 가치 학습 상태 불러오는 중...';
+ try{
+  const j=await api('/api/admin/review-value-learning');
+  const run=j.last_run||{},d=run.diagnostics||{},rejected=d.rejected_reasons||{},abstained=d.group_abstentions||{};
+  const reasons=Object.entries({...rejected,...abstained}).sort((a,b)=>b[1]-a[1]).slice(0,7);
+  box.innerHTML=`<div class="stats"><span class="pill">활성 검증 모델 ${Number(j.active_models)||0}개</span><span class="pill">사람 가치 라벨 ${Number(d.accepted)||0}건</span><span class="pill">독립 매물 ${Number(d.independent)||0}건</span><span class="pill">검증 통과 조합 ${Number(d.promoted)||0}개</span></div>
+    <p class="meta">${run.trigger?'마지막 계산: '+esc(run.trigger)+' · 읽은 후보 '+(Number(run.reviewed_rows)||0)+'건':'아직 학습 계산 기록이 없습니다.'} 검증 통과 전에는 두 감정기의 기본 판단을 유지합니다.</p>
+    ${reasons.length?'<div class="meta">보류/제외 사유: '+reasons.map(([key,count])=>esc(key)+' '+Number(count)).join(' · ')+'</div>':''}`;
+ }catch(e){box.innerHTML=`<div class="msg bad">가치 학습 상태 오류: ${esc(e.message)}</div>`}
+}
+
+async function loadLearning(){
+ const box=$('learningStatus');
+ if(!box)return;
+ box.textContent='학습 상태 불러오는 중...';
+ try{
+  const j=await api('/api/admin/learning/status');
+  const pc=j.patterns||{}, sc=j.shadow_rules||{};
+  const top=(j.top_patterns||[]).slice(0,8);
+  const recent=(j.recent_feedback||[]).slice(0,8);
+  box.innerHTML=`<div class="stats">
+    피드백 <b>${j.feedback_count||0}</b> ·
+    학습중 <b>${pc.learning||0}</b> ·
+    shadow 준비 <b>${pc.shadow_ready||0}</b> ·
+    운영반영 <b>${pc.active||0}</b> ·
+    shadow <b>${sc.shadow||0}</b> ·
+    자동승격 <b>${sc.promoted||0}</b>
+  </div>
+  ${recent.length?`<div class="box" style="margin-top:10px"><b>최근 운영자 메모 / 해석 결과</b>${recent.map(x=>{
+    const sig=x.signals||[];
+    return `<div style="padding:8px 0;border-bottom:1px solid #26303b">
+      <div><b>#${x.candidate_id}</b> · ${esc(x.decision)} · ${esc(KO_SLOT_LABELS[x.slot]||x.slot||'')}</div>
+      <div style="margin-top:3px">${esc(x.note||'')}</div>
+      <div class="meta" style="margin-top:4px">학습 신호: ${sig.length?sig.map(s=>esc(s.key)).join(' / '):'없음'}</div>
+    </div>`}).join('')}</div>`:''}
+  ${top.length?`<div class="box" style="margin-top:10px"><b>상위 학습 패턴</b><br>${top.map(x=>
+    `<div class="meta" style="margin-top:6px">
+      ${esc(KO_SLOT_LABELS[x.slot]||x.slot)} · ${esc(x.signal_key)} ·
+      메모 ${x.mention_count}회 · 시장유사 ${x.market_match_count}건 ·
+      신뢰도 ${Math.round((x.confidence||0)*100)}% · ${esc(x.status)}
+    </div>`).join('')}</div>`:''}`;
+ }catch(e){
+  box.innerHTML=`<div class="msg bad">학습 상태 오류: ${esc(e.message)}</div>`;
+ }
+}
+
+
+function renderTraderieCoverageDiag(j){
+ const t=j.totals||{},p=j.percentages||{};
+ $('traderieDiagStatus').innerHTML=`<b>Traderie 후보 진단</b> ·
+   총 <b>${t.total||0}</b>건 ·
+   통과 <b>${t.parsed||0}</b> (${p.parsed||0}%) ·
+   옵션부족 <b>${t.low_affix_count||0}</b> (${p.low_affix_count||0}%) ·
+   가격없음 <b>${t.no_price||0}</b> (${p.no_price||0}%) ·
+   명시 비레어 <b>${t.explicit_nonrare||0}</b> (${p.explicit_nonrare||0}%) ·
+   비장비 <b>${t.non_equipment||0}</b> (${p.non_equipment||0}%) ·
+   기타 <b>${t.other||0}</b> (${p.other||0}%)`;
+
+ $('traderieDiagDebug').textContent=JSON.stringify({
+   seller_runs:j.seller_runs||[],
+   by_seller:j.by_seller||{},
+   samples:j.samples||{}
+ },null,2);
+}
+
+async function runTraderieCoverageDiag(){
+ const btn=$('traderieDiagnose');
+ const old=btn.textContent;
+ btn.disabled=true;btn.textContent='진단 중...';
+ try{
+   const j=await api('/api/admin/traderie/diagnose',{
+     method:'POST',
+     headers:{'content-type':'application/json'},
+     body:'{}'
+   });
+   renderTraderieCoverageDiag(j);
+   say(`Traderie 진단 완료 · ${j.totals?.total||0}건 분석`);
+ }catch(e){
+   $('traderieDiagStatus').innerHTML=`<div class="msg bad">Traderie 진단 실패: ${esc(e.message)}</div>`;
+   say('Traderie 진단 실패: '+e.message,true);
+ }finally{
+   btn.disabled=false;btn.textContent=old;
+ }
+}
+
+async function loadCrawler(){
+ loadLearning();
+ loadCoverage();
+ try{
+  const j=await api('/api/admin/crawl/status');
+
+  const dq={};
+  for(const x of (j.detail_queue||[])){ dq[x.source_key]=dq[x.source_key]||{}; dq[x.source_key][x.state]=x.n; }
+  $('parserHealth').innerHTML='<h3 style="color:#e0c27f">파서 상태</h3>'+(
+    (j.parser_health||[]).length?(j.parser_health||[]).map(x=>`<div class="card">
+      <b>${esc(x.source_key)} · ${esc(x.parser_version)}</b>
+      <div class="meta">self-test ${
+        x.last_parse_status==='evidence_only'
+          ? 'N/A · EVIDENCE ONLY'
+          : (x.selftest_passed?'PASS':'미확인/FAIL')
+      } · 최근 ${esc(x.last_parse_status||'-')} · 연속 관측0 ${x.consecutive_zero_observation_runs||0}</div>
+      <div class="meta">detail queue: pending ${(dq[x.source_key]?.pending)||0} / done ${(dq[x.source_key]?.done)||0} / error ${(dq[x.source_key]?.error)||0}</div>
+      ${x.last_error?`<div class="meta bad">${esc(x.last_error)}</div>`:''}
+    </div>`).join(''):'<div class="meta">파서 상태 기록이 아직 없습니다.</div>'
+  );
+
+  const disc=Object.fromEntries((j.discovered||[]).map(x=>[x.source_key,x.n]));
+
+  const rejectGrouped={};
+  for(const x of (j.rejection_stats||[])){
+    rejectGrouped[x.source_key]=rejectGrouped[x.source_key]||[];
+    rejectGrouped[x.source_key].push(x);
+  }
+  $('rejectStats').innerHTML='<h3 style="color:#e0c27f">최근 7일 Reject 통계</h3>'+
+    (Object.keys(rejectGrouped).length?Object.entries(rejectGrouped).map(([src,rows])=>`
+      <div class="card"><b>${esc(src)}</b>
+        <div class="meta">${rows.map(x=>`${esc(x.reason)} ${x.n}`).join(' · ')}</div>
+      </div>`).join(''):'<div class="meta">Reject 기록이 없습니다.</div>');
+
+  $('recentRejects').innerHTML='<h3 style="color:#e0c27f">최근 상세 파싱 실패 / 제외</h3>'+
+    ((j.recent_rejections||[]).length?(j.recent_rejections||[]).map(x=>{
+      let meta={};try{meta=JSON.parse(x.meta_json||'{}')}catch{}
+      return `<details class="card">
+        <summary><b>${esc(x.source_key)} · ${esc(x.reason)}</b> · ${esc(x.item_name||x.category||'')}</summary>
+        <div class="meta">${esc(x.source_url)} · ${esc(x.parser_version)} · ${esc(x.created_at)}</div>
+        <div class="meta">stage ${esc(x.stage)} · affix ${x.affix_count}</div>
+        <pre style="white-space:pre-wrap;max-height:260px;overflow:auto">${esc(x.excerpt||'')}</pre>
+        <pre style="white-space:pre-wrap">${esc(JSON.stringify(meta,null,2))}</pre>
+      </details>`;
+    }).join(''):'<div class="meta">최근 Reject가 없습니다.</div>');
+
+
+  $('seedHealth').innerHTML='<h3 style="color:#e0c27f">Seed 상태</h3>'+
+    ((j.seed_health||[]).length?(j.seed_health||[]).map(x=>`
+      <div class="card">
+        <b>${esc(x.source_key)} · ${esc(x.mode)} · ${x.enabled?'ON':'OFF'}</b>
+        <div class="meta">${esc(x.url)}</div>
+        <div class="meta">최근 ${esc(x.last_result||'-')} · 연속 빈 결과 ${x.consecutive_empty_runs||0} · parser ${esc(x.parser_version||'-')}</div>
+      </div>`).join(''):'<div class="meta">Seed health 기록이 아직 없습니다.</div>');
+
+  $('crawlMetrics').innerHTML='<h3 style="color:#e0c27f">소스별 수집 품질</h3>'+(
+    j.metrics.length?j.metrics.map(x=>{
+      const parseRate=x.total?Math.round((x.parsed_runs||0)/x.total*100):0;
+      const successRate=x.total?Math.round((x.total-(x.failures||0))/x.total*100):0;
+      return `<div class="card"><b>${esc(x.source_key)}</b>
+        <div class="meta">실행 ${x.total} · 성공률 ${successRate}% · 구조화 파싱률 ${parseRate}% · 신규 관측 ${x.observations||0} · 발견 상세URL ${disc[x.source_key]||0}</div>
+      </div>`;
+    }).join(''):'<div class="meta">아직 수집 통계가 없습니다.</div>'
+  );
+  $('crawlSeeds').innerHTML='<h3 style="color:#e0c27f">수집 Seed</h3>'+j.seeds.map(s=>`
+    <article class="card">
+      <h3>${esc(s.source_key)} ${s.enabled?'<span class="good">ON</span>':'<span class="bad">OFF</span>'}</h3>
+      <div class="meta">${esc(s.url)}</div>
+      <div class="meta">최소간격 ${s.min_interval_minutes}분 · 마지막상태 ${s.last_status??'-'} · 실패 ${s.consecutive_failures} · 마지막성공 ${fmtTime(s.last_success_at)}</div>
+      <div class="actions">
+        <button class="btn approve" onclick="runSeed(${s.id})">이 Seed 지금 수집</button>
+        <button class="btn" onclick="toggleSeed(${s.id},'${s.enabled?'disable':'enable'}')">${s.enabled?'중지':'활성화'}</button>
+        ${s.paused_until?`<button class="btn" onclick="toggleSeed(${s.id},'reset_backoff')">Backoff 해제</button>`:''}
+      </div>
+    </article>`).join('');
+  $('crawlRuns').innerHTML='<h3 style="color:#e0c27f">최근 실행</h3>'+(
+    j.runs.length?j.runs.map(r=>{
+      let detail={};try{detail=JSON.parse(r.detail_json||'{}')}catch{}
+      return `<div class="card">
+      <b>${esc(r.source_key)} · ${esc(r.result_status)}</b>
+      <div class="meta">${esc(r.url)}</div>
+      <div class="meta">HTTP ${r.http_status??'-'} · docs ${r.documents_found} · 관측 ${r.observations_added} · 중복 ${r.duplicates_skipped} · ${esc(r.started_at)}</div>
+      ${detail.discovered_urls?`<div class="meta">상세 URL 신규발견 ${detail.discovered_urls}</div>`:''}
+      ${detail.parse_meta?`<div class="meta">파서 ${esc(JSON.stringify(detail.parse_meta))}</div>`:''}
+      ${detail.detail_stats?`<div class="meta">상세확인 ${detail.detail_stats.details_checked||0} · 상세관측 ${detail.detail_stats.observations||0}</div>`:''}
+      ${r.error_text?`<div class="meta bad">${esc(r.error_text)}</div>`:''}
+    </div>`}).join(''):'<div class="meta">실행 기록이 없습니다.</div>'
+  );
+ }catch(e){say('수집 상태 확인 실패: '+e.message,true)}
+}
+async function runSeed(id){
+ try{
+  const j=await api('/api/admin/crawl/run',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({seed_id:id})});
+  const r=j.results?.[0]; say(r?.ok?`수집 완료 · docs ${r.documents||0} · 관측 ${r.observations||0}`:`수집 결과: ${r?.error||'unknown'}`,!r?.ok);
+  loadCrawler();
+ }catch(e){say('수집 실패: '+e.message,true)}
+}
+async function toggleSeed(id,action){
+ try{
+  await api('/api/admin/crawl/seed',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id,action})});
+  say('Seed 상태를 변경했습니다.');loadCrawler();
+ }catch(e){say('변경 실패: '+e.message,true)}
+}
+$('crawlRunAll').onclick=async()=>{
+ if(!confirm('활성 Seed를 페이지 1개씩 안전하게 순차 수집할까요?'))return;
+ try{
+  const state=await api('/api/admin/crawl/status');
+  const seeds=(state.seeds||[]).filter(s=>s.enabled);
+  let ok=0,fail=0;
+  for(const s of seeds){
+    say(`수집 중: ${s.source_key}`);
+    try{
+      const j=await api('/api/admin/crawl/run',{
+        method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({seed_id:s.id})
+      });
+      const r=(j.results||[])[0];
+      r?.ok?ok++:fail++;
+    }catch(e){fail++}
+  }
+  let traderieApiSummary=null;
+  try{
+    traderieApiSummary=await api('/api/admin/traderie/api/collect',{
+      method:'POST',headers:{'content-type':'application/json'},body:'{}'
+    });
+  }catch(e){
+    traderieApiSummary={status:'api_call_failed',error:e.message,observations:0,review_candidates:0};
+  }
+
+  let detailDone=0,detailFailed=0;
+  for(let i=0;i<12;i++){
+    try{
+      const d=await api('/api/admin/crawl/detail/step',{
+        method:'POST',headers:{'content-type':'application/json'},body:'{}'
+      });
+      if(d.status==='queue_empty')break;
+      d.job_ok===false?detailFailed++:detailDone++;
+    }catch(e){
+      detailFailed++;
+      continue;
+    }
+  }
+  say(`안전 수집 완료 · Seed 성공 ${ok} / 실패 ${fail} · 상세 처리 ${detailDone} / 수집실패 ${detailFailed}`);
+  await loadCrawler();
+ }catch(e){say('수집 실행 실패: '+e.message,true)}
+};
+
+$('crawlForceAll').onclick=async()=>{
+ if(!confirm('활성 Seed를 현재 파서로 페이지 1개씩 강제 재처리할까요?'))return;
+ try{
+  await api('/api/admin/crawl/bootstrap/playnote',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  const state=await api('/api/admin/crawl/status');
+  const seeds=(state.seeds||[]).filter(s=>s.enabled);
+  let ok=0,fail=0;
+  for(const s of seeds){
+    say(`강제 재처리 중: ${s.source_key}`);
+    try{
+      const j=await api('/api/admin/crawl/run',{
+        method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({seed_id:s.id,force_reparse:true})
+      });
+      const r=(j.results||[])[0];
+      r?.ok?ok++:fail++;
+    }catch(e){fail++}
+  }
+  let traderieApiSummary=null;
+  try{
+    traderieApiSummary=await api('/api/admin/traderie/api/collect',{
+      method:'POST',headers:{'content-type':'application/json'},body:'{}'
+    });
+  }catch(e){
+    traderieApiSummary={status:'api_call_failed',error:e.message,observations:0,review_candidates:0};
+  }
+
+  let detailDone=0,detailFailed=0;
+  for(let i=0;i<32;i++){
+    try{
+      const d=await api('/api/admin/crawl/detail/step',{
+        method:'POST',headers:{'content-type':'application/json'},body:'{}'
+      });
+      if(d.status==='queue_empty')break;
+      d.job_ok===false?detailFailed++:detailDone++;
+    }catch(e){
+      detailFailed++;
+      continue;
+    }
+  }
+  say(`강제 재처리 완료 · Seed 성공 ${ok} / 실패 ${fail} · Traderie API ${traderieApiSummary?.status||"-"} · 신규관측 ${traderieApiSummary?.observations||0} · 검수대기 ${traderieApiSummary?.review_candidates||0} · 상세 처리 ${detailDone} / 수집실패 ${detailFailed}`);
+  await loadCrawler();
+ }catch(e){say('강제 재처리 실패: '+e.message,true)}
+};
+$('crawlSelfTest').onclick=async()=>{
+ try{
+  const j=await api('/api/admin/crawl/selftest',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  say(`파서 자체검사 ${j.ok?'PASS':'FAIL'} · `+(j.tests||[]).map(x=>`${x.name}:${x.pass?'PASS':'FAIL'}`).join(' / '),!j.ok);
+  loadCrawler();
+ }catch(e){say('파서 자체검사 실패: '+e.message,true)}
+};
+
+
+$('addSeedBtn').onclick=async()=>{
+ const source_key=$('newSeedSource').value;
+ const url=$('newSeedUrl').value.trim();
+ if(!url){say('Seed URL을 입력하세요.',true);return}
+ try{
+  await api('/api/admin/crawl/seed/add',{
+    method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({source_key,url})
+  });
+  $('newSeedUrl').value='';
+  say('자동 Seed를 추가했습니다.');
+  loadCrawler();
+ }catch(e){say('Seed 추가 실패: '+e.message,true)}
+};
+
+
+$('crawlClearDiag').onclick=async()=>{
+ if(!confirm('과거 Reject/최근 실행/Seed 진단 기록을 초기화할까요? 시장 관측/운영 규칙은 삭제되지 않습니다.'))return;
+ try{
+  await api('/api/admin/crawl/diagnostics/clear',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  say('진단 기록을 초기화했습니다.');
+  await loadCrawler();
+ }catch(e){say('진단 초기화 실패: '+e.message,true)}
+};
+
+
+$('traderieApiTest').onclick=async()=>{
+ try{
+  say('Traderie API 연결 테스트 중...');
+  const j=await api('/api/admin/traderie/api/test',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  const rows=(j.results||[]).map(r=>
+    `${r.label||r.seller_id}: HTTP ${r.http_status??'-'} · listings ${r.listing_count??0} · ${r.ok?'JSON OK':'실패'}`
+  );
+  $('traderieApiStatus').textContent=`API ${j.api_access} · ${rows.join(' / ')}`;
+  const dbg=$('traderieApiDebug');
+  if(dbg) dbg.textContent=JSON.stringify((j.results||[]).map(r=>({seller:r.label||r.seller_id,sample:r.sample||[]})),null,2);
+  say(`Traderie API 테스트: ${j.api_access}`);
+ }catch(e){
+  $('traderieApiStatus').textContent='API 테스트 실패 · '+e.message;
+  say('Traderie API 테스트 실패: '+e.message,true)
+ }
+};
+
+$('traderieApiCollect').onclick=async()=>{
+ const btn=$('traderieApiCollect');
+ if(btn.disabled)return;
+ btn.disabled=true;
+ const oldText=btn.textContent;
+ btn.textContent='수집 중...';
+ try{
+  say('Traderie API 1회 수집 중... (active listing 우선, 최대 약 8초)');
+  const j=await api('/api/admin/traderie/api/collect',{
+    method:'POST',headers:{'content-type':'application/json'},body:'{}'
+  });
+  $('traderieApiStatus').textContent=
+    `${j.status} · ${(Number(j.elapsed_ms||0)/1000).toFixed(1)}초 · listings ${j.fetched_listings} · 후보 ${j.parsed_candidates} · 신규관측 ${j.observations} · 검수대기 ${j.review_candidates}`;
+  const dbg=$('traderieApiDebug');
+  if(dbg) dbg.textContent=`필터 통계\n${JSON.stringify(j.reason_counts||{},null,2)}\n\nAPI 실행\n${JSON.stringify(j.diagnostics||[],null,2)}`;
+  say(`Traderie API 수집 완료 · ${(Number(j.elapsed_ms||0)/1000).toFixed(1)}초 · listings ${j.fetched_listings} · 후보 ${j.parsed_candidates} · 신규관측 ${j.observations} · 검수대기 ${j.review_candidates}`);
+  await loadCrawler();
+ }catch(e){
+  $('traderieApiStatus').textContent='API 수집 실패 · '+e.message;
+  say('Traderie API 수집 실패: '+e.message,true)
+ }finally{
+  btn.disabled=false;
+  btn.textContent=oldText;
+ }
+};
+
+$('coverageRefresh').onclick=loadCoverage;
+$('traderieDiagnose').onclick=runTraderieCoverageDiag;
+$('coverageRun').onclick=async()=>{
+ const btn=$('coverageRun');const old=btn.textContent;btn.disabled=true;btn.textContent='확장 중...';
+ try{
+  const j=await api('/api/admin/coverage/run',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  say(`커버리지 완료 · Traderie ${j.traderie?.sellers_processed||0} seller / ${j.traderie?.listings||0} listings / 신규관측 ${j.traderie?.observations||0} · Playnote ${j.playnote?.sellers_processed||0} seller / ${j.playnote?.listings||0} listings / 신규관측 ${j.playnote?.observations||0}`);
+  await loadCoverage();await stats();
+ }catch(e){say('커버리지 실행 실패: '+e.message,true)}finally{btn.disabled=false;btn.textContent=old}
+};
+$('auditPlaynote').onclick=()=>runSourceAudit('playnote');
+$('auditTraderie').onclick=()=>runSourceAudit('traderie');
+$('auditTransport').onclick=async()=>{
+ const btn=$('auditTransport');const old=btn.textContent;btn.disabled=true;btn.textContent='진단 중...';
+ try{
+   const j=await api('/api/admin/source-audit/transports',{
+     method:'POST',headers:{'content-type':'application/json'},body:'{}'
+   });
+   $('sourceAuditStatus').innerHTML='<b>ChaosCube / Inven transport 진단 완료</b>';
+   $('sourceAuditDebug').textContent=JSON.stringify(j.diagnostics||{},null,2);
+   say('ChaosCube / Inven 진단 완료');
+ }catch(e){say('transport 진단 실패: '+e.message,true)}
+ finally{btn.disabled=false;btn.textContent=old}
+};
+$('learningRefresh').onclick=loadLearning;
+$('reviewValueRefresh').onclick=loadReviewValueLearning;
+$('reviewValueRun').onclick=async()=>{
+ const btn=$('reviewValueRun');if(btn.disabled)return;btn.disabled=true;
+ const label=btn.textContent;btn.textContent='가치 학습 재계산 중...';
+ try{const j=await api('/api/admin/review-value-learning',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  say(`가치 학습 재계산 완료 · 검증 통과 ${Number(j.active_models)||0}개 · 독립 표본 ${Number(j.diagnostics?.independent)||0}건`);
+  await loadReviewValueLearning();
+ }catch(e){say('가치 학습 재계산 실패: '+e.message,true)}
+ finally{btn.disabled=false;btn.textContent=label}
+};
+$('learningRun').onclick=async()=>{
+ const btn=$('learningRun');
+ if(btn.disabled)return;
+ btn.disabled=true;
+ const old=btn.textContent;btn.textContent='학습 중...';
+ try{
+  const j=await api('/api/admin/learning/run',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});
+  say(`학습 완료 · 백필 ${j.backfilled||0} · 재해석 ${j.reparsed||0} · 구조화 ${j.classified||0} · 미해석 ${j.unclassified||0} · 패턴 ${j.patterns||0} · shadow ${j.shadowed||0} · 자동승격 ${j.promoted||0}`);
+  await loadLearning();await stats();
+ }catch(e){say('학습 실행 실패: '+e.message,true)}
+ finally{btn.disabled=false;btn.textContent=old}
+};
+$('crawlRefresh').onclick=loadCrawler;
+
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.tab));
+$('createCandidate').onclick=async()=>{
+ try{
+  const body={item_type:$('nItem').value,title:$('nTitle').value.trim(),confidence:Number($('nConf').value),evidence:JSON.parse($('nEvidence').value),proposal:JSON.parse($('nProposal').value),source_type:'manual'};
+  await api('/api/admin/candidates',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
+  say('후보를 저장했습니다. 아직 운영 DB에는 반영되지 않았습니다.');await stats();show('pending');
+ }catch(e){say('저장 실패: '+e.message,true)}
+};
+$('statisticalRefresh').onclick=loadStatisticalShadow;
+stats();show('pending');
+</script><script src="/admin/ai-learning.js?v=136"></script><script src="/assets/js/publisher.js?v=118" defer></script>
+<script src="/assets/ui-v119/site.js" defer></script></body></html>

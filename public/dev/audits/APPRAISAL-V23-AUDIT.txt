@@ -1,0 +1,44 @@
+Sanctuary KR : D2R — v23 아이템 감정 DB 대량 통합 감사
+Verified: 2026-09-09
+
+[범위]
+- 레어 반지
+- 레어 목걸이
+- 레어 써클릿류
+- 레어 장갑
+- 레어 부츠
+- 레어 벨트
+- 직업전용 레어 방어구
+- 레어 근접무기
+- 레어 활/쇠뇌 (앰플 포함)
+- 레어 자벨린/스피어
+- 레어 캐스터 무기 (오브/완드/셉터/클러)
+
+[재검증 핵심]
+1) Rare 공통: 2~6 random affixes, prefix <=3 / suffix <=3.
+2) Rare amulet: 일반 FCR suffix 10%. 15~20% FCR amulet은 Caster Crafted 고정옵+접사 영역과 구분.
+3) Circlet: Rare 20 FCR, 30 FRW, Mechanic's 1~2 sockets. 2/20/30/2os 계열 실제 2026 NL 시장 확인.
+4) Gloves: Rare +2 skill tab / 20 IAS 핵심. +3 skill tab은 Magic 품질 영역.
+5) Boots: 30 FRW + 10 FHR + high res 조합의 2026 Ladder/NL 수요 재확인. Strength cannot spawn as a normal rare-boots affix. GF/MF 특수 수요 별도.
+6) Belt: 24 FHR 가능. Rare belt FCR로 오감정하지 않도록 Crafted와 분리.
+7) Weapon: Cruel 201-300 ED, Fool's level-based AR/max, Quickness 40 IAS, Mechanic's 1-2 sockets, repair durability affixes 확인.
+8) Amp: of Amplify Damage = 5% chance to cast lvl 1 Amplify Damage on striking, Weapons, cannot spawn on Orbs.
+9) Class-specific: Druid Pelts and applicable Assassin Katars can carry up to 3 staffmods, each +1~+3. Claw +3 skill-tab is Magic-only; Rare can +1/+2 Assassin or +1/+2 skill-tab plus staffmods.
+10) Thrown weapons: socket affix 제외. Replenish Quantity 별도 중요.
+
+[시장 교차검증 예시]
+- 2026 SC NL 30FRW/10FHR/tri-res boots ISO/FT 반복 확인.
+- 2026 SC NL +2 Javelin/20IAS rare gloves + mana leech/dex/res 실제 ISO/매물 확인.
+- 2026 SC NL 2Pal/10FCR + stats/res rare amulet 다수 거래/ISO 확인.
+- 2026 SC NL 2Nec/20FCR/30FRW/2os circlet 및 2Barb/20FCR/30FRW/2os 수요 확인.
+- 2026 Amp bow ISO에서 Amp + IAS + high ED, 일부 2os/베이스 조건 확인.
+
+[핵심 원칙]
+- 게시자가 적은 BIN/희망가를 '완료 시세'로 확정하지 않는다.
+- 표본이 적은 트로피/PvP 특수품은 자동 가격화하지 않는다.
+- 생성규칙과 실제 사용처가 충돌하면 생성규칙을 우선하고 데이터 수정.
+- Ladder만 보지 않고 Non-Ladder PvP/트로피 시장을 동등하게 검증.
+
+[주요 원자료]
+- Arreat Summit: Magic Items / General Magic Prefixes / General Magic Suffixes / Procing Spell Suffixes / Circlets / Paladin Shields / Druid Pelts / Assassin Katars / Sorceress Orbs
+- d2jsp 2026 SC Ladder / SC Non-Ladder ISO & FT samples

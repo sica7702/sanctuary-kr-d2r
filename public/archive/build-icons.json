@@ -1,0 +1,1052 @@
+{
+  "Magic Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Fire Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Inner Sight": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Critical Strike": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Jab": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Cold Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Multiple Shot": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Dodge": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Power Strike": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Poison Javelin": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Exploding Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Slow Missiles": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Avoid": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Impale": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Lightning Bolt": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Ice Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Guided Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Penetrate": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Charged Strike": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "Plague Javelin": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Strafe": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Immolation Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Dopplezon": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Evade": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "Fend": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Freezing Arrow": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Valkyrie": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Pierce": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "Lightning Strike": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  },
+  "Lightning Fury": {
+    "src": "assets/skills/AmSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Fire Bolt": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Warmth": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Charged Bolt": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Ice Bolt": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Frozen Armor": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Inferno": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Static Field": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Telekinesis": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Frost Nova": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Ice Blast": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Blaze": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Fire Ball": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Nova": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Lightning": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Shiver Armor": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Fire Wall": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Enchant": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Chain Lightning": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Teleport": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "Glacial Spike": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Meteor": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Thunder Storm": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Energy Shield": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Blizzard": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "Chilling Armor": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Fire Mastery": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Hydra": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Lightning Mastery": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "Frozen Orb": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  },
+  "Cold Mastery": {
+    "src": "assets/skills/SoSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Amplify Damage": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Teeth": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Bone Armor": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Skeleton Mastery": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Raise Skeleton": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Dim Vision": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Weaken": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Poison Dagger": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Corpse Explosion": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Clay Golem": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Iron Maiden": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Terror": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Bone Wall": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Golem Mastery": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Raise Skeletal Mage": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Confuse": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Life Tap": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Poison Explosion": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Bone Spear": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "BloodGolem": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Attract": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Decrepify": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Bone Prison": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Summon Resist": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "IronGolem": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Lower Resist": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Poison Nova": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Bone Spirit": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "FireGolem": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  },
+  "Revive": {
+    "src": "assets/skills/NeSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Sacrifice": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Smite": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Might": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Prayer": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Resist Fire": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Holy Bolt": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Holy Fire": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Thorns": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Defiance": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Resist Cold": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Zeal": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Charge": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Blessed Aim": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Cleansing": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Resist Lightning": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Vengeance": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Blessed Hammer": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Concentration": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Holy Freeze": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "Vigor": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Conversion": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Holy Shield": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Holy Shock": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Sanctuary": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "Meditation": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Fist of the Heavens": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Fanaticism": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Conviction": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  },
+  "Redemption": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "Salvation": {
+    "src": "assets/skills/PaSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Bash": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 0,
+    "size": 15600
+  },
+  "Blade Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 1.2903225806451613,
+    "size": 15600
+  },
+  "Axe Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 2.5806451612903225,
+    "size": 15600
+  },
+  "Mace Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 3.870967741935484,
+    "size": 15600
+  },
+  "Howl": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 5.161290322580645,
+    "size": 15600
+  },
+  "Find Potion": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 6.451612903225806,
+    "size": 15600
+  },
+  "Leap": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 7.741935483870968,
+    "size": 15600
+  },
+  "Double Swing": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 9.03225806451613,
+    "size": 15600
+  },
+  "Pole Arm Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 10.32258064516129,
+    "size": 15600
+  },
+  "Throwing Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 11.612903225806452,
+    "size": 15600
+  },
+  "Spear Mastery": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 12.903225806451612,
+    "size": 15600
+  },
+  "Taunt": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 14.193548387096774,
+    "size": 15600
+  },
+  "Shout": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 15.483870967741936,
+    "size": 15600
+  },
+  "Stun": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 16.774193548387096,
+    "size": 15600
+  },
+  "Double Throw": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 18.06451612903226,
+    "size": 15600
+  },
+  "Increased Stamina": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 19.35483870967742,
+    "size": 15600
+  },
+  "Find Item": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 20.64516129032258,
+    "size": 15600
+  },
+  "Leap Attack": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 21.93548387096774,
+    "size": 15600
+  },
+  "Concentrate": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 23.225806451612904,
+    "size": 15600
+  },
+  "Iron Skin": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 24.516129032258064,
+    "size": 15600
+  },
+  "Battle Cry": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 25.806451612903224,
+    "size": 15600
+  },
+  "Frenzy": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 27.096774193548388,
+    "size": 15600
+  },
+  "Increased Speed": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 28.387096774193548,
+    "size": 15600
+  },
+  "Battle Orders": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 29.677419354838708,
+    "size": 15600
+  },
+  "Grim Ward": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 30.967741935483872,
+    "size": 15600
+  },
+  "Whirlwind": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 32.25806451612903,
+    "size": 15600
+  },
+  "Berserk": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 33.54838709677419,
+    "size": 15600
+  },
+  "Natural Resistance": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 34.83870967741935,
+    "size": 15600
+  },
+  "War Cry": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 36.12903225806452,
+    "size": 15600
+  },
+  "Battle Command": {
+    "src": "assets/skills/BaSkillicon.png",
+    "position": 37.41935483870968,
+    "size": 15600
+  },
+  "Raven": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Plague Poppy": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Oak Sage": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Summon Spirit Wolf": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Cycle of Life": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Heart of Wolverine": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Summon Fenris": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Vines": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Spirit of Barbs": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Summon Grizzly": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Wearwolf": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Shape Shifting": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Wearbear": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Feral Rage": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "Maul": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  },
+  "Rabies": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Fire Claws": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Hunger": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Shock Wave": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Fury": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Firestorm": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Molten Boulder": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Arctic Blast": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "Eruption": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Cyclone Armor": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Twister": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Volcano": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Tornado": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "Armageddon": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Hurricane": {
+    "src": "assets/skills/DrSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Fire Trauma": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 0,
+    "size": 6000
+  },
+  "Claw Mastery": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 33.898305084745765,
+    "size": 6000
+  },
+  "Psychic Hammer": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 37.28813559322034,
+    "size": 6000
+  },
+  "Tiger Strike": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 67.79661016949153,
+    "size": 6000
+  },
+  "Dragon Talon": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 71.1864406779661,
+    "size": 6000
+  },
+  "Shock Field": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 3.389830508474576,
+    "size": 6000
+  },
+  "Blade Sentinel": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 6.779661016949152,
+    "size": 6000
+  },
+  "Quickness": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 61.016949152542374,
+    "size": 6000
+  },
+  "Fists of Fire": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 74.57627118644068,
+    "size": 6000
+  },
+  "Dragon Claw": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 77.96610169491525,
+    "size": 6000
+  },
+  "Charged Bolt Sentry": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 10.169491525423728,
+    "size": 6000
+  },
+  "Wake of Fire Sentry": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 13.559322033898304,
+    "size": 6000
+  },
+  "Weapon Block": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 44.067796610169495,
+    "size": 6000
+  },
+  "Cloak of Shadows": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 40.67796610169491,
+    "size": 6000
+  },
+  "Cobra Strike": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 84.7457627118644,
+    "size": 6000
+  },
+  "Blade Fury": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 16.949152542372882,
+    "size": 6000
+  },
+  "Fade": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 50.847457627118644,
+    "size": 6000
+  },
+  "Shadow Warrior": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 64.40677966101696,
+    "size": 6000
+  },
+  "Claws of Thunder": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 98.30508474576271,
+    "size": 6000
+  },
+  "Dragon Tail": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 81.35593220338983,
+    "size": 6000
+  },
+  "Lightning Sentry": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 20.338983050847457,
+    "size": 6000
+  },
+  "Inferno Sentry": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 23.728813559322035,
+    "size": 6000
+  },
+  "Mind Blast": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 57.6271186440678,
+    "size": 6000
+  },
+  "Blades of Ice": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 88.13559322033899,
+    "size": 6000
+  },
+  "Dragon Flight": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 91.52542372881356,
+    "size": 6000
+  },
+  "Death Sentry": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 27.11864406779661,
+    "size": 6000
+  },
+  "Blade Shield": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 30.508474576271187,
+    "size": 6000
+  },
+  "Venom": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 47.45762711864407,
+    "size": 6000
+  },
+  "Shadow Master": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 54.23728813559322,
+    "size": 6000
+  },
+  "Royal Strike": {
+    "src": "assets/skills/AsSkillicon.png",
+    "position": 94.91525423728814,
+    "size": 6000
+  }
+}

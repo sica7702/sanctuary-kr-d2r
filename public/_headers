@@ -1,0 +1,9 @@
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+/api/admin/*
+  Cache-Control: no-store
+
+/api/public/rules
+  Access-Control-Allow-Origin: https://d2rarchive.co.kr

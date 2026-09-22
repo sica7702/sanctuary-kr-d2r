@@ -1,0 +1,7 @@
+.learning-venv/
+learning-state/
+.env
+.dev.vars
+.wrangler/
+__pycache__/
+backup-before-v136-*.sql

@@ -1,0 +1,29 @@
+Sanctuary KR · D2R v45 exact skill / affix audit
+Date: 2026-09-09
+
+Scope
+- Image appraisal normalizer + manual catalog
+- Item Appraisal DB exact charged/proc skill-name inputs
+- Rare/crafted affix coverage review
+
+Cross-check sources
+1) Blizzard/Arreat Summit: General Magic Prefixes
+2) Blizzard/Arreat Summit: General Magic Suffixes
+3) Blizzard/Arreat Summit: Charged Item Magic Suffixes
+4) Blizzard/Arreat Summit: Procing Spell Suffixes
+5) D2Runewizard current D2R affix/suffix database (including RotW-era entries)
+6) Amazon Basin charged suffix notes/item-type restrictions
+7) Diablo2.io current database/examples
+8) Korean current-version terminology spot checks (Inven, Blizzard current Warlock material)
+
+v45 changes
+- Charged skills are no longer normalized to a single generic "충전 기술" result when a skill name is readable.
+- OCR now preserves the literal skill string: e.g. "4 레벨 인장: 무기력 (충전 7/30회)" -> "충전 기술 · 인장: 무기력 / Lv4".
+- Teleport charges likewise become "충전 기술 · 순간이동" when Korean OCR reads that text.
+- Known charged-skill catalog added to the searchable manual option pool, with English aliases for search/cross-check.
+- If charge context is found but the skill name itself is unreadable, automatic normalization rejects the generic result and asks for manual exact-skill selection instead of silently accepting an ambiguous option.
+- Item Appraisal DB gains exact charged-skill name, skill level, max charge count, exact proc skill name, proc level, proc chance, and trigger fields on eligible rare/crafted item families.
+- Image appraisal BETA notice key advanced to v45 and pageshow handling added so the notice appears on the new version unless the user explicitly selects "오늘 하루 보지 않기".
+
+Important
+The exact Korean localization of a charged skill is preserved directly from OCR whenever possible. The manual catalog also keeps English aliases because localization can differ by client/version and current RotW-era data evolves independently of legacy LoD tables.
