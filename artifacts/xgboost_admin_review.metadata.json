@@ -1,0 +1,13 @@
+﻿{
+  "model": "xgboost_admin_review",
+  "status": "candidate",
+  "artifact": "artifacts/xgboost_admin_review.json",
+  "samples": 33,
+  "trainSamples": 24,
+  "testSamples": 9,
+  "accuracy": 0.7778,
+  "f1": 0.6667,
+  "trainedAt": "2026-09-22",
+  "activationAllowed": false,
+  "reason": "검증 데이터가 적어 운영 자동 판정에 아직 사용하지 않음"
+}
