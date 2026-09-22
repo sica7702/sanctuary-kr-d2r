@@ -34,12 +34,17 @@ export async function runAlgorithmPipeline(rawInput, runners = {}) {
     .map((result) => result?.score)
     .filter((score) => Number.isFinite(score));
 
+  const trainedScores = Object.values(results)
+    .filter((result) => result?.status === "trained")
+    .map((result) => result.score)
+    .filter((score) => Number.isFinite(score));
+
   const finalScore = numericScores.length
     ? numericScores.reduce((sum, score) => sum + score, 0) /
       numericScores.length
     : null;
 
-  const confidence = numericScores.length / MODEL_NAMES.length;
+  const confidence = trainedScores.length / MODEL_NAMES.length;
 
   return createAlgorithmOutput(input, {
     ...results,
@@ -47,6 +52,7 @@ export async function runAlgorithmPipeline(rawInput, runners = {}) {
     confidence,
     needsHumanReview:
       input.ocrVerified === false ||
-      (confidence > 0 && confidence < 0.5),
+      trainedScores.length === 0 ||
+      confidence < 0.5,
   });
 }
