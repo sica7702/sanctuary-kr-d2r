@@ -2,14 +2,21 @@
   const errors = [];
   const warnings = [];
 
-  if (!input.itemType) errors.push('ITEM_TYPE_MISSING');
-  if (!input.options || !Array.isArray(input.options)) {
+  if (!input.itemType) {
+    errors.push('ITEM_TYPE_MISSING');
+  }
+
+  if (!Array.isArray(input.options) || input.options.length === 0) {
     errors.push('OPTIONS_MISSING');
   }
 
-  if (!input.source) warnings.push('SOURCE_MISSING');
-  if (!input.marketSnapshot) warnings.push('MARKET_SNAPSHOT_MISSING');
-  if (input.marketSnapshot && !input.marketSnapshot.capturedAt) {
+  if (!input.source) {
+    warnings.push('SOURCE_MISSING');
+  }
+
+  if (!input.marketSnapshot) {
+    warnings.push('MARKET_SNAPSHOT_MISSING');
+  } else if (!input.marketSnapshot.capturedAt) {
     errors.push('MARKET_TIMESTAMP_MISSING');
   }
 
@@ -40,4 +47,3 @@ export function preserveValuationResult(audit, existingResult) {
     audit
   };
 }
-
