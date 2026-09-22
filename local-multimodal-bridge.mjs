@@ -41,8 +41,16 @@ const server = http.createServer(async (request, response) => {
     }
 
     const imageBase64 = image.replace(/^data:[^;]+;base64,/, '');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+      console.log('Ollama timeout');
+      controller.abort();
+    }, 120000);
+
+    console.log('Ollama vision request started');
 
     const ollamaResponse = await fetch(OLLAMA_URL, {
+      signal: controller.signal,
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
@@ -93,4 +101,5 @@ const server = http.createServer(async (request, response) => {
 server.listen(PORT, HOST, () => {
   console.log(`Local multimodal bridge ready on http://${HOST}:${PORT}/verify`);
 });
+
 
