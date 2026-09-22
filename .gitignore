@@ -1,7 +1,6 @@
-.learning-venv/
-learning-state/
-.env
-.dev.vars
-.wrangler/
+﻿eligible-review-candidates.json
+training-candidates.jsonl
+artifacts/*.joblib
+artifacts/xgboost_admin_review.json
+*.pyc
 __pycache__/
-backup-before-v136-*.sql
