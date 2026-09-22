@@ -1,15 +1,13 @@
-﻿import { createJavaScriptModelAdapters } from "./javascript-model-adapters.mjs";
-import { createPythonModelAdapters } from "./python-model-adapters.mjs";
+﻿import { createRealPythonEngineAdapters } from "./real-python-engine-adapters.mjs";
+import { createMcdaEngine } from "./mcda-engine.mjs";
 import { runVerificationPipeline } from "./verification-pipeline.mjs";
 
 const connectedAdapters = {
-  ...createPythonModelAdapters(),
-  ...createJavaScriptModelAdapters(),
+  ...createRealPythonEngineAdapters(),
+  mcda: createMcdaEngine(),
 };
 
-export function runConnectedVerificationPipeline(
-  verificationPayload,
-) {
+export function runConnectedVerificationPipeline(verificationPayload) {
   return runVerificationPipeline(
     verificationPayload,
     connectedAdapters,
