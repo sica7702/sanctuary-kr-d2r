@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/mismatch-report/v1",
+  "title": "Text image mismatch report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_version", "candidate_id", "detected", "fields", "severity", "requires_human_review"],
+  "properties": {
+    "report_version": { "const": "mismatch-v1" },
+    "candidate_id": { "type": "integer", "minimum": 1 },
+    "detected": { "type": "boolean" },
+    "fields": { "type": "array", "items": { "enum": ["item_type", "slot", "base_name", "option", "quantity", "price", "source_identity"] } },
+    "severity": { "enum": ["none", "low", "medium", "high"] },
+    "comparisons": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["field", "text_value", "image_value"], "properties": { "field": { "type": "string" }, "text_value": {}, "image_value": {}, "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 } } } },
+    "requires_human_review": { "type": "boolean" },
+    "created_at": { "type": "string" }
+  }
+}

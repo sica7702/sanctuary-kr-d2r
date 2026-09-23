@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/media-asset/v1",
+  "title": "Candidate media asset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["asset_id", "candidate_id", "kind", "mime_type", "sha256", "uri", "captured_at"],
+  "properties": {
+    "asset_id": { "type": "string", "minLength": 1 },
+    "candidate_id": { "type": "integer", "minimum": 1 },
+    "kind": { "enum": ["image", "ocr_text", "source_text"] },
+    "mime_type": { "type": "string" },
+    "sha256": { "type": "string", "minLength": 16 },
+    "uri": { "type": "string", "minLength": 1 },
+    "captured_at": { "type": "string" },
+    "ocr": {
+      "type": ["object", "null"], "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string" }, "engine": { "type": "string" },
+        "engine_version": { "type": ["string", "null"] }, "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}
