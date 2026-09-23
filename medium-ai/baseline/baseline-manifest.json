@@ -1,0 +1,22 @@
+{
+  "baseline_version": "baseline-v1",
+  "captured_at": "2026-09-23T14:50:13.699Z",
+  "production_files": {
+    "worker.js": {
+      "bytes": 264871,
+      "sha256": "19f795630e3605f1148fa1640118841ea0dd14773028b24a25805baf300d0352"
+    },
+    "ai-service.mjs": {
+      "bytes": 17614,
+      "sha256": "3162205ff1bc8b6b27af2b8ad5c5dc611c24383fc5c838c869e77b57476d23f1"
+    },
+    "traderie-integrity.mjs": {
+      "bytes": 13130,
+      "sha256": "180b8c7a31a8e8a8edcd3cd8c3fadd2ecc6eb5ae51c4afac3fd03ee2647d247e"
+    },
+    "public/admin/index.html": {
+      "bytes": 93239,
+      "sha256": "891e11fc94d7225b0a043430b465d3922b704afca2e5445c2ae809e421ee8384"
+    }
+  }
+}
