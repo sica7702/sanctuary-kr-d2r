@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/dataset-record/v1",
+  "title": "Medium AI dataset record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_id", "candidate_id", "label_status", "source_snapshot_hash", "input_ref", "split", "provenance"],
+  "properties": {
+    "record_id": { "type": "string", "minLength": 1 },
+    "candidate_id": { "type": "integer", "minimum": 1 },
+    "label_status": { "enum": ["human_verified", "human_rejected", "weak_label", "unlabeled", "quarantined"] },
+    "label": { "type": ["object", "null"] },
+    "source_snapshot_hash": { "type": ["string", "null"] },
+    "input_ref": { "type": "string", "minLength": 1 },
+    "media_refs": { "type": "array", "items": { "type": "string" } },
+    "split": { "enum": ["train", "validation", "test", "holdout", "quarantine"] },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dataset_version", "source_type", "parser_version", "created_at"],
+      "properties": {
+        "dataset_version": { "type": "string" }, "source_type": { "type": "string" },
+        "parser_version": { "type": ["string", "null"] }, "created_at": { "type": "string" },
+        "reviewer_id": { "type": ["string", "null"] }, "reviewed_at": { "type": ["string", "null"] },
+        "weak_labeler": { "type": ["string", "null"] }
+      }
+    },
+    "quality": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "duplicate_group": { "type": ["string", "null"] },
+        "source_complete": { "type": "boolean" },
+        "media_complete": { "type": "boolean" },
+        "label_confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

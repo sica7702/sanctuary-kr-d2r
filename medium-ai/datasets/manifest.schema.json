@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/dataset-manifest/v1",
+  "title": "Medium AI dataset manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["dataset_version", "created_at", "record_count", "label_policy", "splits", "records_file"],
+  "properties": {
+    "dataset_version": { "type": "string", "pattern": "^[a-zA-Z0-9._-]+$" },
+    "created_at": { "type": "string" }, "record_count": { "type": "integer", "minimum": 0 },
+    "records_file": { "type": "string" },
+    "label_policy": { "enum": ["human_only", "human_plus_weak", "weak_only"] },
+    "source_snapshot_policy": { "enum": ["required", "optional", "not_applicable"] },
+    "splits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["train", "validation", "test", "holdout"],
+      "properties": {
+        "train": { "type": "integer", "minimum": 0 }, "validation": { "type": "integer", "minimum": 0 },
+        "test": { "type": "integer", "minimum": 0 }, "holdout": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "source_counts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+    "slot_counts": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 0 } },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}
