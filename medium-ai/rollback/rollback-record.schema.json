@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/rollback-record/v1",
+  "title": "Medium AI rollback record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rollback_id", "from_model_id", "to_model_id", "reason", "created_at", "actor"],
+  "properties": {
+    "rollback_id": { "type": "string", "minLength": 1 },
+    "from_model_id": { "type": "string", "minLength": 1 },
+    "to_model_id": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "incident_ref": { "type": ["string", "null"] },
+    "created_at": { "type": "string" },
+    "actor": { "type": "string", "minLength": 1 }
+  }
+}
