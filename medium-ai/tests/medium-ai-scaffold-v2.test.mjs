@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { validateModelOutput, canApplyModelOutput } from '../contracts/index.mjs';
+import { datasetEligibility } from '../datasets/index.mjs';
+import { isTrainableRecord, selectTrainingRecords } from '../datasets/training-selection.mjs';
+import { makeMismatchReport } from '../multimodal/index.mjs';
+import { assessUncertainty } from '../uncertainty/index.mjs';
+import { evaluateHoldout, passHoldoutGate } from '../evaluation/index.mjs';
+import { chooseAdapter } from '../adapters/index.mjs';
+import { canPromoteModel } from '../model-registry/index.mjs';
+import { makeRollbackRecord } from '../rollback/index.mjs';
+
+const output = { contract_version: 'medium-body-v1', decision: 'review', confidence: 0.95, requires_human_review: false, reasons: ['stable'], tags: ['option_clear'], source_snapshot_hash: 'a'.repeat(64), model: { provider: 'test', name: 'medium-test', version: '1', dataset_version: 'ds-1' } };
+test('contracts gate shadow output', () => { assert.equal(validateModelOutput(output).ok, true); assert.equal(canApplyModelOutput(output, { mode: 'shadow' }).ok, false); });
+test('dataset selection excludes weak labels', () => { const human = { label_status: 'human_verified', split: 'train', source_snapshot_hash: 'h'.repeat(64), quality: { source_complete: true, media_complete: true } }; const weak = { ...human, label_status: 'weak_label' }; assert.equal(datasetEligibility(weak).eligible, false); assert.equal(isTrainableRecord(human), true); assert.deepEqual(selectTrainingRecords([human, weak]).counts, { selected: 1, excluded: 1 }); });
+test('mismatch routes to human review', () => { const report = makeMismatchReport(7, [{ field: 'slot', text_value: 'boots', image_value: 'ring', confidence: 0.9 }]); assert.equal(report.severity, 'high'); assert.equal(report.requires_human_review, true); });
+test('uncertainty abstains', () => { const result = assessUncertainty({ confidence: 0.7 }, { mismatch_detected: true, source_snapshot_hash: 'hash' }); assert.equal(result.route, 'human_review'); });
+test('holdout blocks undersized evaluation', () => { const report = evaluateHoldout([{ expected: 'review', actual: 'review', abstained: true }]); assert.equal(report.metrics.accuracy, 1); assert.equal(passHoldoutGate(report).passed, false); });
+test('media routes to multimodal', () => { const adapters = [{ adapter_id: 'mm-1', provider: 'test', model_kind: 'multimodal', model_version: '1', contract_version: 'medium-body-v1', mode: 'shadow', capabilities: ['image', 'ocr'] }]; assert.equal(chooseAdapter({ media: [{ kind: 'image' }] }, adapters).route, 'multimodal'); assert.equal(chooseAdapter({ media: [] }, []).route, 'human_review'); });
+test('promotion and rollback are explicit', () => { assert.equal(canPromoteModel({ status: 'candidate', dataset_version: 'ds-1' }, { holdout_passed: true, mismatch_rate: 0.01, false_approval_rate: 0.01 }).ok, true); assert.throws(() => makeRollbackRecord({ fromModelId: 'a', toModelId: '', reason: 'bad' }), /rollback_fields_required/); assert.equal(makeRollbackRecord({ fromModelId: 'a', toModelId: 'b', reason: 'regression' }).to_model_id, 'b'); });
