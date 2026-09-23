@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/adapter/v1",
+  "title": "Model provider adapter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["adapter_id", "provider", "model_kind", "model_version", "contract_version", "mode"],
+  "properties": {
+    "adapter_id": { "type": "string" },
+    "provider": { "type": "string" },
+    "model_kind": { "enum": ["small", "medium", "multimodal", "finetuned", "adapter"] },
+    "model_version": { "type": "string" },
+    "contract_version": { "const": "medium-body-v1" },
+    "mode": { "enum": ["disabled", "shadow", "active"] },
+    "capabilities": { "type": "array", "items": { "enum": ["text", "image", "ocr", "structured_output", "fine_tuned"] } },
+    "limits": { "type": ["object", "null"] }
+  }
+}
