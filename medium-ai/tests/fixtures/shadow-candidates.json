@@ -1,0 +1,7 @@
+{
+  "adapters": [{ "adapter_id": "medium-shadow-fixture", "provider": "fixture", "model_kind": "medium", "model_version": "fixture-1", "contract_version": "medium-body-v1", "mode": "shadow", "capabilities": ["text", "structured_output"] }],
+  "candidates": [
+    { "id": 901, "item_type": "rare", "title": "Fixture Boots", "source_type": "market_observation", "source_url": "https://example.invalid/901", "evidence": [{ "source_snapshot": { "title": "Fixture Boots" }, "source_snapshot_hash": "b1", "slot": "boots", "affixes": [{ "text": "required level 5" }] }], "mismatch_comparisons": [] },
+    { "id": 902, "item_type": "rare", "title": "Fixture Mismatch", "source_type": "market_observation", "source_url": "https://example.invalid/902", "evidence": [{ "source_snapshot": { "title": "Fixture Mismatch" }, "source_snapshot_hash": "b2", "slot": "boots", "affixes": [{ "text": "required level 5" }] }], "mismatch_comparisons": [{ "field": "slot", "text_value": "boots", "image_value": "ring", "confidence": 0.91 }] }
+  ]
+}
