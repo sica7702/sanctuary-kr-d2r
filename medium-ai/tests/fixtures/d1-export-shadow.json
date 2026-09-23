@@ -1,0 +1,7 @@
+[
+  {
+    "results": [
+      { "id": 901, "item_type": "rare", "title": "Fixture Boots", "source_type": "market_observation", "source_url": "https://example.invalid/901", "evidence_json": "[{\"source_snapshot\":{\"title\":\"Fixture Boots\"},\"source_snapshot_hash\":\"b1\",\"slot\":\"boots\",\"affixes\":[{\"text\":\"required level 5\"}]}]", "proposal_json": "{}" }
+    ]
+  }
+]
