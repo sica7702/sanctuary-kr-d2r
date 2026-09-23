@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/uncertainty-policy/v1",
+  "title": "Uncertainty policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_version", "shadow_threshold", "active_threshold", "abstain_on_mismatch", "abstain_on_missing_source"],
+  "properties": {
+    "policy_version": { "type": "string" },
+    "shadow_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+    "active_threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+    "abstain_on_mismatch": { "type": "boolean" },
+    "abstain_on_missing_source": { "type": "boolean" },
+    "max_auto_review_rate": { "type": "number", "minimum": 0, "maximum": 1 }
+  }
+}
