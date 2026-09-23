@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/training-job/v1",
+  "title": "Fine-tuning training job",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job_id", "method", "base_model", "dataset_version", "status", "created_at"],
+  "properties": {
+    "job_id": { "type": "string", "minLength": 1 },
+    "method": { "enum": ["sft", "lora", "qlora", "evaluation_only"] },
+    "base_model": { "type": "string", "minLength": 1 },
+    "dataset_version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "queued", "running", "completed", "failed", "cancelled"] },
+    "hyperparameters": { "type": ["object", "null"] },
+    "output_model_id": { "type": ["string", "null"] },
+    "metrics_report_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string" },
+    "completed_at": { "type": ["string", "null"] }
+  }
+}

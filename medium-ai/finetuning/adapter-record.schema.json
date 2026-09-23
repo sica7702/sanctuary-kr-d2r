@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/adapter-record/v1",
+  "title": "Fine-tuned adapter record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["adapter_id", "base_model", "dataset_version", "status", "created_at"],
+  "properties": {
+    "adapter_id": { "type": "string" },
+    "base_model": { "type": "string" },
+    "dataset_version": { "type": "string" },
+    "status": { "enum": ["draft", "shadow", "candidate", "active", "retired"] },
+    "artifact_uri": { "type": ["string", "null"] },
+    "evaluation_report_id": { "type": ["string", "null"] },
+    "created_at": { "type": "string" },
+    "promoted_at": { "type": ["string", "null"] }
+  }
+}
