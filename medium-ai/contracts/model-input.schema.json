@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/model-input/v1",
+  "title": "Medium AI model input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "task", "candidate_id", "source", "item", "options", "media"],
+  "properties": {
+    "contract_version": { "const": "medium-body-v1" },
+    "task": { "enum": ["review_assist", "mismatch_detection", "dataset_label_review", "evaluation"] },
+    "candidate_id": { "type": ["integer", "null"], "minimum": 1 },
+    "source": { "type": "object", "additionalProperties": false, "required": ["type", "url", "snapshot", "snapshot_hash"], "properties": { "type": { "type": "string" }, "url": { "type": "string" }, "snapshot": {}, "snapshot_hash": { "type": ["string", "null"] } } },
+    "item": { "type": "object", "additionalProperties": false, "required": ["type", "slot", "title"], "properties": { "type": { "type": "string" }, "slot": { "type": "string" }, "title": { "type": "string" } } },
+    "options": { "type": "array", "items": { "type": ["object", "string", "number", "null"] } },
+    "price_context": { "type": ["object", "array", "null"] },
+    "media": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["kind", "mime_type", "uri", "sha256"], "properties": { "kind": { "enum": ["image", "ocr_text", "source_text"] }, "mime_type": { "type": "string" }, "uri": { "type": "string" }, "sha256": { "type": ["string", "null"] }, "text": { "type": ["string", "null"] } } } },
+    "prior_proposal": { "type": ["object", "null"] }
+  }
+}
