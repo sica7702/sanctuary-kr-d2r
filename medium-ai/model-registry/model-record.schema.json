@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/model-record/v1",
+  "title": "Medium AI model record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["model_id", "name", "kind", "version", "status", "dataset_version", "created_at"],
+  "properties": {
+    "model_id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["small", "medium", "multimodal", "finetuned", "adapter"] },
+    "version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "shadow", "candidate", "active", "retired", "rolled_back"] },
+    "dataset_version": { "type": ["string", "null"] },
+    "base_model": { "type": ["string", "null"] },
+    "prompt_version": { "type": ["string", "null"] },
+    "parser_version": { "type": ["string", "null"] },
+    "metrics_ref": { "type": ["string", "null"] },
+    "created_at": { "type": "string" },
+    "promoted_at": { "type": ["string", "null"] }
+  }
+}
