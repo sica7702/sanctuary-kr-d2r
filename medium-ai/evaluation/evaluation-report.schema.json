@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sanctuary://medium-ai/evaluation-report/v1",
+  "title": "Independent evaluation report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["report_id", "model_id", "dataset_version", "holdout_passed", "sample_count", "metrics", "created_at"],
+  "properties": {
+    "report_id": { "type": "string" },
+    "model_id": { "type": "string" },
+    "dataset_version": { "type": "string" },
+    "holdout_passed": { "type": "boolean" },
+    "sample_count": { "type": "integer", "minimum": 0 },
+    "metrics": { "type": "object", "additionalProperties": false, "required": ["accuracy", "false_approval_rate", "missed_good_rate", "mismatch_rate", "abstention_rate"], "properties": { "accuracy": { "type": "number", "minimum": 0, "maximum": 1 }, "false_approval_rate": { "type": "number", "minimum": 0, "maximum": 1 }, "missed_good_rate": { "type": "number", "minimum": 0, "maximum": 1 }, "mismatch_rate": { "type": "number", "minimum": 0, "maximum": 1 }, "abstention_rate": { "type": "number", "minimum": 0, "maximum": 1 }, "calibration_error": { "type": ["number", "null"], "minimum": 0, "maximum": 1 } } },
+    "by_slot": { "type": "object" },
+    "by_source": { "type": "object" },
+    "created_at": { "type": "string" }
+  }
+}
