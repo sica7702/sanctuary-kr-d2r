@@ -1,0 +1,49 @@
+{
+  "benchmark_version": "baseline-benchmark-v1",
+  "captured_at": "2026-09-25T06:18:39.915Z",
+  "scope": "read-only syntax and extension smoke tests; no D1 or model provider calls",
+  "syntax": [
+    {
+      "file": "worker.js",
+      "passed": true,
+      "duration_ms": 38
+    },
+    {
+      "file": "ai-service.mjs",
+      "passed": true,
+      "duration_ms": 33
+    },
+    {
+      "file": "traderie-integrity.mjs",
+      "passed": true,
+      "duration_ms": 32
+    }
+  ],
+  "tests": [
+    {
+      "file": "batch-shadow-v3.test.mjs",
+      "passed": true,
+      "duration_ms": 88,
+      "summary": "ℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 50.4712\n"
+    },
+    {
+      "file": "medium-ai-scaffold-v2.test.mjs",
+      "passed": true,
+      "duration_ms": 94,
+      "summary": "ℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 52.9605\n"
+    },
+    {
+      "file": "shadow-fixture.test.mjs",
+      "passed": true,
+      "duration_ms": 86,
+      "summary": "ℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 49.199\n"
+    },
+    {
+      "file": "shadow-runtime.test.mjs",
+      "passed": true,
+      "duration_ms": 104,
+      "summary": "ℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 46.971\n"
+    }
+  ],
+  "all_passed": true
+}
