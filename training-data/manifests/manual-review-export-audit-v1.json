@@ -1,0 +1,27 @@
+{
+  "audit_version": "manual-review-export-audit-v1",
+  "created_at": "2026-09-25",
+  "source_file": "training-data/exports/approved-training.jsonl",
+  "record_count": 33,
+  "status_counts": {
+    "approved": 15,
+    "rejected": 18
+  },
+  "eligible_for_medium_ai_manifest": false,
+  "blocking_reasons": [
+    "source_snapshot_hash is missing from the legacy export",
+    "parser_version is missing from the legacy export",
+    "train/validation/test/holdout split assignments are missing",
+    "candidate/source snapshot grouping cannot be verified for leakage prevention"
+  ],
+  "required_next_export_fields": [
+    "candidate_id",
+    "label_status",
+    "source_snapshot_hash",
+    "parser_version",
+    "split",
+    "reviewed_at",
+    "reviewer"
+  ],
+  "policy": "Do not use this legacy export for medium-model training or holdout evaluation until a contract-compliant re-export is produced."
+}
