@@ -1,0 +1,21 @@
+{
+  "dataset_version": "human-reviewed-v1",
+  "created_at": "2026-09-25T07:15:56.197Z",
+  "record_count": 198,
+  "records_file": "training-data/exports/reviewed-snapshots-current.jsonl",
+  "label_policy": "human_only",
+  "source_snapshot_policy": "required",
+  "splits": {
+    "train": 137,
+    "validation": 23,
+    "test": 20,
+    "holdout": 18
+  },
+  "source_counts": {
+    "traderie": 198
+  },
+  "warnings": [
+    "2 legacy records quarantined for missing parser_version",
+    "split assignment is deterministic by sample_id"
+  ]
+}
