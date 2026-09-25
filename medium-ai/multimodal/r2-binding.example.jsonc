@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "r2_buckets": [
+    {
+      "binding": "MEDIUM_MEDIA",
+      "bucket_name": "sanctuary-medium-ai-media"
+    }
+  ]
+}
