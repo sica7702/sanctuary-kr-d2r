@@ -1,0 +1,8 @@
+# Copy to an untracked local config file. Keep credentials outside Git.
+tunnel: de3dec8b-5ef6-41d3-baaf-05748932d9ab
+credentials-file: C:\\Users\\wjsxn\\.cloudflared\\de3dec8b-5ef6-41d3-baaf-05748932d9ab.json
+
+ingress:
+  - hostname: ollama.d2rarchive.co.kr
+    service: http://127.0.0.1:8788
+  - service: http_status:404
