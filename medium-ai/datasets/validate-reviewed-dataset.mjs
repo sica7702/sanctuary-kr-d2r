@@ -1,0 +1,21 @@
+import { readFileSync } from 'node:fs';
+const recordsFile = process.argv[2] || 'training-data/exports/reviewed-snapshots-current.jsonl';
+const manifestFile = process.argv[3] || 'training-data/manifests/human-reviewed-v1.json';
+const records = readFileSync(recordsFile, 'utf8').trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
+const manifest = JSON.parse(readFileSync(manifestFile, 'utf8'));
+const duplicate = values => values.filter((v, i) => values.indexOf(v) !== i);
+const ids = records.map(r => r.sample_id);
+const hashes = records.map(r => r.source_snapshot_hash);
+const splitCounts = Object.fromEntries(['train','validation','test','holdout'].map(s => [s, records.filter(r => r.split === s).length]));
+const hashSplits = new Map();
+for (const r of records) { const set = hashSplits.get(r.source_snapshot_hash) || new Set(); set.add(r.split); hashSplits.set(r.source_snapshot_hash, set); }
+const crossSplitHashes = [...hashSplits.entries()].filter(([, splits]) => splits.size > 1).map(([hash]) => hash);
+const errors = [];
+if (duplicate(ids).length) errors.push('duplicate_sample_id');
+if (duplicate(hashes).length) errors.push('duplicate_source_snapshot_hash');
+if (crossSplitHashes.length) errors.push('source_snapshot_cross_split');
+if (records.length !== manifest.record_count) errors.push('manifest_record_count_mismatch');
+for (const key of Object.keys(splitCounts)) if (splitCounts[key] !== manifest.splits[key]) errors.push(`manifest_split_mismatch:${key}`);
+const report = { ok: errors.length === 0, record_count: records.length, split_counts: splitCounts, duplicate_sample_ids: [...new Set(duplicate(ids))], duplicate_source_snapshot_hashes: [...new Set(duplicate(hashes))], cross_split_hashes: crossSplitHashes, errors };
+console.log(JSON.stringify(report, null, 2));
+if (errors.length) process.exitCode = 1;
